@@ -8,7 +8,8 @@ nav_order: 3
 1. Given a matrix $A$ of size $m \times n$ and a vector $x$ of size $n \times 1$, compute the gradient of the function $f(x) = \text{tr}(A^T A x x^T)$ with respect to $x$.
 
 1. Find the gradient $\nabla f(x)$ and hessian $f''(x)$, if $f(x) = \dfrac{1}{2} \Vert Ax - b\Vert^2_2$.
-1. Find the gradient $\nabla f(x)$ and hessian $f''(x)$, if 
+1. Find the gradient $\nabla f(x)$ and hessian $f''(x)$, if
+   
 	$$
 	f(x) = \frac1m \sum\limits_{i=1}^m \log \left( 1 + \exp(a_i^{\top}x) \right) + \frac{\mu}{2}\Vert x\Vert _2^2, \; a_i, x \in \mathbb R^n, \; \mu>0
 	$$
