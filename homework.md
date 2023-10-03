@@ -68,13 +68,15 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	f(x) = x^\top x x^\top x
 	$$
 
+---
+
 ## Convex sets
 
 1. Show, that if $S \subseteq \mathbb{R}^n$ is convex set, then its interior $\mathbf{int } S$ and closure $\bar{S}$  are also convex sets.
-1. Show, that $\mathbf{conv}\{xx^\top: x \in \mathbb{R}^n, \|x\| = 1\} = \{A \in \mathbb{S}^n_+: \text{tr}(A) = 1\}$.
+1. Show, that $\mathbf{conv}\{xx^\top: x \in \mathbb{R}^n, \Vert x\Vert  = 1\} = \{A \in \mathbb{S}^n_+: \text{tr}(A) = 1\}$.
 1. Let $K \subseteq \mathbb{R}^n_+$ is a cone. Prove that it is convex if and only if a set of $\{x \in K \mid \sum\limits_{i=1}^n x_i = 1 \}$ is convex.
 1. Prove that the set of $\{x \in \mathbb{R}^2 \mid e^{x_1}\le x_2\}$ is convex.
-1. Show that the set of directions of the strict local descending of the differentiable function in a point is a convex cone.
+1. Show that the set of directions of the non-strict local descending of the differentiable function in a point is a convex cone. (Previously, the question contained a typo "strict local descending")
 1. Is the following set convex
 	$$
 	S = \left\{ a \in \mathbb{R}^k \mid p(0) = 1, \vert p(t) \vert\leq 1 \text{ for } \alpha\leq t \leq \beta\right\},
@@ -83,3 +85,8 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	$$
 	p(t) = a_1 + a_2 t + \ldots + a_k t^{k-1} \;?
 	$$
+<<<<<<< Updated upstream
+=======
+
+---
+>>>>>>> Stashed changes
