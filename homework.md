@@ -85,8 +85,3 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	$$
 	p(t) = a_1 + a_2 t + \ldots + a_k t^{k-1} \;?
 	$$
-<<<<<<< Updated upstream
-=======
-
----
->>>>>>> Stashed changes
