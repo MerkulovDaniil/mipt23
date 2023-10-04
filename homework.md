@@ -72,9 +72,9 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 ## Convex sets
 
 1. Show, that if $S \subseteq \mathbb{R}^n$ is convex set, then its interior $\mathbf{int } S$ and closure $\bar{S}$  are also convex sets.
-1. Show, that $\mathbf{conv}\{xx^\top: x \in \mathbb{R}^n, \Vert x\Vert  = 1\} = \{A \in \mathbb{S}^n_+: \text{tr}(A) = 1\}$.
-1. Let $K \subseteq \mathbb{R}^n_+$ is a cone. Prove that it is convex if and only if a set of $\{x \in K \mid \sum\limits_{i=1}^n x_i = 1 \}$ is convex.
-1. Prove that the set of $\{x \in \mathbb{R}^2 \mid e^{x_1}\le x_2\}$ is convex.
+1. Show, that $\mathbf{conv}\\{xx^\top: x \in \mathbb{R}^n, \Vert x\Vert  = 1\\} = \\{A \in \mathbb{S}^n_+: \text{tr}(A) = 1\\}$.
+1. Let $K \subseteq \mathbb{R}^n_+$ is a cone. Prove that it is convex if and only if a set of $\\{x \in K \mid \sum\limits_{i=1}^n x_i = 1 \\}$ is convex.
+1. Prove that the set of $\\{x \in \mathbb{R}^2 \mid e^{x_1}\le x_2\\}$ is convex.
 1. Show that the set of directions of the non-strict local descending of the differentiable function in a point is a convex cone. (Previously, the question contained a typo "strict local descending")
 1. Is the following set convex
 	$$
@@ -108,11 +108,11 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	f(x) = -\sum_{i=1}^n x_i \log(x_i),
 	$$
 
-	with $\text{dom}(f) = \{x \in \R^n_{++} : \sum_{i=1}^n x_i = 1\}$, is strictly concave.  
+	with $\text{dom}(f) = \\{x \in \R^n_{++} : \sum_{i=1}^n x_i = 1\\}$, is strictly concave.  
 
 1. Show, that the function $f: \mathbb{R}^n_{++} \to \mathbb{R}$ is convex if $f(x) = - \prod\limits_{i=1}^n x_i^{\alpha_i}$ if $\mathbf{1}^T \alpha = 1, \alpha \succeq 0$.
 
-1. Show that the maximum of a convex function $f$ over the polyhedron $P = \text{conv}\{v_1, \ldots, v_k\}$ is achieved at one of its vertices, i.e.,
+1. Show that the maximum of a convex function $f$ over the polyhedron $P = \text{conv}\\{v_1, \ldots, v_k\\}$ is achieved at one of its vertices, i.e.,
 
 	$$
 	\sup_{x \in P} f(x) = \max_{i=1, \ldots, k} f(v_i).
@@ -121,7 +121,12 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	A stronger statement is: the maximum of a convex function over a closed bounded convex set is achieved at an extreme point, i.e., a point in the set that is not a convex combination of any other points in the set. (you do not have to prove it). *Hint:* Assume the statement is false, and use Jensen’s inequality.
 
 1. Show, that the two definitions of $\mu$-strongly convex functions are equivalent:
-	1. $f(x)$ is $\mu$-strongly convex $\iff$ $f(\lambda x_1 + (1 - \lambda)x_2) \le \lambda f(x_1) + (1 - \lambda)f(x_2) - \mu \lambda (1 - \lambda)\|x_1 - x_2\|^2$ for any $x_1, x_2 \in S$ and $0 \le \lambda \le 1$ for some $\mu > 0$.
+	1. $f(x)$ is $\mu$-strongly convex $\iff$ for any $x_1, x_2 \in S$ and $0 \le \lambda \le 1$ for some $\mu > 0$:
+		
+		$$
+		f(\lambda x_1 + (1 - \lambda)x_2) \le \lambda f(x_1) + (1 - \lambda)f(x_2) - \mu \lambda (1 - \lambda)\|x_1 - x_2\|^2
+		$$
+
 	1. $f(x)$ is $\mu$-strongly convex $\iff$ if there exists $\mu>0$ such that the function $f(x) - \dfrac{\mu}{2}\Vert x\Vert^2$ is convex.
 
 ## Conjugate sets
@@ -129,7 +134,11 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 1. Find the sets $S^{\star}, S^{\star\star}, S^{\star\star\star}$, if 
     
     $$
-    S = \{ x \in \mathbb{R}^2 \mid x_1 + x_2 \ge 0, \;\; -\dfrac12x_1 + x_2 \ge 0, \;\; 2x_1 + x_2 \ge -1 \;\; -2x_1 + x_2 \ge -3\}
+    S = \\{ x \in \mathbb{R}^2 \mid x_1 + x_2 \ge 0, \;\; -\dfrac12x_1 + x_2 \ge 0, \;\; 2x_1 + x_2 \ge -1 \;\; -2x_1 + x_2 \ge -3\\}
     $$
 
-1. Prove, that $B_p$ and $B_{p_*}$ are inter-conjugate, i.e. $(B_p)^* = B_{p_*}, (B_{p_*})^* = B_p$, where $B_p$ is the unit ball (w.r.t. $p$ - norm) and $p, p_*$ are conjugated, i.e. $p^{-1} + p^{-1}_* = 1$. You can assume, that $p_* = \infty$ if $p = 1$ and vice versa.
+1. Prove, that $B_p$ and $B_{p_\star}$ are inter-conjugate, i.e. $(B_p)^\star = B_{p_\star}, (B_{p_\star})^\star = B_p$, where $B_p$ is the unit ball (w.r.t. $p$ - norm) and $p, p_\star$ are conjugated, i.e. $p^{-1} + p^{-1}_\star = 1$. You can assume, that $p_\star = \infty$ if $p = 1$ and vice versa.
+
+---
+
+## Conjugate functions
