@@ -143,3 +143,37 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 
 ## Conjugate functions
 
+1. Find $f^*(y)$, if $f(x) = \vert 2x \vert$
+1. Prove, that if $f(x) = \inf\limits_{u+v = x} (g(u) + h(v))$, then $f^*(y) = g^*(y) + h^*(y)$.
+1. Find $f^*(y)$, if $f(x) = \log \left( \sum\limits_{i=1}^n e^{x_i} \right)$
+1. Prove, that if $f(x) = g(Ax)$, then $f^*(y) = g^*(A^{-\top}y)$
+1. Find $f^*(Y)$, if $f(X) = - \ln \det X, X \in \mathbb{S}^n_{++}$
+1. The scalar Huber function is defined as
+
+	$$
+	f_{\text{hub}}(x) = 
+	\begin{cases} 
+	\frac{1}{2} x^2 & \text{if } |x| \leq 1 \\
+	|x| - \frac{1}{2} & \text{if } |x| > 1
+	\end{cases}
+	$$
+
+	![](../images/huber_function.svg)
+
+	This convex function arises in various applications, notably in robust estimation. This problem explores the generalizations of the Huber function to $\mathbb{R}^n$. A straightforward extension to $\mathbb{R}^n$ is expressed as $f_{\text{hub}}(x_1) + \ldots + f_{\text{hub}}(x_n)$, yet this formulation is not circularly symmetric, that is, it's not invariant under the transformation of $x$ by an orthogonal matrix. A circularly symmetric extension to $\mathbb{R}^n$ is given by
+
+	$$
+	f_{\text{cshub}}(x) = f_{\text{hub}}(\Vert x\Vert )= 
+	\begin{cases} 
+	\frac{1}{2} \Vert x\Vert_2 ^2 & \text{if } \Vert x\Vert_2 ^2 \leq 1 \\
+	\Vert x\Vert_2 ^2 - \frac{1}{2} & \text{if } \Vert x\Vert_2 ^2 > 1
+	\end{cases}
+	$$
+
+	where the subscript denotes "circularly symmetric Huber function". Show, that $f_{\text{cshub}}$ is convex. Find the conjugate function $f^\star(y)$.
+
+
+
+
+
+
