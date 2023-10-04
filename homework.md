@@ -134,11 +134,12 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 1. Find the sets $S^{\star}, S^{\star\star}, S^{\star\star\star}$, if 
     
     $$
-    S = \\{ x \in \mathbb{R}^2 \mid x_1 + x_2 \ge 0, \;\; -\dfrac12x_1 + x_2 \ge 0, \;\; 2x_1 + x_2 \ge -1 \;\; -2x_1 + x_2 \ge -3\\}
+    S = \{ x \in \mathbb{R}^2 \mid x_1 + x_2 \ge 0, \;\; -\dfrac12x_1 + x_2 \ge 0, \;\; 2x_1 + x_2 \ge -1 \;\; -2x_1 + x_2 \ge -3\}
     $$
 
-1. Prove, that $B_p$ and $B_{p_\star}$ are inter-conjugate, i.e. $(B_p)^\star = B_{p_\star}, (B_{p_\star})^\star = B_p$, where $B_p$ is the unit ball (w.r.t. $p$ - norm) and $p, p_\star$ are conjugated, i.e. $p^{-1} + p^{-1}_\star = 1$. You can assume, that $p_\star = \infty$ if $p = 1$ and vice versa.
+1. Prove, that $B_p$ and $B_{p_\star}$ are inter-conjugate, i.e. $(B_p)^\star = B_{p_\star}, (B_{p_\star})^\star = B_p$, where $B_p$ is the unit ball (w.r.t. $p$ - norm) and $p, p_\star$ are conjugated, i.e. $p^{-1} + p^{-1}\_\star = 1$. You can assume, that $p_\star = \infty$ if $p = 1$ and vice versa.
 
 ---
 
 ## Conjugate functions
+
