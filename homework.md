@@ -144,10 +144,10 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 ## Conjugate functions
 
 1. Find $f^*(y)$, if $f(x) = \vert 2x \vert$
-1. Prove, that if $f(x) = \inf\limits_{u+v = x} (g(u) + h(v))$, then $f^*(y) = g^*(y) + h^*(y)$.
-1. Find $f^*(y)$, if $f(x) = \log \left( \sum\limits_{i=1}^n e^{x_i} \right)$
-1. Prove, that if $f(x) = g(Ax)$, then $f^*(y) = g^*(A^{-\top}y)$
-1. Find $f^*(Y)$, if $f(X) = - \ln \det X, X \in \mathbb{S}^n_{++}$
+1. Prove, that if $f(x) = \inf\limits_{u+v = x} (g(u) + h(v))$, then $f^\star(y) = g^\star(y) + h^\star(y)$.
+1. Find $f^\star(y)$, if $f(x) = \log \left( \sum\limits_{i=1}^n e^{x_i} \right)$
+1. Prove, that if $f(x) = g(Ax)$, then $f^\star(y) = g^\star(A^{-\top}y)$
+1. Find $f^\star(Y)$, if $f(X) = - \ln \det X, X \in \mathbb{S}^n_{++}$
 1. The scalar Huber function is defined as
 
 	$$
@@ -171,9 +171,3 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	$$
 
 	where the subscript denotes "circularly symmetric Huber function". Show, that $f_{\text{cshub}}$ is convex. Find the conjugate function $f^\star(y)$.
-
-
-
-
-
-
