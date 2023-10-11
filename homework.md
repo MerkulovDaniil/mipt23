@@ -165,8 +165,8 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	$$
 	f_{\text{cshub}}(x) = f_{\text{hub}}(\Vert x\Vert )= 
 	\begin{cases} 
-	\frac{1}{2} \Vert x\Vert_2 ^2 & \text{if } \Vert x\Vert_2 ^2 \leq 1 \\
-	\Vert x\Vert_2 ^2 - \frac{1}{2} & \text{if } \Vert x\Vert_2 ^2 > 1
+	\frac{1}{2} \Vert x\Vert_2 ^2 & \text{if } \Vert x\Vert_2 \leq 1 \\
+	\Vert x\Vert_2 - \frac{1}{2} & \text{if } \Vert x\Vert_2 > 1
 	\end{cases}
 	$$
 
