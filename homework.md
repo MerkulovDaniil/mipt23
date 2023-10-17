@@ -171,3 +171,30 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	$$
 
 	where the subscript denotes "circularly symmetric Huber function". Show, that $f_{\text{cshub}}$ is convex. Find the conjugate function $f^\star(y)$.
+
+---
+
+## Subgradient and subdifferential
+
+1. Find $\partial f(x)$, if $f(x) = \text{Parametric ReLU}(x) = \begin{cases}
+    x & \text{if } x > 0, \\
+    ax & \text{otherwise}.
+\end{cases}$
+1. Prove, that $x_0$ - is the minimum point of a function $f(x)$ if and only if $0 \in \partial f(x_0)$.
+1. Find $\partial f(x)$, if $f(x) = \|Ax - b\|_1$.
+1. Find $\partial f(x)$, if $f(x) = e^{\|x\|}$.
+1.  Find $\partial f(x)$, if $f(x) = \frac12 \|Ax - b\|_2^2 + \lambda \|x\|_1, \quad \lambda > 0$.
+1. Let $S \subseteq \mathbb{R}^n$ be a convex set. We will call a *normal cone* of the set $S$ at a point $x$ the following set:
+    $$
+    N_S(x) = \left\{c \in \mathbb{R}^n : \langle c, y-x\rangle \leq 0 \quad \forall y \in S\right\}
+    $$
+
+    1. Draw a normal cone for a set at the points $A, B, C, D, E, F$ on the figure below:
+
+        ![](images/normal_cone.svg)
+
+    1. Show, that $N_S(x) = \{0\} \quad \forall x \in \mathbf{ri }(S)$.
+    1. Show, that the subdifferential $\partial I_S(x) = N_S(x)$ if $I_S(x)$ is the indicator function, i.e. 
+		$$
+		I_S(x) = \begin{cases}0,\text{if } x \in S\\ \infty, \text{otherwise}\end{cases}
+		$$
