@@ -176,14 +176,17 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 
 ## Subgradient and subdifferential
 
-1. Find $\partial f(x)$, if $f(x) = \text{Parametric ReLU}(x) = \begin{cases}
-    x & \text{if } x > 0, \\
-    ax & \text{otherwise}.
-\end{cases}$
+1. Find $\partial f(x)$, if 
+	$$
+	f(x) = \text{Parametric ReLU}(x) = \begin{cases}
+		x & \text{if } x > 0, \\
+		ax & \text{otherwise}.
+	\end{cases}
+	$$
 1. Prove, that $x_0$ - is the minimum point of a function $f(x)$ if and only if $0 \in \partial f(x_0)$.
-1. Find $\partial f(x)$, if $f(x) = \|Ax - b\|_1$.
-1. Find $\partial f(x)$, if $f(x) = e^{\|x\|}$.
-1.  Find $\partial f(x)$, if $f(x) = \frac12 \|Ax - b\|_2^2 + \lambda \|x\|_1, \quad \lambda > 0$.
+1. Find $\partial f(x)$, if $f(x) = \Vert Ax - b\Vert _1$.
+1. Find $\partial f(x)$, if $f(x) = e^{\Vert x\Vert}$.
+1.  Find $\partial f(x)$, if $f(x) = \frac12 \Vert Ax - b\Vert _2^2 + \lambda \Vert x\Vert_1, \quad \lambda > 0$.
 1. Let $S \subseteq \mathbb{R}^n$ be a convex set. We will call a *normal cone* of the set $S$ at a point $x$ the following set:
     $$
     N_S(x) = \left\{c \in \mathbb{R}^n : \langle c, y-x\rangle \leq 0 \quad \forall y \in S\right\}
