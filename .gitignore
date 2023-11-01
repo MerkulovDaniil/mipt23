@@ -5,3 +5,6 @@ _site/
 *.DS_Store
 .DS_Store
 **/.DS_Store
+/.quarto/
+
+/.luarc.json

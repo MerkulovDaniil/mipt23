@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: _site
+  resources: 
+    - "*.mp4"
+
+format: fminxyz-html
+
+execute:
+  freeze: auto
+
+filters:
+  - fminxyz
+
+website:
+  navbar:
+    left: 
+        - program.md
+        - homework.md 
+        - projects.md
+    title: false
+    logo: logo.svg
+    logo-alt: mipt23.fmin.xyz
+    tools:
+      - icon: github
+        href: https://github.com/MerkulovDaniil/mipt23
+      - icon: youtube
+        href: https://www.youtube.com/watch?v=duPZb4AGz3c&list=PLQSHEO58cjmMt8PY2H0ObJJ6FKbn0PoBx
+      - icon: telegram
+        href: https://t.me/mipt23_fmin
+      - icon: gem
+        href: https://new.fmin.xyz
+  repo-url: https://github.com/MerkulovDaniil/mipt23
+  repo-branch: master
+  repo-actions: [edit]
+  search: 
+    location: navbar
+    type: textbox
+  twitter-card: true
+  open-graph: true
+  favicon: favicon.svg
