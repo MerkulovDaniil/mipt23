@@ -83,7 +83,9 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	|$1$ | | | | |
 	| $\in (1; 2)$ | | | | |
 	| $2$| | | | |
-	| $> 2$| | | |  
+	| $> 2$| | | | 
+
+	: {.responsive}
 
 1. Prove that the entropy function, defined as
 
@@ -120,7 +122,7 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
     S = \{ x \in \mathbb{R}^2 \mid x_1 + x_2 \ge 0, \;\; -\dfrac12x_1 + x_2 \ge 0, \;\; 2x_1 + x_2 \ge -1 \;\; -2x_1 + x_2 \ge -3\}
     $$
 
-1. Prove, that $B_p$ and $B_{p_*}$ are inter-csssssnjugate, i.e. $(B_p)^* = B_{p_*}, (B_{p_*})^* = B_p$, where $B_p$ is the unit ball (w.r.t. $p$ - norm) and $p, p_*$ are conjugated, i.e. $p^{-1} + p^{-1}_* = 1$. You can assume, that $p_* = \infty$ if $p = 1$ and vice versa.
+1. Prove, that $B_p$ and $B_{p_*}$ are inter-conjugate, i.e. $(B_p)^* = B_{p_*}, (B_{p_*})^* = B_p$, where $B_p$ is the unit ball (w.r.t. $p$ - norm) and $p, p_*$ are conjugated, i.e. $p^{-1} + p^{-1}_* = 1$. You can assume, that $p_* = \infty$ if $p = 1$ and vice versa.
 
 ---
 
@@ -141,7 +143,7 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	\end{cases}
 	$$
 
-	![Huber function](/huber_function.svg)
+	![Scalar case](/huber_function.svg)
 
 	This convex function arises in various applications, notably in robust estimation. This problem explores the generalizations of the Huber function to $\mathbb{R}^n$. A straightforward extension to $\mathbb{R}^n$ is expressed as $f_{\text{hub}}(x_1) + \ldots + f_{\text{hub}}(x_n)$, yet this formulation is not circularly symmetric, that is, it's not invariant under the transformation of $x$ by an orthogonal matrix. A circularly symmetric extension to $\mathbb{R}^n$ is given by
 
@@ -176,7 +178,7 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
     $$
     i) Draw a normal cone for a set at the points $A, B, C, D, E, F$ on the figure below: 
 	
-	![Normal cone](/normal_cone.svg)
+	![Draw a normal cone for the set $S$ in these points](/normal_cone.svg)
     
 	i) Show, that $N_S(x) = \{0\} \quad \forall x \in \mathbf{ri }(S)$.
     i) Show, that the subdifferential $\partial I_S(x) = N_S(x)$ if $I_S(x)$ is the indicator function, i.e. 
