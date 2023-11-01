@@ -31,7 +31,7 @@ website:
       - icon: gem
         href: https://new.fmin.xyz
   repo-url: https://github.com/MerkulovDaniil/mipt23
-  repo-branch: master
+  repo-branch: main
   repo-actions: [edit]
   search: 
     location: navbar
