@@ -178,7 +178,7 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
     $$
     i) Draw a normal cone for a set at the points $A, B, C, D, E, F$ on the figure below: 
 	
-	![Draw a normal cone for the set $S$ in these points](/normal_cone.svg)
+		![Draw a normal cone for the set $S$ in these points](/normal_cone.svg)
     
 	i) Show, that $N_S(x) = \{0\} \quad \forall x \in \mathbf{ri }(S)$.
     i) Show, that the subdifferential $\partial I_S(x) = N_S(x)$ if $I_S(x)$ is the indicator function, i.e. 
