@@ -508,7 +508,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp("https:\/\/github\.com\/MerkulovDaniil\/mipt23");
+      var filterRegex = new RegExp("https:\/\/mipt23\.fmin\.xyz");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }

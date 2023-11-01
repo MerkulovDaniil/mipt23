@@ -1,1 +1,1 @@
-Sitemap: https://github.com/MerkulovDaniil/mipt23/sitemap.xml
+Sitemap: https://mipt23.fmin.xyz/sitemap.xml
