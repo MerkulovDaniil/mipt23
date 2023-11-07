@@ -5,7 +5,7 @@
   youtube: https://youtu.be/duPZb4AGz3c
   download: https://disk.yandex.ru/i/xHEA-arLogKprg
 
-- title: Спектр матрицы. SVD. Skeleton. $\nabla f$. Гессиан. Матрично-векторное дифференцирование.
+- title: Спектр матрицы. SVD. Skeleton. Градиент. Гессиан. Матрично-векторное дифференцирование.
   number: 2.1
   materials: /presentations/2_1.pdf
   notes: /notes/2_1.pdf
