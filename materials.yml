@@ -1,143 +1,174 @@
 - title: Вспоминаем базовые факты из линейной алгебры. Векторы, матрицы, нормы, скалярные произведения
+  number: 1
   materials: /presentations/1.pdf
   notes: /notes/1.pdf
   youtube: https://youtu.be/duPZb4AGz3c
   download: https://disk.yandex.ru/i/xHEA-arLogKprg
 
 - title: Спектр матрицы. SVD. Skeleton. $\nabla f$. Гессиан. Матрично-векторное дифференцирование.
+  number: 2.1
   materials: /presentations/2_1.pdf
   notes: /notes/2_1.pdf
   youtube: https://youtu.be/gf9UXPUOp50
   download: https://disk.yandex.com/i/Et5CQ3Jl-m-zFw
 
 - title: Автоматическое дифференцирование. Forward\Reverse Mode. Вычислительный граф. 
+  number: 2.2
   materials: /presentations/2_2.pdf
   notes: /notes/2_2.pdf
   youtube: https://youtu.be/JUX2UiaAqwc
   download: https://disk.yandex.ru/i/T_TIwp_iY2nHwA
 
 - title: Выпуклость. Выпуклые, афинные множества. Выпуклые конусы. Сумма Минковского
+  number: 3
   materials: /presentations/3.pdf
   notes: /notes/3.pdf
   youtube: https://youtu.be/d7lCHphxuVA
   download: https://disk.yandex.ru/i/n10_JhMqLZEghw
 
-- title: Выпуклые функции. Сопряженные множества. Сопряженные конусы. Многогранники
-  materials: /presentations/4.pdf
-  notes: /notes/4.pdf
+- title: Выпуклые функции. Неравенство Йенсена. Сильно выпулые функции. Условие Поляка - Лоясиевича
+  number: 4.1
+  materials: /presentations/4_1.pdf
+  notes: /notes/4_1.pdf
+  youtube: 
+  download: 
+
+- title: Сопряженные множества. Сопряженные конусы. Многогранники
+  number: 4.2
+  materials: /presentations/4_2.pdf
+  notes: /notes/4_2.pdf
   youtube: 
   download: 
 
 - title: Сопряженные функции. Преобразование Лежандра. Сопряженная норма
+  number: 5
   materials: /presentations/5.pdf
   notes: /notes/5.pdf
   youtube: 
   download: 
 
 - title: Субградиент. Субдифференциал. Теоремы Моро-Рокафеллара, Дубовицкого-Милютина
+  number: 6
   materials: /presentations/6.pdf
   notes: /notes/6.pdf
   youtube: 
   download: 
 
 - title: Условия оптимальности. Функция Лагранжа. Множители Лагранжа. Теорема Каруша - Куна - Таккера
+  number: 7
   materials: /presentations/7.pdf
   notes: /notes/7.pdf
   youtube: 
   download: 
 
 - title: Двойственность. Введение в двойственность. Двойственная задача. Two-way partitioning problem. Проекция точки на вероятностный симплекс
+  number: 8
   materials: /presentations/8.pdf
   notes: /notes/8.pdf
   youtube: 
   download: 
 
 - title: Линейное программирование. Примеры задач в формулировке LP. Двойственная задача к LP. Симплекс метод для решения задачи линейного программирования.
- # materials: /presentations/9.pdf
+  number: 9
+  # materials: /presentations/9.pdf
   # notes: /notes/9.pdf
   youtube: 
   download: 
 
 - title: Классификация и обозначения в задачах оптимизации. Скорость сходимости. Линейный поиск. Неточная одномерная оптимизация. Правила Армихо  - Гольдштейна. Условие Вульфа.
+  number: 10
  # materials: /presentations/10.pdf
   # notes: /notes/10.pdf
   youtube: 
   download: 
 
 - title: Методы нулевого порядка. Безградиентные методы. Оптимизация гиперпараметров модели машинного обучения. Генетический алгоритм. Эволюционные алгоритмы.
+  number: 11
  # materials: /presentations/11.pdf
   # notes: /notes/11.pdf
   youtube: 
   download: 
 
 - title: Приложения. Стандартные классы задач оптимизации. LP, QP, SOCP, SDP, Задача оптимизации финансового портфолио.
- # materials: /presentations/12.pdf
+  number: 12
+  materials: /presentations/12.pdf
   # notes: /notes/12.pdf
   youtube: 
   download: 
 
 - title: Градиентный спуск. Теоремы сходимости в гладком случае (выпуклые, сильно выпуклые, PL). Условие Поляка - Лоясевича.
- # materials: /presentations/13.pdf
+  number: 13
+  #materials: /presentations/13.pdf
   # notes: /notes/13.pdf
   youtube: 
   download: 
 
 - title: Субградиентный спуск. Теоремы сходимости в негладком случае (выпуклый случай). Особенности работы градиентного метода в практических негладких задачах. Задача наименьших квадратов с $l_1$ регуляризацией.
- # materials: /presentations/14.pdf
+  number: 14
+  # materials: /presentations/14.pdf
   # notes: /notes/14.pdf
   youtube: 
   download: 
 
 - title: Ускоряем метод градиентного спуска - NAG, Momentum, полиномы.
- # materials: /presentations/15.pdf
+  number: 15
+  #materials: /presentations/15.pdf
   # notes: /notes/15.pdf
   youtube: 
   download: 
 
 - title: Метод проекции субградиента. Метод условного градиента (метод Франка - Вульфа). Идея метода зеркального спуска.
- # materials: /presentations/16.pdf
+  number: 16
+  #materials: /presentations/16.pdf
   # notes: /notes/16.pdf
   youtube: 
   download: 
 
 - title: Проксимальные методы. Барьерные методы.
- # materials: /presentations/17.pdf
+  number: 17
+  #materials: /presentations/17.pdf
   # notes: /notes/17.pdf
   youtube: 
   download: 
 
 - title: Метод сопряженных направлений. Ортогонализация Грамма - Шмидта. Понятие $A$-ортогональных векторов. Метод сопряженных градиентов.
- # materials: /presentations/18.pdf
+  number: 18
+  #materials: /presentations/18.pdf
   # notes: /notes/18.pdf
   youtube: 
   download: 
 
 - title: Концепция методов адаптивной метрики. Метод Ньютона. Квазиньютоновские методы. Метод естественного градиента. KFAC.
- # materials: /presentations/19.pdf
+  number: 19
+  #materials: /presentations/19.pdf
   # notes: /notes/19.pdf
   youtube: 
   download: 
 
 - title: Введение в стохастические градиентные методы. Батч, эпоха. Сходимость SGD.
- # materials: /presentations/20.pdf
+  number: 20
+  #materials: /presentations/20.pdf
   # notes: /notes/20.pdf
   youtube: 
   download: 
 
 - title: Продвинутые стохастические градиентные методы. Методы редукции дисперсии.
- # materials: /presentations/21.pdf
+  number: 21
+  #materials: /presentations/21.pdf
   # notes: /notes/21.pdf
   youtube: 
   download: 
 
 - title: Обучение больших моделей. Последние практические достижения.
- # materials: /presentations/22.pdf
+  number: 22
+  #materials: /presentations/22.pdf
   # notes: /notes/22.pdf
   youtube: 
   download: 
 
 - title: Федеративное обучение. Распределенная оптимизация.
- # materials: /presentations/23.pdf
+  number: 23
+  #materials: /presentations/23.pdf
   # notes: /notes/23.pdf
   youtube: 
   download: 

@@ -1,10 +1,7 @@
 ```{=html}
 <% 
-    var count = 0;
     for (const item of items) { 
-        count++;
-%>
-    <h3>Занятие <%= count %></h3>
+    <h3>Занятие <%= item.number %></h3>
     <p>
         <% 
             var links = [];
