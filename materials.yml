@@ -4,17 +4,23 @@
   youtube: https://youtu.be/duPZb4AGz3c
   download: https://disk.yandex.ru/i/xHEA-arLogKprg
 
-- title: Матричное дифференцирование. Автоматическое дифференцирование. Jax, jit, vmap
-  materials: /presentations/2.pdf
-  notes: /notes/2.pdf
-  youtube: 
-  download: 
+- title: Спектр матрицы. SVD. Skeleton. $\nabla f$. Гессиан. Матрично-векторное дифференцирование.
+  materials: /presentations/2_1.pdf
+  notes: /notes/2_1.pdf
+  youtube: https://youtu.be/gf9UXPUOp50
+  download: https://disk.yandex.com/i/Et5CQ3Jl-m-zFw
+
+- title: Автоматическое дифференцирование. Forward\Reverse Mode. Вычислительный граф. 
+  materials: /presentations/2_2.pdf
+  notes: /notes/2_2.pdf
+  youtube: https://youtu.be/JUX2UiaAqwc
+  download: https://disk.yandex.ru/i/T_TIwp_iY2nHwA
 
 - title: Выпуклость. Выпуклые, афинные множества. Выпуклые конусы. Сумма Минковского
   materials: /presentations/3.pdf
   notes: /notes/3.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/d7lCHphxuVA
+  download: https://disk.yandex.ru/i/n10_JhMqLZEghw
 
 - title: Выпуклые функции. Сопряженные множества. Сопряженные конусы. Многогранники
   materials: /presentations/4.pdf
