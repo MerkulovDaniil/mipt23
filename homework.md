@@ -217,7 +217,7 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	$$
 	\begin{split}
 	\dfrac{1}{2}\|y-b\|^2 + \dfrac{\lambda}{2}\|x\|^2 &\to \min\limits_{x \in \mathbb{R}^n, y \in \mathbb{R}^m }\\
-	\text{s.t. } & s = Ax
+	\text{s.t. } & y = Ax
 	\end{split}
 	$$
 
