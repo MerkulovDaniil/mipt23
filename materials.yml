@@ -30,43 +30,43 @@
   number: 4.1
   materials: /presentations/4_1.pdf
   notes: /notes/4_1.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/NkjWFvEt3aU
+  download: https://disk.yandex.com/i/IJh7x9XNfc4IUQ
 
 - title: Сопряженные множества. Сопряженные конусы. Многогранники
   number: 4.2
   materials: /presentations/4_2.pdf
   notes: /notes/4_2.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/A1gMRpOtnp4
+  download: https://disk.yandex.com/i/az62M935QE4tOw
 
 - title: Сопряженные функции. Преобразование Лежандра. Сопряженная норма
   number: 5
   materials: /presentations/5.pdf
   notes: /notes/5.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/AUQfikOCFRE
+  download: https://disk.yandex.com/i/Oi2YY6JwCa8_Fw
 
 - title: Субградиент. Субдифференциал. Теоремы Моро-Рокафеллара, Дубовицкого-Милютина
   number: 6
   materials: /presentations/6.pdf
   notes: /notes/6.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/wOkkR14lNN4
+  download: https://disk.yandex.com/i/pjrtLSdClwEWlw
 
 - title: Условия оптимальности. Функция Лагранжа. Множители Лагранжа. Теорема Каруша - Куна - Таккера
   number: 7
   materials: /presentations/7.pdf
   notes: /notes/7.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/qGj9YXeaOrc
+  download: https://disk.yandex.com/i/qaidEZ0V_t93Sw
 
 - title: Двойственность. Введение в двойственность. Двойственная задача. Two-way partitioning problem. Проекция точки на вероятностный симплекс
   number: 8
   materials: /presentations/8.pdf
   notes: /notes/8.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/9a0jx1r1nKk
+  download: https://disk.yandex.com/i/GObNLLsaZM3sXw
 
 - title: Линейное программирование. Примеры задач в формулировке LP. Двойственная задача к LP. Симплекс метод для решения задачи линейного программирования.
   number: 9
