@@ -159,28 +159,29 @@ f(t) = \text{det}(A − tI_n),
 </section>
 <section id="automatic-differentiation-and-jax" class="level3">
 <h3 class="anchored" data-anchor-id="automatic-differentiation-and-jax">Automatic differentiation and jax</h3>
-<p>You can use any automatic differentiation framework in this section (Jax, PyTorch, Autograd etc.) 1. You will work with the following function for this exercise, <span class="math display">
-    f(x,y)=e^{−\left(sin(x)−cos(y)\right)^2}
-    </span><br>
-Draw the computational graph for the function. Note, that it should contain only primitive operations - you need to do it automatically - <a href="https://bnikolic.co.uk/blog/python/jax/2022/02/22/jax-outputgraph-rev.html">jax example</a>, <a href="https://github.com/waleedka/hiddenlayer">PyTorch example</a> - you can google/find your own way to visualise it.</p>
+<p>You can use any automatic differentiation framework in this section (Jax, PyTorch, Autograd etc.)</p>
 <ol type="1">
-<li>Compare analytic and autograd (with any framework) approach for the calculation of the gradient of:<br>
+<li><p>You will work with the following function for this exercise, <span class="math display">
+f(x,y)=e^{−\left(sin(x)−cos(y)\right)^2}
+</span><br>
+Draw the computational graph for the function. Note, that it should contain only primitive operations - you need to do it automatically - <a href="https://bnikolic.co.uk/blog/python/jax/2022/02/22/jax-outputgraph-rev.html">jax example</a>, <a href="https://github.com/waleedka/hiddenlayer">PyTorch example</a> - you can google/find your own way to visualise it.</p></li>
+<li><p>Compare analytic and autograd (with any framework) approach for the calculation of the gradient of:<br>
 <span class="math display">
 f(A) = \text{tr}(e^A)
-</span></li>
-<li>We can use automatic differentiation not only to calculate necessary gradient, but also for tuning hyperparameters of the algorithm like learning rate in gradient descent (with gradient descent 🤯). Suppose, we have the following function <span class="math inline">f(x) = \frac{1}{2}\Vert x\Vert^2</span>, select a random point <span class="math inline">x_0 \in \mathbb{B}^{1000} = \{0 \leq x_i \leq 1 \mid \forall i\}</span>. Consider <span class="math inline">10</span> steps of the gradient descent starting from the point <span class="math inline">x_0</span>: <span class="math display">
+</span></p></li>
+<li><p>We can use automatic differentiation not only to calculate necessary gradient, but also for tuning hyperparameters of the algorithm like learning rate in gradient descent (with gradient descent 🤯). Suppose, we have the following function <span class="math inline">f(x) = \frac{1}{2}\Vert x\Vert^2</span>, select a random point <span class="math inline">x_0 \in \mathbb{B}^{1000} = \{0 \leq x_i \leq 1 \mid \forall i\}</span>. Consider <span class="math inline">10</span> steps of the gradient descent starting from the point <span class="math inline">x_0</span>: <span class="math display">
 x_{k+1} = x_k - \alpha_k \nabla f(x_k)
 </span> Your goal in this problem is to write the function, that takes <span class="math inline">10</span> scalar values <span class="math inline">\alpha_i</span> and return the result of the gradient descent on function <span class="math inline">L = f(x_{10})</span>. And optimize this function using gradient descent on <span class="math inline">\alpha \in \mathbb{R}^{10}</span>. Suppose that each of <span class="math inline">10</span> components of <span class="math inline">\alpha</span> is uniformly distributed on <span class="math inline">[0; 0.1]</span>. <span class="math display">
 \alpha_{k+1} = \alpha_k - \beta \frac{\partial L}{\partial \alpha}
-</span> Choose any constant <span class="math inline">\beta</span> and the number of steps your need. Describe obtained results. How would you understand, that the obtained schedule (<span class="math inline">\alpha \in \mathbb{R}^{10}</span>) becomes better, than it was at the start? How do you check numerically local optimality in this problem?</li>
-<li>Compare analytic and autograd (with any framework) approach for the gradient of:<br>
+</span> Choose any constant <span class="math inline">\beta</span> and the number of steps your need. Describe obtained results. How would you understand, that the obtained schedule (<span class="math inline">\alpha \in \mathbb{R}^{10}</span>) becomes better, than it was at the start? How do you check numerically local optimality in this problem?</p></li>
+<li><p>Compare analytic and autograd (with any framework) approach for the gradient of:<br>
 <span class="math display">
 f(X) = - \log \det X
-</span></li>
-<li>Compare analytic and autograd (with any framework) approach for the gradient and hessian of:<br>
+</span></p></li>
+<li><p>Compare analytic and autograd (with any framework) approach for the gradient and hessian of:<br>
 <span class="math display">
 f(x) = x^\top x x^\top x
-</span></li>
+</span></p></li>
 </ol>
 <hr>
 </section>
