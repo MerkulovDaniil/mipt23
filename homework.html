@@ -151,9 +151,11 @@ f(x) = \frac1m \sum\limits_{i=1}^m \log \left( 1 + \exp(a_i^{\top}x) \right) + \
 </span></p></li>
 <li><p>Compute the gradient <span class="math inline">\nabla_A f(A)</span> of the trace of the matrix exponential function <span class="math inline">f(A) = \text{tr}(e^A)</span> with respect to <span class="math inline">A</span>. Hint: hint: Use the definition of the matrix exponential. Use the defintion of the differential <span class="math inline">df = f(A + dA) - f(A) + o(\Vert dA \Vert)</span> with the limit <span class="math inline">\Vert dA \Vert \to 0</span>.</p></li>
 <li><p>Find the gradient <span class="math inline">\nabla f(x)</span> and hessian <span class="math inline">f''(x)</span>, if <span class="math inline">f(x) = \frac{1}{2}\Vert A - xx^\top\Vert^2_F, A \in \mathbb{S}^n</span></p></li>
-<li><p>Calculate the first and the second derivative of the following function <span class="math inline">f : S \to \mathbb{R}</span> <span class="math display">
+<li><p>Calculate the first and the second derivative of the following function <span class="math inline">f : S \to \mathbb{R}</span></p>
+<p><span class="math display">
 f(t) = \text{det}(A − tI_n),
-</span> where <span class="math inline">A \in \mathbb{R}^{n \times n}, S := \{t \in \mathbb{R} : \text{det}(A − tI_n) \neq 0\}</span>.</p></li>
+</span></p>
+<p>where <span class="math inline">A \in \mathbb{R}^{n \times n}, S := \{t \in \mathbb{R} : \text{det}(A − tI_n) \neq 0\}</span>.</p></li>
 <li><p>Find the gradient <span class="math inline">\nabla f(X)</span>, if <span class="math inline">f(X) = \text{tr}\left( AX^2BX^{-\top} \right)</span>.</p></li>
 </ol>
 </section>
