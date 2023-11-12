@@ -23,6 +23,7 @@ order: 3
 
 ### Automatic differentiation and jax
 You can use any automatic differentiation framework in this section (Jax, PyTorch, Autograd etc.)
+
 1. You will work with the following function for this exercise,
 	$$
 	f(x,y)=e^{−\left(sin(x)−cos(y)\right)^2}
@@ -115,6 +116,7 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	1. $f(x)$ is $\mu$-strongly convex $\iff$ if there exists $\mu>0$ such that the function $f(x) - \dfrac{\mu}{2}\Vert x\Vert^2$ is convex.
 
 ### Conjugate sets
+
 1. Let $\mathbb{A}_n$ be the set of all $n$ dimensional antisymmetric matrices (s.t. $X^T = - X$). Show that $\left( \mathbb{A}_n\right)^* = \mathbb{S}_n$. 
 1. Find the sets $S^{*}, S^{**}, S^{***}$, if 
     
