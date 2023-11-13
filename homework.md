@@ -195,6 +195,8 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 
 ### KKT and duality
 
+In this section you can consider either arbitrary norm or the Euclidian norm if nothing else specified.
+
 1. **Toy example**
 	$$
 	\begin{split}
