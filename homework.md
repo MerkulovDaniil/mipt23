@@ -15,14 +15,18 @@ order: 3
 1. Compute the gradient $\nabla_A f(A)$ of the trace of the matrix exponential function $f(A) = \text{tr}(e^A)$ with respect to $A$. Hint: hint: Use the definition of the matrix exponential. Use the defintion of the differential $df = f(A + dA) - f(A) + o(\Vert dA \Vert)$ with the limit $\Vert dA \Vert \to 0$.
 1. Find the gradient $\nabla f(x)$ and hessian $f''(x)$, if $f(x) = \frac{1}{2}\Vert A - xx^\top\Vert^2_F, A \in \mathbb{S}^n$
 1. Calculate the first and the second derivative of the following function $f : S \to \mathbb{R}$
+
 	$$
 	f(t) = \text{det}(A − tI_n),
 	$$
+
+
 	where $A \in \mathbb{R}^{n \times n}, S := \{t \in \mathbb{R} : \text{det}(A − tI_n) \neq 0\}$.
 1. Find the gradient $\nabla f(X)$, if $f(X) = \text{tr}\left( AX^2BX^{-\top} \right)$.
 
 ### Automatic differentiation and jax
 You can use any automatic differentiation framework in this section (Jax, PyTorch, Autograd etc.)
+
 1. You will work with the following function for this exercise,
 	$$
 	f(x,y)=e^{−\left(sin(x)−cos(y)\right)^2}
@@ -115,6 +119,7 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 	1. $f(x)$ is $\mu$-strongly convex $\iff$ if there exists $\mu>0$ such that the function $f(x) - \dfrac{\mu}{2}\Vert x\Vert^2$ is convex.
 
 ### Conjugate sets
+
 1. Let $\mathbb{A}_n$ be the set of all $n$ dimensional antisymmetric matrices (s.t. $X^T = - X$). Show that $\left( \mathbb{A}_n\right)^* = \mathbb{S}_n$. 
 1. Find the sets $S^{*}, S^{**}, S^{***}$, if 
     
@@ -189,6 +194,8 @@ You can use any automatic differentiation framework in this section (Jax, PyTorc
 ---
 
 ### KKT and duality
+
+In this section you can consider either arbitrary norm or the Euclidian norm if nothing else specified.
 
 1. **Toy example**
 	$$
