@@ -68,9 +68,9 @@
   youtube: https://youtu.be/9a0jx1r1nKk
   download: https://disk.yandex.com/i/GObNLLsaZM3sXw
 
-- title: Линейное программирование. Примеры задач в формулировке LP. Двойственная задача к LP. Симплекс метод для решения задачи линейного программирования.
+- title: Двойственность.
   number: 9
-  # materials: /presentations/9.pdf
+  materials: /presentations/9.pdf
   # notes: /notes/9.pdf
   youtube: 
   download: 
