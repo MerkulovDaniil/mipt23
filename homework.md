@@ -254,7 +254,7 @@ In this section you can consider either arbitrary norm or the Euclidian norm if 
 
 	$$
 	\begin{split}
-	& \langle C^{-1}, X\rangle - \log \det X \to \min\limits_{x \in \mathbb{R}^n }\\
+	& \langle C^{-1}, X\rangle - \log \det X \to \min\limits_{x \in \mathbb{R}^{n \times n} }\\
 	\text{s.t. } & \langle Xa, a\rangle \leq 1,
 	\end{split}
 	$$
