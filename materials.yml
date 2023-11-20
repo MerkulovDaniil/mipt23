@@ -68,35 +68,35 @@
   youtube: https://youtu.be/9a0jx1r1nKk
   download: https://disk.yandex.com/i/GObNLLsaZM3sXw
 
-- title: Двойственность.
+- title: Двойственность. Анализ чувствительности. Теневые цены. Матричные игры со смешанными стратегиями.
   number: 9
   materials: /presentations/9.pdf
-  # notes: /notes/9.pdf
-  youtube: 
-  download: 
+  notes: /notes/9.pdf
+  youtube: https://youtu.be/cxQ4ZkDMRsE
+  download: https://disk.yandex.com/i/ynS4Fcm_fh-UEA
+
+- title: Линейное программирование. Транспортная задача и другие формулировки прикладных задач как ЛП. Симплекс метод для решения ЛП.
+  number: 10
+  materials: /presentations/10.pdf
+  notes: /notes/10.pdf
+  # youtube: 
+  # download: 
 
 - title: Классификация и обозначения в задачах оптимизации. Скорость сходимости. Линейный поиск. Неточная одномерная оптимизация. Правила Армихо  - Гольдштейна. Условие Вульфа.
-  number: 10
- # materials: /presentations/10.pdf
-  # notes: /notes/10.pdf
-  youtube: 
-  download: 
-
-- title: Методы нулевого порядка. Безградиентные методы. Оптимизация гиперпараметров модели машинного обучения. Генетический алгоритм. Эволюционные алгоритмы.
   number: 11
  # materials: /presentations/11.pdf
   # notes: /notes/11.pdf
   youtube: 
   download: 
 
-- title: Приложения. Стандартные классы задач оптимизации. LP, QP, SOCP, SDP, Задача оптимизации финансового портфолио.
+- title: Методы нулевого порядка. Безградиентные методы. Оптимизация гиперпараметров модели машинного обучения. Генетический алгоритм. Эволюционные алгоритмы.
   number: 12
-  materials: /presentations/12.pdf
+ # materials: /presentations/12.pdf
   # notes: /notes/12.pdf
   youtube: 
   download: 
 
-- title: Градиентный спуск. Теоремы сходимости в гладком случае (выпуклые, сильно выпуклые, PL). Условие Поляка - Лоясевича.
+- title: Градиентный спуск. Теоремы сходимости в гладком случае (выпуклые, сильно выпуклые, PL).
   number: 13
   #materials: /presentations/13.pdf
   # notes: /notes/13.pdf
