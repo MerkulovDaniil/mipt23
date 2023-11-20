@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -89,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
 <meta name="twitter:card" content="summary">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -133,7 +167,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#matrix-calculus" id="toc-matrix-calculus" class="nav-link active" data-scroll-target="#matrix-calculus">Matrix calculus</a></li>
+  <li><a href="#automatic-differentiation-and-jax" id="toc-automatic-differentiation-and-jax" class="nav-link" data-scroll-target="#automatic-differentiation-and-jax">Automatic differentiation and jax</a></li>
+  <li><a href="#convex-sets" id="toc-convex-sets" class="nav-link" data-scroll-target="#convex-sets">Convex sets</a></li>
+  <li><a href="#convex-functions" id="toc-convex-functions" class="nav-link" data-scroll-target="#convex-functions">Convex functions</a></li>
+  <li><a href="#conjugate-sets" id="toc-conjugate-sets" class="nav-link" data-scroll-target="#conjugate-sets">Conjugate sets</a></li>
+  <li><a href="#conjugate-functions" id="toc-conjugate-functions" class="nav-link" data-scroll-target="#conjugate-functions">Conjugate functions</a></li>
+  <li><a href="#subgradient-and-subdifferential" id="toc-subgradient-and-subdifferential" class="nav-link" data-scroll-target="#subgradient-and-subdifferential">Subgradient and subdifferential</a></li>
+  <li><a href="#kkt-and-duality" id="toc-kkt-and-duality" class="nav-link" data-scroll-target="#kkt-and-duality">KKT and duality</a></li>
+  <li><a href="#linear-programming" id="toc-linear-programming" class="nav-link" data-scroll-target="#linear-programming">Linear programming</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/MerkulovDaniil/mipt23/edit/main/homework.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -507,6 +557,76 @@ X^* = I + yy^\top - \dfrac{1}{s^\top s}ss^\top
 </span></p>
 <p>with domain <span class="math inline">\{x \mid a^\top_i x &lt; b_i , i = [1,m]\}</span>.</p>
 <p>First introduce new variables <span class="math inline">y_i</span> and equality constraints <span class="math inline">y_i = b_i − a^\top_i x</span>. (The solution of this problem is called the analytic center of the linear inequalities <span class="math inline">a^\top_i x \leq b_i ,i = [1,m]</span>. Analytic centers have geometric applications, and play an important role in barrier methods.)</p></li>
+</ol>
+</section>
+<section id="linear-programming" class="level3">
+<h3 class="anchored" data-anchor-id="linear-programming">Linear programming</h3>
+<ol type="1">
+<li><p><strong>📱🎧💻 Covers manufacturing.</strong> Lyzard Corp is producing covers for following products:</p>
+<ul>
+<li>📱 phones</li>
+<li>🎧 headphones</li>
+<li>💻 laptops</li>
+</ul>
+<p>The company’s production facilities are such that if we devote the entire production to headphones covers, we can produce 5000 of them in one day. If we devote the entire production to phone covers or laptop covers, we can produce 4000 or 2000 of them in one day.</p>
+<p>The production schedule is one week (6 working days), and the week’s production must be stored before distribution. Storing 1000 headphones covers (packaging included) takes up 30 cubic feet of space. Storing 1000 phone covers (packaging included) takes up 50 cubic feet of space, and storing 1000 laptop covers (packaging included) takes up 220 cubic feet of space. The total storage space available is 1500 cubic feet.</p>
+<p>Due to commercial agreements with Lyzard Corp has to deliver at least 4500 headphones covers and 4000 laptop covers per week in order to strengthen the product’s diffusion.</p>
+<p>The marketing department estimates that the weekly demand for headphones covers, phone, and laptop covers does not exceed 10000 and 14000, and 7000 units, therefore the company does not want to produce more than these amounts for headphones, phone, and laptop covers.</p>
+<p>Finally, the net profit per each headphones cover, phone cover, and laptop cover is $5, $7, and $12, respectively.</p>
+<p>The aim is to determine a weekly production schedule that maximizes the total net profit.</p>
+<ol type="1">
+<li><p>Write a Linear Programming formulation for the problem. Use following variables:</p>
+<ul>
+<li><span class="math inline">y_1</span> = number of headphones covers produced over the week,<br>
+</li>
+<li><span class="math inline">y_2</span> = number of phone covers produced over the week,<br>
+</li>
+<li><span class="math inline">y_3</span> = number of laptop covers produced over the week.</li>
+</ul></li>
+<li><p>Find the solution to the problem using <a href="http://www.pyomo.org">PyOMO</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install pyomo</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> sudo apt<span class="op">-</span>get install glpk<span class="op">-</span>utils <span class="op">--</span>quiet  <span class="co"># GLPK</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> sudo apt<span class="op">-</span>get install coinor<span class="op">-</span>cbc <span class="op">--</span>quiet  <span class="co"># CoinOR</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Perform the sensitivity analysis. Which constraint could be relaxed to increase the profit the most? Prove it numerically.</p></li>
+</ol></li>
+<li><p>Prove the optimality of the solution</p>
+<p><span class="math display">
+x = \left(\frac{7}{3} , 0, \frac{1}{3}\right)^T
+</span></p>
+<p>to the following linear programming problem:</p>
+<p><span class="math display">
+\begin{split}
+&amp; 9x_1 + 3x_2 + 7x_3 \to \max\limits_{x \in \mathbb{R}^3 }\\
+\text{s.t. } &amp; 2x_1 + x_2 + 3x_3 \leq 6 \\
+&amp; 5x_1 + 4x_2 + x_3 \leq 12 \\
+&amp; 3x_3 \leq 1,\\
+&amp; x_1, x_2, x_3 \geq 0
+\end{split}
+</span></p>
+<p>but you cannot use any numerical algorithm here.</p></li>
+<li><p>Transform the following linear program into an equivalent linear program in standard form <span class="math inline">\left(c^\top x \to \max\limits_{x\in \mathbb{R}^n} : Ax = b,x ≥ 0\right)</span>:</p>
+<p><span class="math display">
+\begin{split}
+&amp; x_1−x_2 \to \min\limits_{x \in \mathbb{R}^2 }\\
+\text{s.t. } &amp; 2x_1 + x_2 \geq 3 \\
+&amp; 3x_1 − x_2 \leq 7 \\
+&amp; x_1 \geq 0
+\end{split}
+</span></p></li>
+<li><p>Consider:</p>
+<p><span class="math display">
+\begin{split}
+&amp; 4x_1 + 5x_2 + 2x_3 \to \max\limits_{x \in \mathbb{R}^3 }\\
+\text{s.t. } &amp; 2x_1 - x_2 + 2x_3 \leq 9 \\
+&amp; 3x_1 + 5x_2 + 4x_3 \leq 8 \\
+&amp; x_1 + x_2 + 2x_3 \leq 2 \\
+&amp; x_1, x_2, x_3 \geq 0,
+\end{split}
+</span></p>
+<ol type="1">
+<li>Find an optimal solution to the Linear Programming problem using the simplex method.</li>
+<li>Write the dual linear program. Find an optimal dual solution. Do we have strong duality here?</li>
+</ol></li>
 </ol>
 
 
@@ -933,4 +1053,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/MerkulovDaniil/mipt23/edit/main/homework.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+</body></html>
