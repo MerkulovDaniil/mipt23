@@ -420,7 +420,7 @@ In this section you can consider either arbitrary norm or the Euclidian norm if 
 
 	but you cannot use any numerical algorithm here.
 
-1. Transform the following linear program into an equivalent linear program in standard form $\left(c^\top x \to \max\limits_{x\in \mathbb{R}^n} : Ax = b,x ≥ 0\right)$:
+1. Transform the following linear program into an equivalent linear program in standard form $\left(c^\top x \to \min\limits_{x\in \mathbb{R}^n} : Ax = b,x ≥ 0\right)$:
 
 	$$
 	\begin{split}
