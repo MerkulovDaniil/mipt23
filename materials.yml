@@ -84,8 +84,8 @@
 
 - title: Классификация и обозначения в задачах оптимизации. Скорость сходимости. Линейный поиск. Неточная одномерная оптимизация. Правила Армихо  - Гольдштейна. Условие Вульфа.
   number: 11
- # materials: /presentations/11.pdf
-  # notes: /notes/11.pdf
+  materials: /presentations/11.pdf
+  notes: /notes/11.pdf
   youtube: 
   download: 
 
