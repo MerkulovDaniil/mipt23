@@ -11,10 +11,10 @@ toc: true
 1. Find the gradient $\nabla f(x)$ and hessian $f''(x)$, if $f(x) = \dfrac{1}{2} \Vert Ax - b\Vert^2_2$.
 1. Find the gradient $\nabla f(x)$ and hessian $f''(x)$, if 
 	$$
-	f(x) = \frac1m \sum\limits_{i=1}^m \log \left( 1 + \exp(a_i^{\top}x) \right) + \frac{\mu}{2}\Vert x\Vert _2^2, \; a_i, x \in \mathbb R^n, \; \mu>0
+	f(x) = \frac1m \sum\limits_{i=1}^m \log \left( 1 + \exp(a_i^{T}x) \right) + \frac{\mu}{2}\Vert x\Vert _2^2, \; a_i, x \in \mathbb R^n, \; \mu>0
 	$$
 1. Compute the gradient $\nabla_A f(A)$ of the trace of the matrix exponential function $f(A) = \text{tr}(e^A)$ with respect to $A$. Hint: hint: Use the definition of the matrix exponential. Use the defintion of the differential $df = f(A + dA) - f(A) + o(\Vert dA \Vert)$ with the limit $\Vert dA \Vert \to 0$.
-1. Find the gradient $\nabla f(x)$ and hessian $f''(x)$, if $f(x) = \frac{1}{2}\Vert A - xx^\top\Vert^2_F, A \in \mathbb{S}^n$
+1. Find the gradient $\nabla f(x)$ and hessian $f''(x)$, if $f(x) = \frac{1}{2}\Vert A - xx^T\Vert^2_F, A \in \mathbb{S}^n$
 1. Calculate the first and the second derivative of the following function $f : S \to \mathbb{R}$
 
 	$$
@@ -364,6 +364,8 @@ In this section you can consider either arbitrary norm or the Euclidian norm if 
 	with domain $\{x \mid a^\top_i x < b_i , i = [1,m]\}$. 
 	
 	First introduce new variables $y_i$ and equality constraints $y_i = b_i − a^\top_i x$. (The solution of this problem is called the analytic center of the linear inequalities $a^\top_i x \leq b_i ,i = [1,m]$.  Analytic centers have geometric applications, and play an important role in barrier methods.) 
+
+---
 	
 ### Linear programming
 
@@ -445,3 +447,186 @@ In this section you can consider either arbitrary norm or the Euclidian norm if 
 
 	1. Find an optimal solution to the Linear Programming problem using the simplex method.
 	1. Write the dual linear program. Find an optimal dual solution. Do we have strong duality here?
+
+---
+
+### Sequence convergence
+
+1. Determine the convergence or divergence of a given sequences
+
+	* $r_{k} = \frac{1}{\sqrt{k}}$.
+	* $r_{k} = 0.606^k$.
+	* $r_{k} = 0.606^{2^k}$.
+
+1. Determine the convergence or divergence of a given sequence $r_k =\begin{cases} \frac{1}{k}, & \text{if } k\text{ is even} \\ e^{-k}, & \text{if } k\text{ is odd} \end{cases}$.
+
+1. Determine the following sequence $\{r_k\}$ by convergence rate (linear, sublinear, superlinear). In the case of superlinear convergence, additionally find out whether there is quadratic convergence.
+
+	$$
+	r_k = \dfrac{1}{k!}
+	$$
+
+1. Determine the following sequence $\{r_k\}$ by convergence rate (linear, sublinear, superlinear). In the case of superlinear convergence, additionally find out whether there is quadratic convergence.
+
+	$$
+	r_k = \dfrac{1}{k^k}
+	$$
+
+1. Let $\{r_k\}$ be a sequence of non-negative numbers given as $r_{k+1} = Mr_k^2$, where $M > 0$, $r_0 \geq 0$. Establish a necessary and sufficient condition on $M$ and $r_0$ under which the sequence $r_k$ will converge to zero. What is the rate of convergence?
+
+### Line search
+
+1. Show that for a one-dimensional quadratic function decreasing at zero, its minimum satisfies
+Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$: 
+
+	$$
+	f(x_k - \alpha \nabla f (x_k)) \leq f(x_k) - c_1 \cdot \alpha\|\nabla f(x_k)\|_2^2
+	$$
+
+1. **Implementing and Testing Line Search Conditions in Gradient Descent**
+
+	$$
+	x_{k+1} = x_k - \alpha \nabla f(x_k)
+	$$
+	
+	In this assignment, you will modify an existing Python code for gradient descent to include various line search conditions. You will test these modifications on two functions: a quadratic function and the Rosenbrock function. The main objectives are to understand how different line search strategies influence the convergence of the gradient descent algorithm and to compare their efficiencies based on the number of function evaluations.
+
+	```python
+	import numpy as np
+	import matplotlib.pyplot as plt
+	from scipy.optimize import minimize_scalar
+	np.random.seed(214)
+
+	# Define the quadratic function and its gradient
+	def quadratic_function(x, A, b):
+		return 0.5 * np.dot(x.T, np.dot(A, x)) - np.dot(b.T, x)
+
+	def grad_quadratic(x, A, b):
+		return np.dot(A, x) - b
+
+	# Generate a 2D quadratic problem with a specified condition number
+	def generate_quadratic_problem(cond_number):
+		# Random symmetric matrix
+		M = np.random.randn(2, 2)
+		M = np.dot(M, M.T)
+
+		# Ensure the matrix has the desired condition number
+		U, s, V = np.linalg.svd(M)
+		s = np.linspace(cond_number, 1, len(s))  # Spread the singular values
+		A = np.dot(U, np.dot(np.diag(s), V))
+
+		# Random b
+		b = np.random.randn(2)
+
+		return A, b
+
+	# Gradient descent function
+	def gradient_descent(start_point, A, b, stepsize_func, max_iter=100):
+		x = start_point.copy()
+		trajectory = [x.copy()]
+
+		for i in range(max_iter):
+			grad = grad_quadratic(x, A, b)
+			step_size = stepsize_func(x, grad)
+			x -= step_size * grad
+			trajectory.append(x.copy())
+
+		return np.array(trajectory)
+
+	# Backtracking line search strategy using scipy
+	def backtracking_line_search(x, grad, A, b, alpha=0.3, beta=0.8):
+		def objective(t):
+			return quadratic_function(x - t * grad, A, b)
+		res = minimize_scalar(objective, method='golden')
+		return res.x
+
+	# Generate ill-posed problem
+	cond_number = 30
+	A, b = generate_quadratic_problem(cond_number)
+
+	# Starting point
+	start_point = np.array([1.0, 1.8])
+
+	# Perform gradient descent with both strategies
+	trajectory_fixed = gradient_descent(start_point, A, b, lambda x, g: 5e-2)
+	trajectory_backtracking = gradient_descent(start_point, A, b, lambda x, g: backtracking_line_search(x, g, A, b))
+
+	# Plot the trajectories on a contour plot
+	x1, x2 = np.meshgrid(np.linspace(-2, 2, 400), np.linspace(-2, 2, 400))
+	Z = np.array([quadratic_function(np.array([x, y]), A, b) for x, y in zip(x1.flatten(), x2.flatten())]).reshape(x1.shape)
+
+	plt.figure(figsize=(10, 8))
+	plt.contour(x1, x2, Z, levels=50, cmap='viridis')
+	plt.plot(trajectory_fixed[:, 0], trajectory_fixed[:, 1], 'o-', label='Fixed Step Size')
+	plt.plot(trajectory_backtracking[:, 0], trajectory_backtracking[:, 1], 'o-', label='Backtracking Line Search')
+
+	# Add markers for start and optimal points
+	plt.plot(start_point[0], start_point[1], 'ro', label='Start Point')
+	optimal_point = np.linalg.solve(A, b)
+	plt.plot(optimal_point[0], optimal_point[1], 'y*', markersize=15, label='Optimal Point')
+
+	plt.legend()
+	plt.title('Gradient Descent Trajectories on Quadratic Function')
+	plt.xlabel('x1')
+	plt.ylabel('x2')
+	plt.savefig("linesearch.svg")
+	plt.show()
+	```
+
+	![The code above plots this](linesearch.svg)
+
+	Start by reviewing the provided Python code. This code implements gradient descent with a fixed step size and a backtracking line search on a quadratic function. Familiarize yourself with how the gradient descent function and the step size strategies are implemented.
+
+	1. Modify the gradient descent function to include the following line search conditions:
+		
+		a. Sufficient Decrease Condition
+		b. Curvature Condition
+		c. Goldstein Condition
+		d. Wolfe Condition
+		e. Dichotomy
+		
+		Test your modified gradient descent algorithm with the implemented line search conditions on the provided quadratic function. Plot the trajectories over iterations for each condition. Choose and specify hyperparameters for inexact line search condition. Choose and specify the termination criterion. Start from the point $x_0 = (-1, 2)^T$.
+
+	1. Compare these 7 methods from the budget perspective. Plot the graph of function value from the number of function evaluation for each method on the same graph.
+
+	1. Plot trajectory for another function with the same set of methods
+	
+		$$
+		f(x_1, x_2) =  10(x_2 − x_1^2)^2 + (x_1 − 1)^2
+		$$
+
+		with $x_0 = (-1, 2)^T$. You might need to adjust hyperparameters.
+
+	1. Plot the same function value from the number of function calls for this experiment.
+
+### Zero order methods
+
+1. Solve approximately the Travelling Salesman Problem with any zero order optimization method.
+
+	![Illustration of TSP](salesman_problem.svg)
+
+	```python
+	import numpy as np
+	from scipy.spatial import distance_matrix
+	import random
+
+	def generate_random_symmetric_tsp(num_cities, seed=0):
+		np.random.seed(seed)
+		points = np.random.rand(num_cities, 2)  # Generate random coordinates
+		dist_matrix = distance_matrix(points, points)
+		dist_matrix = (dist_matrix + dist_matrix.T) / 2  # Ensure symmetry
+		return jnp.array(dist_matrix)  # Convert to JAX array for further processing
+
+	# Example usage
+	num_cities = 10
+	dist_matrix = generate_random_symmetric_tsp(num_cities)
+	print(dist_matrix)
+
+	```
+
+	* You can use the [genetic](https://fmin.xyz/docs/applications/salesman_problem.html) algorithm with any significant modification of mutation\breeding  (5/10)
+	* You can use another algorithm (10/10)
+
+1. In this task you will compare training a neural network with gradient descent and some zero order method.
+
+	TO BE DONE
