@@ -91,7 +91,7 @@
 
 - title: Методы нулевого порядка. Безградиентные методы. Оптимизация гиперпараметров модели машинного обучения. Генетический алгоритм. Эволюционные алгоритмы.
   number: 12
- # materials: /presentations/12.pdf
+  materials: /presentations/12.pdf
   # notes: /notes/12.pdf
   youtube: 
   download: 
