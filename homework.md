@@ -646,6 +646,6 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
     ![Comparison of SGD vs Evolutionary strategy for neural network without hidden layer.](ES_vs_SGD-8k.svg)
 
-    ![Comparison of SGD vs Evolutionary strategy for neural network with several hidden layers.](ES_vs_SGD-8k.svg)
+    ![Comparison of SGD vs Evolutionary strategy for neural network with several hidden layers.](ES_vs_SGD-42k.svg)
 
     The assignment requires you to implement a chosen zero-order optimization algorithm and compare its performance against SGD in training a predefined simple neural network (you can vary the structure of the network as you want for this problem). The comparison should focus on aspects such as convergence speed, final accuracy, and computational efficiency. Students should provide a name of the chosen zero-order algorithm and implement it in Python. You can use any method you want except the Evolutionary strategy, which is already in the example above. 
