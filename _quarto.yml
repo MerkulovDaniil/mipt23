@@ -29,7 +29,7 @@ website:
       - icon: telegram
         href: https://t.me/mipt23_fmin
       - icon: gem
-        href: https://new.fmin.xyz
+        href: https://fmin.xyz
   repo-url: https://github.com/MerkulovDaniil/mipt23
   repo-branch: main
   repo-actions: [edit]
