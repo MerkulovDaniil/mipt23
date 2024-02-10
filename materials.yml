@@ -96,12 +96,12 @@
   youtube: 
   download: 
 
-- title: Градиентный спуск. Теоремы сходимости в гладком случае (выпуклые, сильно выпуклые, PL).
+- title: Градиентный спуск. Введение и интуиция.
   number: 13
-  #materials: /presentations/13.pdf
-  # notes: /notes/13.pdf
-  youtube: 
-  download: 
+  materials: /presentations/13/13.pdf
+  notes: /notes/13.pdf
+  # youtube: 
+  download: https://disk.yandex.com/i/qAU4dqxV9pjUUg
 
 - title: Субградиентный спуск. Теоремы сходимости в негладком случае (выпуклый случай). Особенности работы градиентного метода в практических негладких задачах. Задача наименьших квадратов с $l_1$ регуляризацией.
   number: 14
