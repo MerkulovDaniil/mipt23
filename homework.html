@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.4.467">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -82,9 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
+    null
   ],
   "language": {
     "search-no-results-text": "No results",
@@ -94,7 +92,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -118,33 +115,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }}});
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <meta property="og:title" content="💀 Домашка">
 <meta property="og:description" content="">
@@ -274,7 +244,7 @@ f(x) = x^\top x x^\top x
 <h3 class="anchored" data-anchor-id="convex-sets">Convex sets</h3>
 <ol type="1">
 <li>Show, that if <span class="math inline">S \subseteq \mathbb{R}^n</span> is convex set, then its interior <span class="math inline">\mathbf{int } S</span> and closure <span class="math inline">\bar{S}</span> are also convex sets.</li>
-<li>Show, that <span class="math inline">\mathbf{conv}\{xx^\top: x \in \mathbb{R}^n, \Vert x\Vert  = 1\} = \{A \in \mathbb{S}^n_+: \text{tr}(A) = 1\}</span>.</li>
+<li>Show, that <span class="math inline">\mathbf{conv}\{xx^\top: x \in \mathbb{R}^n, \Vert x\Vert = 1\} = \{A \in \mathbb{S}^n_+: \text{tr}(A) = 1\}</span>.</li>
 <li>Let <span class="math inline">K \subseteq \mathbb{R}^n_+</span> is a cone. Prove that it is convex if and only if a set of <span class="math inline">\{x \in K \mid \sum\limits_{i=1}^n x_i = 1 \}</span> is convex.</li>
 <li>Prove that the set of <span class="math inline">\{x \in \mathbb{R}^2 \mid e^{x_1}\le x_2\}</span> is convex.</li>
 <li>Show that the set of directions of the non-strict local descending of the differentiable function in a point is a convex cone. (Previously, the question contained a typo “strict local descending”)</li>
@@ -292,6 +262,7 @@ p(t) = a_1 + a_2 t + \ldots + a_k t^{k-1} \;?
 <li><p>Consider the function <span class="math inline">f(x) = x^d</span>, where <span class="math inline">x \in \mathbb{R}_{+}</span>. Fill the following table with ✅ or ❎. Explain your answers</p>
 <div class="table-responsive">
 <table class="table">
+<caption></caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">d</span></th>
@@ -410,7 +381,7 @@ f_{\text{hub}}(x) =
 |x| - \frac{1}{2} &amp; \text{if } |x| &gt; 1
 \end{cases}
 </span></p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./huber_function.svg" class="img-fluid figure-img"></p>
 <figcaption>Scalar case</figcaption>
@@ -446,7 +417,7 @@ N_S(x) = \left\{c \in \mathbb{R}^n : \langle c, y-x\rangle \leq 0 \quad \forall 
 </span>
 <ol type="i">
 <li><p>Draw a normal cone for a set at the points <span class="math inline">A, B, C, D, E, F</span> on the figure below:</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./normal_cone.svg" class="img-fluid figure-img"></p>
 <figcaption>Draw a normal cone for the set <span class="math inline">S</span> in these points</figcaption>
@@ -775,7 +746,7 @@ x_{k+1} = x_k - \alpha \nabla f(x_k)
 <span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'x2'</span>)</span>
 <span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>plt.savefig(<span class="st">"linesearch.svg"</span>)</span>
 <span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="linesearch.svg" class="img-fluid figure-img"></p>
 <figcaption>The code above plots this</figcaption>
@@ -806,7 +777,7 @@ f(x_1, x_2) =  10(x_2 − x_1^2)^2 + (x_1 − 1)^2
 <h3 class="anchored" data-anchor-id="zero-order-methods">Zero-order methods</h3>
 <ol type="1">
 <li><p>Solve approximately the Travelling Salesman Problem with any zero-order optimization method.</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="salesman_problem.svg" class="img-fluid figure-img"></p>
 <figcaption>Illustration of TSP</figcaption>
@@ -841,13 +812,13 @@ f(x_1, x_2) =  10(x_2 − x_1^2)^2 + (x_1 − 1)^2
 \mathcal{L}(\mathcal{NN}(X, W, b), y) \to \min_{W, b}
 </span></p>
 <p>Typically, we use a cross-entropy loss function for the classification task. Do not worry if you are not familiar with neural networks or machine learning. Try to focus on the optimization algorithm here. You are provided with an example of this approach in the <a href="https://colab.research.google.com/github/MerkulovDaniil/optim/blob/master/assets/Notebooks/NN_ES.ipynb">Colab notebook</a>.</p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ES_vs_SGD-8k.svg" class="img-fluid figure-img"></p>
 <figcaption>Comparison of SGD vs Evolutionary strategy for neural network without hidden layer.</figcaption>
 </figure>
 </div>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="ES_vs_SGD-42k.svg" class="img-fluid figure-img"></p>
 <figcaption>Comparison of SGD vs Evolutionary strategy for neural network with several hidden layers.</figcaption>
@@ -939,24 +910,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/mipt23\.fmin\.xyz");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1006,28 +959,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
+        typesetMath(container);
         return container.innerHTML
       } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -1036,9 +999,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
+      typesetMath(note);
       return note.innerHTML;
     }
   }
@@ -1258,6 +1219,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/mipt23\.fmin\.xyz");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
 });
 </script>
 </div> <!-- /content -->
@@ -1265,4 +1244,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/MerkulovDaniil/mipt23/edit/main/homework.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+</body></html>

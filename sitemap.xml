@@ -2,18 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mipt23.fmin.xyz/index.html</loc>
-    <lastmod>2023-12-25T09:00:15.153Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mipt23.fmin.xyz/program.html</loc>
-    <lastmod>2023-12-25T09:00:15.477Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mipt23.fmin.xyz/projects.html</loc>
-    <lastmod>2023-12-25T09:00:15.481Z</lastmod>
+    <lastmod>2023-12-17T10:23:05.604Z</lastmod>
   </url>
   <url>
     <loc>https://mipt23.fmin.xyz/homework.html</loc>
-    <lastmod>2023-12-25T09:00:15.153Z</lastmod>
+    <lastmod>2023-12-07T23:12:47.012Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mipt23.fmin.xyz/program.html</loc>
+    <lastmod>2023-11-01T21:58:45.876Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mipt23.fmin.xyz/projects.html</loc>
+    <lastmod>2023-12-03T12:10:56.132Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mipt23.fmin.xyz/files/mds.html</loc>
+    <lastmod>2024-01-28T22:15:23.311Z</lastmod>
   </url>
 </urlset>
