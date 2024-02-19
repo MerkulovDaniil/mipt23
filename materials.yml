@@ -96,26 +96,33 @@
   youtube: 
   download: 
 
-- title: Градиентный спуск. Введение и интуиция.
+- title: Градиентный спуск. Введение и интуиция. Наискорейший спуск
   number: 13
   materials: /presentations/13/13.pdf
   notes: /notes/13.pdf
   # youtube: 
   download: https://disk.yandex.com/i/qAU4dqxV9pjUUg
 
-- title: Субградиентный спуск. Теоремы сходимости в негладком случае (выпуклый случай). Особенности работы градиентного метода в практических негладких задачах. Задача наименьших квадратов с $l_1$ регуляризацией.
+- title: Сходимость градиентного спуска для квадратичной задачи. Выбор оптимального шага. Теоремы сходимости в гладком PL-случае, гладком выпуклом случае.
   number: 14
-  # materials: /presentations/14.pdf
-  # notes: /notes/14.pdf
+  materials: /presentations/14/14.pdf
+  notes: /notes/14.pdf
+  # youtube: 
+  download: https://disk.yandex.com/i/KRJuyrxLaQgH2A
+
+- title: Субградиентный спуск. Теоремы сходимости в негладком случае (выпуклый случай). Особенности работы градиентного метода в практических негладких задачах. Задача наименьших квадратов с $l_1$ регуляризацией.
+  number: 15
+  materials: /presentations/15/15.pdf
+  notes: /notes/15.pdf
   youtube: 
   download: 
 
-- title: Ускоряем метод градиентного спуска - NAG, Momentum, полиномы.
-  number: 15
-  #materials: /presentations/15.pdf
-  # notes: /notes/15.pdf
-  youtube: 
-  download: 
+# - title: Ускоряем метод градиентного спуска - NAG, Momentum, полиномы.
+#   number: 15
+#   #materials: /presentations/15.pdf
+#   # notes: /notes/15.pdf
+#   youtube: 
+#   download: 
 
 - title: Метод проекции субградиента. Метод условного градиента (метод Франка - Вульфа). Идея метода зеркального спуска.
   number: 16
