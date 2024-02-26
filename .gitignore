@@ -8,3 +8,7 @@ _site/
 /.quarto/
 
 /.luarc.json
+*.aux
+*.log
+*.out
+*.gz

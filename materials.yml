@@ -114,29 +114,31 @@
   number: 15
   materials: /presentations/15/15.pdf
   notes: /notes/15.pdf
-  youtube: 
-  download: 
+  # youtube: 
+  download: https://disk.yandex.com/i/3njRLd9ls0ZZgQ
 
-# - title: Ускоряем метод градиентного спуска - NAG, Momentum, полиномы.
-#   number: 15
-#   #materials: /presentations/15.pdf
-#   # notes: /notes/15.pdf
+- title: Ускоряем метод градиентного спуска - NAG, Momentum, полиномы.
+  number: 16
+  materials: /presentations/16.pdf
+  notes: /notes/16.pdf
+  # youtube: 
+  download: https://disk.yandex.com/i/sxx_xBTj_7Pe9g
+
+# - title: Метод проекции субградиента. Метод условного градиента (метод Франка - Вульфа). Идея метода зеркального спуска.
+#   number: 16
+#   #materials: /presentations/16.pdf
+#   # notes: /notes/16.pdf
 #   youtube: 
 #   download: 
 
 - title: Метод проекции субградиента. Метод условного градиента (метод Франка - Вульфа). Идея метода зеркального спуска.
-  number: 16
-  #materials: /presentations/16.pdf
-  # notes: /notes/16.pdf
-  youtube: 
-  download: 
-
-- title: Проксимальные методы. Барьерные методы.
   number: 17
   #materials: /presentations/17.pdf
   # notes: /notes/17.pdf
   youtube: 
   download: 
+
+  # Проксимальные методы. Барьерные методы.
 
 - title: Метод сопряженных направлений. Ортогонализация Грамма - Шмидта. Понятие $A$-ортогональных векторов. Метод сопряженных градиентов.
   number: 18
