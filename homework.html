@@ -214,6 +214,9 @@ window.Quarto = {
   <li><a href="#sequence-convergence" id="toc-sequence-convergence" class="nav-link" data-scroll-target="#sequence-convergence">Sequence convergence</a></li>
   <li><a href="#line-search" id="toc-line-search" class="nav-link" data-scroll-target="#line-search">Line search</a></li>
   <li><a href="#zero-order-methods" id="toc-zero-order-methods" class="nav-link" data-scroll-target="#zero-order-methods">Zero-order methods</a></li>
+  <li><a href="#gradient-descent" id="toc-gradient-descent" class="nav-link" data-scroll-target="#gradient-descent">Gradient Descent</a></li>
+  <li><a href="#subgradient-descent" id="toc-subgradient-descent" class="nav-link" data-scroll-target="#subgradient-descent">Subgradient Descent</a></li>
+  <li><a href="#accelerated-methods" id="toc-accelerated-methods" class="nav-link" data-scroll-target="#accelerated-methods">Accelerated methods</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/MerkulovDaniil/mipt23/edit/main/homework.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -855,6 +858,121 @@ f(x_1, x_2) =  10(x_2 − x_1^2)^2 + (x_1 − 1)^2
 </div>
 <p>The assignment requires you to implement a chosen zero-order optimization algorithm and compare its performance against SGD in training a predefined simple neural network (you can vary the structure of the network as you want for this problem). The comparison should focus on aspects such as convergence speed, final accuracy, and computational efficiency. Students should provide a name of the chosen zero-order algorithm and implement it in Python. You can use any method you want except the Evolutionary strategy, which is already in the example above.</p></li>
 </ol>
+</section>
+<section id="gradient-descent" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-descent">Gradient Descent</h3>
+<ol type="1">
+<li><p><strong>Convergence of Gradient Descent in non-convex smooth case</strong></p>
+<p>We will assume nothing about convexity of <span class="math inline">f</span>. We will show that gradient descent reaches an <span class="math inline">\varepsilon</span>-substationary point <span class="math inline">x</span>, such that <span class="math inline">\|\nabla f(x)\|_2 \leq \varepsilon</span>, in <span class="math inline">O(1/\varepsilon^2)</span> iterations. Important note: you may use here Lipschitz parabolic upper bound:</p>
+<p><span class="math display">
+f(y) \leq f(x) + \nabla f(x)^T (y-x) + \frac{L}{2} \|y-x\|_2^2, \;\;\;
+\text{for all $x,y$}.  
+</span> {#eq_quad_ub}</p>
+<ul>
+<li><p>Plug in <span class="math inline">y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k</span> to <span class="citation" data-cites="eq_quad_ub">@eq_quad_ub</span> to show that</p>
+<p><span class="math display">
+  f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) t \|\nabla f(x^k)\|_2^2.
+  </span></p></li>
+<li><p>Use <span class="math inline">\alpha \leq 1/L</span>, and rearrange the previous result, to get</p>
+<p><span class="math display">
+  \|\nabla f(x^k)\|_2^2 \leq \frac{2}{\alpha} \left( f(x^k) - f(x^{k+1}) \right).
+  </span></p></li>
+<li><p>Sum the previous result over all iterations from <span class="math inline">1,\ldots,k+1</span> to establish</p>
+<p><span class="math display">
+  \sum_{i=0}^k \|\nabla f(x^{i})\|_2^2 \leq
+  \frac{2}{\alpha} ( f(x^{0}) - f^*).
+  </span></p></li>
+<li><p>Lower bound the sum in the previous result to get</p>
+<p><span class="math display">
+  \min_{i=0,\ldots,k} \|\nabla f(x^{i}) \|_2
+  \leq \sqrt{\frac{2}{\alpha(k+1)} (f(x^{0}) - f^*)},
+  </span> which establishes the desired <span class="math inline">O(1/\varepsilon^2)</span> rate for achieving <span class="math inline">\varepsilon</span>-substationarity.</p></li>
+</ul></li>
+<li><p><strong>How gradient descent convergence depends on the condition number and dimensionality.</strong> Investigate how the number of iterations required for gradient descent to converge depends on the following two parameters: the condition number <span class="math inline">\kappa \geq 1</span> of the function being optimized, and the dimensionality <span class="math inline">n</span> of the space of variables being optimized.</p>
+<p>To do this, for given parameters <span class="math inline">n</span> and <span class="math inline">\kappa</span>, randomly generate a quadratic problem of size <span class="math inline">n</span> with condition number <span class="math inline">\kappa</span> and run gradient descent on it with some fixed required precision. Measure the number of iterations <span class="math inline">T(n, \kappa)</span> that the method required for convergence (successful termination based on the stopping criterion).</p>
+<p>Recommendation: The simplest way to generate a random quadratic problem of size <span class="math inline">n</span> with a given condition number <span class="math inline">\kappa</span> is as follows. It is convenient to take a diagonal matrix <span class="math inline">A \in S_{n}^{++}</span> as simply the diagonal matrix <span class="math inline">A = \text{Diag}(a)</span>, whose diagonal elements are randomly generated within <span class="math inline">[1, \kappa]</span>, and where <span class="math inline">\min(a) = 1</span>, <span class="math inline">\max(a) = \kappa</span>. As the vector <span class="math inline">b \in \mathbb{R}^n</span>, you can take a vector with random elements. Diagonal matrices are convenient to consider since they can be efficiently processed with even for large values of <span class="math inline">n</span>.</p>
+<p>Fix a certain value of the dimensionality <span class="math inline">n</span>. Iterate over different condition numbers <span class="math inline">\kappa</span> on a grid and plot the dependence of <span class="math inline">T(n,\kappa)</span> against <span class="math inline">\kappa</span>. Since the quadratic problem is generated randomly each time, repeat this experiment several times. As a result, for a fixed value of <span class="math inline">n</span>, you should obtain a whole family of curves showing the dependence of <span class="math inline">T(n, \kappa)</span> on <span class="math inline">\kappa</span>. Draw all these curves in the same color for clarity (for example, red).</p>
+<p>Now increase the value of <span class="math inline">n</span> and repeat the experiment again. You should obtain a new family of curves <span class="math inline">T(n',\kappa)</span> against <span class="math inline">\kappa</span>. Draw all these curves in the same color but different from the previous one (for example, blue).</p>
+<p>Repeat this procedure several times for other values of <span class="math inline">n</span>. Eventually, you should have several different families of curves - some red (corresponding to one value of <span class="math inline">n</span>), some blue (corresponding to another value of <span class="math inline">n</span>), some green, etc.</p>
+<p>Note that it makes sense to iterate over the values of the dimensionality <span class="math inline">n</span> on a logarithmic grid (for example, <span class="math inline">n = 10, n = 100, n = 1000</span>, etc.). Use the following stopping criterion: <span class="math inline">\|\nabla f(x_k)\|_2^2 \leq \varepsilon \|\nabla f(x_0)\|_2^2</span> with <span class="math inline">\varepsilon = 10^{-5}</span>. Select the starting point <span class="math inline">x_0 = (1, \ldots, 1)^T</span></p>
+<p>What conclusions can be drawn from the resulting picture?</p></li>
+</ol>
+</section>
+<section id="subgradient-descent" class="level3">
+<h3 class="anchored" data-anchor-id="subgradient-descent">Subgradient Descent</h3>
+<ol type="1">
+<li><p><strong>Subgradient descent convergence with for several stepsize strategies.</strong> In this problem you will have to prove the convergence of subgradient descent (<span class="math inline">x^{k+1} = x^k - \alpha_k g_k</span>) for several stepsize strategies. First prove, that</p>
+<p><span class="math display">
+\|x^{k+1} - x^*\|_2^2 \leq \|x^{k} - x^*\|_2^2 - 2\alpha_k \left(f(x^k) - f^* \right) + \alpha^2_k \|g_k\|_2^2
+</span></p>
+<p>Then, using <span class="math inline">\|g\|_2 \leq G, \|x^0 - x^*\| \leq R</span> prove, that</p>
+<p><span class="math display">
+\|x^{k+1} - x^*\|_2^2 \leq R^2 - 2\sum\limits_{i=1}^k\alpha_i \left(f(x^i) - f^* \right) + G^2\sum\limits_{i=1}^k\alpha^2_i
+</span></p>
+<p>Then, using <span class="math inline">f_k^{\text{best}} = \min\limits_{i=1,\ldots,k} f(x^i)</span> prove, that</p>
+<p><span class="math display">
+f_k^{\text{best}} - f^* \leq \frac{R^2 + G^2\sum\limits_{i=1}^k\alpha^2_i}{2\sum\limits_{i=1}^k\alpha_i}
+</span></p>
+<p>After it, finalize the bound for the following stepsize strategies</p>
+<ul>
+<li><p>constant step size <span class="math inline">\alpha_k = \alpha</span></p></li>
+<li><p>constant step length <span class="math inline">\alpha_k = \frac{\gamma}{\|g_k\|_2}</span> (so <span class="math inline">\|x^{k+1} - x^k\|_2 = \gamma</span>)</p></li>
+<li><p>Inverse square root <span class="math inline">\frac{R}{G\sqrt{k}}</span></p></li>
+<li><p>Inverse <span class="math inline">\frac1k</span></p></li>
+<li><p>Polyak’s step size:</p>
+<p><span class="math display">
+  \alpha_k = \frac{f(x^k) - f^*}{\|g_k\|_2^2}
+  </span></p></li>
+</ul></li>
+<li><p><strong>Subgradient methods for Lasso.</strong> Consider the optimization problem</p>
+<p><span class="math display">
+\min_{x \in \mathbb{R}^n} f(x) := \frac12 \|Ax - b\|^2 + \lambda \|x\|_1,
+</span></p>
+<p>with variables <span class="math inline">x \in \mathbb{R}^n</span> and problem data <span class="math inline">A \in \mathbb{R}^{m \times n}</span>, <span class="math inline">b \in \mathbb{R}^m</span> and <span class="math inline">\lambda &gt; 0</span>. This model is known as Lasso, or Least Squares with <span class="math inline">l_1</span> regularization, which encourages sparsity in the solution via the non-smooth penalty <span class="math inline">\|x\|_1 := \sum_{j=1}^n |x_j|</span>. In this problem, we will explore various subgradient methods for fitting this model.</p>
+<ul>
+<li><p>Derive the subdifferential <span class="math inline">\partial f(x)</span> of the objective.</p></li>
+<li><p>Find the update rule of the subgradient method and state the computational complexity of applying one update using big O notation in terms of the dimensions.</p></li>
+<li><p>Let <span class="math inline">n = 1000</span>, <span class="math inline">m = 200</span> and <span class="math inline">\lambda = 0.01</span>. Generate a random matrix <span class="math inline">A \in \mathbb{R}^{m \times n}</span> with independent Gaussian entries with mean 0 and variance <span class="math inline">1/m</span>, and a fixed vector <span class="math inline">x^* = {\underbrace{[1, \ldots, 1}_{\text{k times}}, \underbrace{0, \ldots, 0]}_{\text{n-k times}}}^T \in \mathbb{R}^n</span>. Let <span class="math inline">k = 5</span> and then set <span class="math inline">b = Ax^*</span>. Implement the subgradient method to minimize <span class="math inline">f(x)</span>, initialized at the all-zeros vector. Try different step size rules, including:</p>
+<ul>
+<li><p>constant step size <span class="math inline">\alpha_k = \alpha</span></p></li>
+<li><p>constant step length <span class="math inline">\alpha_k = \frac{\gamma}{\|g_k\|_2}</span> (so <span class="math inline">\|x^{k+1} - x^k\|_2 = \gamma</span>)</p></li>
+<li><p>Inverse square root <span class="math inline">\frac{1}{\sqrt{k}}</span></p></li>
+<li><p>Inverse <span class="math inline">\frac1k</span></p></li>
+<li><p>Polyak’s step length with estimated objective value:</p>
+<p><span class="math display">
+  \alpha_k = \frac{f(x_k) - f_k^{\text{best}} + \gamma_k}{\|g_k\|_2^2}, \quad \text{ with} \sum_{k=1}^\infty \gamma_k = \infty, \quad \sum_{k=1}^\infty \gamma_k^2 &lt; \infty
+  </span></p>
+<p>For example, one can use <span class="math inline">\gamma_k = \frac{10}{10 + k}</span>. Here <span class="math inline">f_k^{\text{best}} - \gamma_k</span> serves as estimate of <span class="math inline">f^*</span>. It is better to take <span class="math inline">\gamma_k</span> in the same scale as objective value. One can show, that <span class="math inline">f_k^{\text{best}} \to f^*</span>.</p></li>
+</ul>
+<p>Plot objective value versus iteration curves of different step size rules on the same figure.</p></li>
+<li><p>Repeat previous part using a heavy ball term, <span class="math inline">\beta_k(x^k - x^{k-1})</span>, added to the subgradient. Try different step size rules as in previous part and tune the heavy ball parameter <span class="math inline">\beta_k = \beta</span> for faster convergence.</p></li>
+</ul></li>
+<li><p><strong>Finding a point in the intersection of convex sets.</strong> Let <span class="math inline">A \in \mathbb{R}^{n \times n}</span> be a positive definite matrix and let <span class="math inline">\Sigma</span> be an <span class="math inline">n \times n</span> diagonal matrix with diagonal entries <span class="math inline">\sigma_1,...,\sigma_n &gt; 0</span>, and <span class="math inline">y</span> a given vector in <span class="math inline">\mathbb{R}^n</span>. Consider the compact convex sets <span class="math inline">U = \{x \in \mathbb{R}^n \mid \|A^{1/2}(x-y)\|_2 \leq 1\}</span> and <span class="math inline">V = \{x \in \mathbb{R}^n \mid \|\Sigma x\|_\infty \leq 1\}</span>.</p>
+<ul>
+<li><p>Minimize maximum distance from the current point to the convex sets.</p>
+<p><span class="math display">
+  \min_{x\in\mathbb{R}^n} f(x) =  \min_{x\in\mathbb{R}^n} \max\{\mathbf{dist}(x, U), \mathbf{dist}(x, V)\}
+  </span></p>
+<p>propose an algorithm in order to find a point <span class="math inline">x \in U \cap V</span>. You can assume that <span class="math inline">U \cap V</span> is not empty. Your algorithm must be provably converging (although you do not need to prove it and you can simply refer to the lecture slides).</p></li>
+<li><p>Implement your algorithm with the following data: <span class="math inline">n = 2</span>, <span class="math inline">y = (3, 2)</span>, <span class="math inline">\sigma_1 = 0.5</span>, <span class="math inline">\sigma_2 = 1</span>,</p>
+<p><span class="math display">
+  A = \begin{bmatrix}
+  1 &amp; 0 \\
+  -1 &amp; 1
+  \end{bmatrix},
+  </span></p>
+<p>and <span class="math inline">x = (2, 1)</span>. Plot the objective value of your optimization problem versus the number of iterations.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="convex_intersection.png" class="img-fluid figure-img"></p>
+<figcaption>Illustration of the problem</figcaption>
+</figure>
+</div></li>
+</ol>
+</section>
+<section id="accelerated-methods" class="level3">
+<h3 class="anchored" data-anchor-id="accelerated-methods">Accelerated methods</h3>
 
 
 </section>
