@@ -649,3 +649,147 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     ![Comparison of SGD vs Evolutionary strategy for neural network with several hidden layers.](ES_vs_SGD-42k.svg)
 
     The assignment requires you to implement a chosen zero-order optimization algorithm and compare its performance against SGD in training a predefined simple neural network (you can vary the structure of the network as you want for this problem). The comparison should focus on aspects such as convergence speed, final accuracy, and computational efficiency. Students should provide a name of the chosen zero-order algorithm and implement it in Python. You can use any method you want except the Evolutionary strategy, which is already in the example above. 
+
+### Gradient Descent
+
+1. **Convergence of Gradient Descent in non-convex smooth case**
+
+    We will assume nothing about convexity of $f$.  We will show that gradient descent reaches an $\varepsilon$-substationary point $x$, such that $\|\nabla f(x)\|_2 \leq \varepsilon$, in $O(1/\varepsilon^2)$ iterations. Important note: you may use here Lipschitz parabolic upper bound: 
+    
+    $$
+    f(y) \leq f(x) + \nabla f(x)^T (y-x) + \frac{L}{2} \|y-x\|_2^2, \;\;\;
+    \text{for all $x,y$}.  
+    $$ {#eq_quad_ub}
+
+    * Plug in $y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k$ to @eq_quad_ub to show that 
+
+        $$
+        f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) t \|\nabla f(x^k)\|_2^2.
+        $$
+
+    * Use $\alpha \leq 1/L$, and rearrange the previous result, to get 
+
+        $$
+        \|\nabla f(x^k)\|_2^2 \leq \frac{2}{\alpha} \left( f(x^k) - f(x^{k+1}) \right).
+        $$
+
+    * Sum the previous result over all iterations from $1,\ldots,k+1$ to establish
+    
+        $$
+        \sum_{i=0}^k \|\nabla f(x^{i})\|_2^2 \leq 
+        \frac{2}{\alpha} ( f(x^{0}) - f^*).
+        $$
+
+    * Lower bound the sum in the previous result to get 
+
+        $$
+        \min_{i=0,\ldots,k} \|\nabla f(x^{i}) \|_2 
+        \leq \sqrt{\frac{2}{\alpha(k+1)} (f(x^{0}) - f^*)}, 
+        $$
+        which establishes the desired $O(1/\varepsilon^2)$ rate for achieving $\varepsilon$-substationarity.  
+
+1. **How gradient descent convergence depends on the condition number and dimensionality.** Investigate how the number of iterations required for gradient descent to converge depends on the following two parameters: the condition number $\kappa \geq 1$ of the function being optimized, and the dimensionality $n$ of the space of variables being optimized.
+    
+    To do this, for given parameters $n$ and $\kappa$, randomly generate a quadratic problem of size $n$ with condition number $\kappa$ and run gradient descent on it with some fixed required precision. Measure the number of iterations $T(n, \kappa)$ that the method required for convergence (successful termination based on the stopping criterion).
+
+    Recommendation: The simplest way to generate a random quadratic problem of size $n$ with a given condition number $\kappa$ is as follows. It is convenient to take a diagonal matrix $A \in S_{n}^{++}$ as simply the diagonal matrix $A = \text{Diag}(a)$, whose diagonal elements are randomly generated within $[1, \kappa]$, and where $\min(a) = 1$, $\max(a) = \kappa$. As the vector $b \in \mathbb{R}^n$, you can take a vector with random elements. Diagonal matrices are convenient to consider since they can be efficiently processed with even for large values of $n$.
+
+    Fix a certain value of the dimensionality $n$. Iterate over different condition numbers $\kappa$ on a grid and plot the dependence of $T(n,\kappa)$ against $\kappa$. Since the quadratic problem is generated randomly each time, repeat this experiment several times. As a result, for a fixed value of $n$, you should obtain a whole family of curves showing the dependence of $T(n, \kappa)$ on $\kappa$. Draw all these curves in the same color for clarity (for example, red).
+
+    Now increase the value of $n$ and repeat the experiment again. You should obtain a new family of curves $T(n',\kappa)$ against $\kappa$. Draw all these curves in the same color but different from the previous one (for example, blue).
+
+    Repeat this procedure several times for other values of $n$. Eventually, you should have several different families of curves - some red (corresponding to one value of $n$), some blue (corresponding to another value of $n$), some green, etc.
+
+    Note that it makes sense to iterate over the values of the dimensionality $n$ on a logarithmic grid (for example, $n = 10, n = 100, n = 1000$, etc.). Use the following stopping criterion: $\|\nabla f(x_k)\|_2^2 \leq \varepsilon \|\nabla f(x_0)\|_2^2$ with $\varepsilon = 10^{-5}$. Select the starting point $x_0 = (1, \ldots, 1)^T$
+
+
+    What conclusions can be drawn from the resulting picture?
+
+
+### Subgradient Descent
+
+1. **Subgradient descent convergence with for several stepsize strategies.** In this problem you will have to prove the convergence of subgradient descent ($x^{k+1} = x^k - \alpha_k g_k$) for several stepsize strategies. First prove, that 
+
+    $$
+    \|x^{k+1} - x^*\|_2^2 \leq \|x^{k} - x^*\|_2^2 - 2\alpha_k \left(f(x^k) - f^* \right) + \alpha^2_k \|g_k\|_2^2
+    $$
+
+    Then, using $\|g\|_2 \leq G, \|x^0 - x^*\| \leq R$ prove, that 
+
+    $$
+    \|x^{k+1} - x^*\|_2^2 \leq R^2 - 2\sum\limits_{i=1}^k\alpha_i \left(f(x^i) - f^* \right) + G^2\sum\limits_{i=1}^k\alpha^2_i
+    $$
+
+    Then, using $f_k^{\text{best}} = \min\limits_{i=1,\ldots,k} f(x^i)$ prove, that 
+
+    $$
+    f_k^{\text{best}} - f^* \leq \frac{R^2 + G^2\sum\limits_{i=1}^k\alpha^2_i}{2\sum\limits_{i=1}^k\alpha_i}
+    $$
+
+    After it, finalize the bound for the following stepsize strategies
+
+    * constant step size $\alpha_k = \alpha$
+    * constant step length $\alpha_k = \frac{\gamma}{\|g_k\|_2}$ (so $\|x^{k+1} - x^k\|_2 = \gamma$)
+    * Inverse square root $\frac{R}{G\sqrt{k}}$
+    * Inverse $\frac1k$
+    * Polyak’s step size:
+
+        $$
+        \alpha_k = \frac{f(x^k) - f^*}{\|g_k\|_2^2}
+        $$
+
+1. **Subgradient methods for Lasso.** Consider the optimization problem
+
+    $$
+    \min_{x \in \mathbb{R}^n} f(x) := \frac12 \|Ax - b\|^2 + \lambda \|x\|_1,
+    $$
+
+    with variables $x \in \mathbb{R}^n$ and problem data $A \in \mathbb{R}^{m \times n}$, $b \in \mathbb{R}^m$ and $\lambda > 0$. This model is known as Lasso, or Least Squares with $l_1$ regularization, which encourages sparsity in the solution via the non-smooth penalty $\|x\|_1 := \sum_{j=1}^n |x_j|$. In this problem, we will explore various subgradient methods for fitting this model.
+
+    * Derive the subdifferential $\partial f(x)$ of the objective.
+
+    * Find the update rule of the subgradient method and state the computational complexity of applying one update using big O notation in terms of the dimensions.
+
+    * Let $n = 1000$, $m = 200$ and $\lambda = 0.01$. Generate a random matrix $A \in \mathbb{R}^{m \times n}$ with independent Gaussian entries with mean 0 and variance $1/m$, and a fixed vector $x^* = {\underbrace{[1, \ldots, 1}_{\text{k times}}, \underbrace{0, \ldots, 0]}_{\text{n-k times}}}^T \in \mathbb{R}^n$. Let $k = 5$ and then set $b = Ax^*$. Implement the subgradient method to minimize $f(x)$, initialized at the all-zeros vector. Try different step size rules, including:
+        * constant step size $\alpha_k = \alpha$
+        * constant step length $\alpha_k = \frac{\gamma}{\|g_k\|_2}$ (so $\|x^{k+1} - x^k\|_2 = \gamma$)
+        * Inverse square root $\frac{1}{\sqrt{k}}$
+        * Inverse $\frac1k$
+        * Polyak’s step length with estimated objective value:
+
+            $$
+            \alpha_k = \frac{f(x_k) - f_k^{\text{best}} + \gamma_k}{\|g_k\|_2^2}, \quad \text{ with} \sum_{k=1}^\infty \gamma_k = \infty, \quad \sum_{k=1}^\infty \gamma_k^2 < \infty
+            $$
+
+            For example, one can use $\gamma_k = \frac{10}{10 + k}$. Here  $f_k^{\text{best}} - \gamma_k$ serves as estimate of $f^*$. It is better to take $\gamma_k$ in the same scale as objective value. One can show, that $f_k^{\text{best}} \to f^*$.
+
+    
+        Plot objective value versus iteration curves of different step size rules on the same figure.
+
+    * Repeat previous part using a heavy ball term, $\beta_k(x^k - x^{k-1})$, added to the subgradient. Try different step size rules as in previous part and tune the heavy ball parameter $\beta_k = \beta$ for faster convergence.
+
+1. **Finding a point in the intersection of convex sets.** Let $A \in \mathbb{R}^{n \times n}$ be a positive definite matrix and let $\Sigma$ be an $n \times n$ diagonal matrix with diagonal entries $\sigma_1,...,\sigma_n > 0$, and $y$ a given vector in $\mathbb{R}^n$. Consider the compact convex sets $U = \{x \in \mathbb{R}^n \mid \|A^{1/2}(x-y)\|_2 \leq 1\}$ and $V = \{x \in \mathbb{R}^n \mid \|\Sigma x\|_\infty \leq 1\}$.
+
+    * Minimize maximum distance from the current point to the convex sets. 
+
+        $$
+        \min_{x\in\mathbb{R}^n} f(x) =  \min_{x\in\mathbb{R}^n} \max\{\mathbf{dist}(x, U), \mathbf{dist}(x, V)\}
+        $$
+
+        propose an algorithm in order to find a point $x \in U \cap V$. You can assume that $U \cap V$ is not empty. Your algorithm must be provably converging (although you do not need to prove it and you can simply refer to the lecture slides).
+
+    * Implement your algorithm with the following data: $n = 2$, $y = (3, 2)$, $\sigma_1 = 0.5$, $\sigma_2 = 1$, 
+
+        $$
+        A = \begin{bmatrix} 
+        1 & 0 \\
+        -1 & 1 
+        \end{bmatrix},
+        $$
+
+        and $x = (2, 1)$. Plot the objective value of your optimization problem versus the number of iterations.
+
+    ![Illustration of the problem](convex_intersection.png)
+
+
+### Accelerated methods
