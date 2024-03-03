@@ -3,6 +3,7 @@ project:
   output-dir: _site
   resources: 
     - "*.mp4"
+    - "*.txt"
 
 format: fminxyz-html
 
