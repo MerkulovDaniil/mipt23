@@ -664,7 +664,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     * Plug in $y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k$ to (@eq-quad_ub) to show that 
 
         $$
-        f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) t \|\nabla f(x^k)\|_2^2.
+        f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) \alpha \|\nabla f(x^k)\|_2^2.
         $$
 
     * Use $\alpha \leq 1/L$, and rearrange the previous result, to get 
