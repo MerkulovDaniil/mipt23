@@ -661,7 +661,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     \text{for all $x,y$}.  
     $$ {#eq_quad_ub}
 
-    * Plug in $y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k$ to @eq_quad_ub to show that 
+    * Plug in $y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k$ to (@eq_quad_ub) to show that 
 
         $$
         f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) t \|\nabla f(x^k)\|_2^2.
