@@ -654,7 +654,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 1. **Convergence of Gradient Descent in non-convex smooth case**
 
-    We will assume nothing about convexity of $f$.  We will show that gradient descent reaches an $\varepsilon$-substationary point $x$, such that $\|\nabla f(x)\|_2 \leq \varepsilon$, in $O(1/\varepsilon^2)$ iterations. Important note: you may use here Lipschitz parabolic upper bound: 
+    We will assume nothing about the convexity of $f$.  We will show that gradient descent reaches an $\varepsilon$-substationary point $x$, such that $\|\nabla f(x)\|_2 \leq \varepsilon$, in $O(1/\varepsilon^2)$ iterations. Important note: you may use here Lipschitz parabolic upper bound: 
     
     $$
     f(y) \leq f(x) + \nabla f(x)^T (y-x) + \frac{L}{2} \|y-x\|_2^2, \;\;\;
@@ -696,7 +696,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
     Fix a certain value of the dimensionality $n$. Iterate over different condition numbers $\kappa$ on a grid and plot the dependence of $T(n,\kappa)$ against $\kappa$. Since the quadratic problem is generated randomly each time, repeat this experiment several times. As a result, for a fixed value of $n$, you should obtain a whole family of curves showing the dependence of $T(n, \kappa)$ on $\kappa$. Draw all these curves in the same color for clarity (for example, red).
 
-    Now increase the value of $n$ and repeat the experiment again. You should obtain a new family of curves $T(n',\kappa)$ against $\kappa$. Draw all these curves in the same color but different from the previous one (for example, blue).
+    Now increase the value of $n$ and repeat the experiment. You should obtain a new family of curves $T(n',\kappa)$ against $\kappa$. Draw all these curves in the same color but different from the previous one (for example, blue).
 
     Repeat this procedure several times for other values of $n$. Eventually, you should have several different families of curves - some red (corresponding to one value of $n$), some blue (corresponding to another value of $n$), some green, etc.
 
@@ -708,7 +708,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Subgradient Descent
 
-1. **Subgradient descent convergence with for several stepsize strategies.** In this problem you will have to prove the convergence of subgradient descent ($x^{k+1} = x^k - \alpha_k g_k$) for several stepsize strategies. First prove, that 
+1. **Subgradient descent convergence with several stepsize strategies.** In this problem you will have to prove the convergence of subgradient descent ($x^{k+1} = x^k - \alpha_k g_k$) for several stepsize strategies. First prove, that 
 
     $$
     \|x^{k+1} - x^*\|_2^2 \leq \|x^{k} - x^*\|_2^2 - 2\alpha_k \left(f(x^k) - f^* \right) + \alpha^2_k \|g_k\|_2^2
@@ -726,7 +726,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     f_k^{\text{best}} - f^* \leq \frac{R^2 + G^2\sum\limits_{i=1}^k\alpha^2_i}{2\sum\limits_{i=1}^k\alpha_i}
     $$
 
-    After it, finalize the bound for the following stepsize strategies
+    After that, finalize the bound for the following stepsize choosing strategies
 
     * constant step size $\alpha_k = \alpha$
     * constant step length $\alpha_k = \frac{\gamma}{\|g_k\|_2}$ (so $\|x^{k+1} - x^k\|_2 = \gamma$)
@@ -761,12 +761,12 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
             \alpha_k = \frac{f(x_k) - f_k^{\text{best}} + \gamma_k}{\|g_k\|_2^2}, \quad \text{ with} \sum_{k=1}^\infty \gamma_k = \infty, \quad \sum_{k=1}^\infty \gamma_k^2 < \infty
             $$
 
-            For example, one can use $\gamma_k = \frac{10}{10 + k}$. Here  $f_k^{\text{best}} - \gamma_k$ serves as estimate of $f^*$. It is better to take $\gamma_k$ in the same scale as objective value. One can show, that $f_k^{\text{best}} \to f^*$.
+            For example, one can use $\gamma_k = \frac{10}{10 + k}$. Here  $f_k^{\text{best}} - \gamma_k$ serves as estimate of $f^*$. It is better to take $\gamma_k$ in the same scale as the objective value. One can show, that $f_k^{\text{best}} \to f^*$.
 
     
         Plot objective value versus iteration curves of different step size rules on the same figure.
 
-    * Repeat previous part using a heavy ball term, $\beta_k(x^k - x^{k-1})$, added to the subgradient. Try different step size rules as in previous part and tune the heavy ball parameter $\beta_k = \beta$ for faster convergence.
+    * Repeat previous part using a heavy ball term, $\beta_k(x^k - x^{k-1})$, added to the subgradient. Try different step size rules as in the previous part and tune the heavy ball parameter $\beta_k = \beta$ for faster convergence.
 
 1. **Finding a point in the intersection of convex sets.** Let $A \in \mathbb{R}^{n \times n}$ be a positive definite matrix and let $\Sigma$ be an $n \times n$ diagonal matrix with diagonal entries $\sigma_1,...,\sigma_n > 0$, and $y$ a given vector in $\mathbb{R}^n$. Consider the compact convex sets $U = \{x \in \mathbb{R}^n \mid \|A^{1/2}(x-y)\|_2 \leq 1\}$ and $V = \{x \in \mathbb{R}^n \mid \|\Sigma x\|_\infty \leq 1\}$.
 
@@ -776,7 +776,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
         \min_{x\in\mathbb{R}^n} f(x) =  \min_{x\in\mathbb{R}^n} \max\{\mathbf{dist}(x, U), \mathbf{dist}(x, V)\}
         $$
 
-        propose an algorithm in order to find a point $x \in U \cap V$. You can assume that $U \cap V$ is not empty. Your algorithm must be provably converging (although you do not need to prove it and you can simply refer to the lecture slides).
+        propose an algorithm to find a point $x \in U \cap V$. You can assume that $U \cap V$ is not empty. Your algorithm must be provably converging (although you do not need to prove it and you can simply refer to the lecture slides).
 
     * Implement your algorithm with the following data: $n = 2$, $y = (3, 2)$, $\sigma_1 = 0.5$, $\sigma_2 = 1$, 
 
@@ -793,3 +793,231 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 
 ### Accelerated methods
+
+1. **Local Convergence of Heavy Ball Method.** We will work with the heavy ball method in this problem
+
+    $$
+    \tag{HB}
+    x_{k+1} = x_k - \alpha \nabla f(x_k) + \beta (x_k - x_{k-1})
+    $$
+
+    It is known, that for the quadratics the best choice of hyperparameters is $\alpha^* = \dfrac{4}{(\sqrt{L} + \sqrt{\mu})^2}, \beta^* = \dfrac{(\sqrt{L} - \sqrt{\mu})^2}{(\sqrt{L} + \sqrt{\mu})^2}$, which ensures accelerated linear convergence for a strongly convex quadratic function.
+
+    Consider the following continuously differentiable, strongly convex with parameter $\mu$, and smooth function with parameter $L$:
+
+    $$
+    f(x) = 
+    \begin{cases} 
+    \frac{25}{2}x^2, & \text{if } x < 1 \\
+    \frac12x^2 + 24x - 12, & \text{if } 1 \leq x < 2 \\
+    \frac{25}{2}x^2 - 24x + 36, & \text{if } x \geq 2
+    \end{cases}
+    \quad
+    \nabla f(x) = 
+    \begin{cases} 
+    25x, & \text{if } x < 1 \\
+    x + 24, & \text{if } 1 \leq x < 2 \\
+    25x - 24, & \text{if } x \geq 2
+    \end{cases}
+    $$
+
+    1. How to prove, that the given function is convex? Strongly convex? Smooth?
+    1. Find the constants $\mu$ and $L$ for a given function.
+    1. Plot the function value for $x \in [-4, 4]$. 
+    1. Run the Heavy Ball method for the function with optimal hyperparameters $\alpha^* = \dfrac{4}{(\sqrt{L} + \sqrt{\mu})^2}, \beta^* = \dfrac{(\sqrt{L} - \sqrt{\mu})^2}{(\sqrt{L} + \sqrt{\mu})^2}$ for quadratic function, starting from $x_0 = 3.5$. If you have done everything above correctly, you should receive something like
+
+        :::{.video}
+        heavy_ball_conv.mp4
+        :::
+
+        You can use the following code for plotting:
+
+        ```python
+        import numpy as np
+        import matplotlib.pyplot as plt
+        import matplotlib.animation as animation
+        from IPython.display import HTML
+
+        # Gradient of the function
+        def grad_f(x):
+            ...
+
+        # Heavy Ball method implementation
+        def heavy_ball_method(alpha, beta, x0, num_iterations):
+            x = np.zeros(num_iterations + 1)
+            x_prev = x0
+            x_curr = x0  # Initialize x[1] same as x[0] to start the algorithm
+            for i in range(num_iterations):
+                x[i] = x_curr
+                x_new = x_curr - alpha * grad_f(x_curr) + beta * (x_curr - x_prev)
+                x_prev = x_curr
+                x_curr = x_new
+            x[num_iterations] = x_curr
+            return x
+
+        # Parameters
+        L = ...
+        mu = ...
+        alpha_star = ...
+        beta_star = ...
+        x0 = ...
+        num_iterations = 30
+
+        # Generate the trajectory of the method
+        trajectory = heavy_ball_method(alpha_star, beta_star, x0, num_iterations)
+
+        # Setup the figure and axes for the animation
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7, 3.5))
+        fig.suptitle("Heavy ball method with optimal hyperparameters α* β*")
+
+        # Function for updating the animation
+        def update(i):
+            ax1.clear()
+            ax2.clear()
+
+            # Plot f(x) and trajectory
+            x_vals = np.linspace(-4, 4, 100)
+            f_vals = np.piecewise(x_vals, [x_vals < 1, (x_vals >= 1) & (x_vals < 2), x_vals >= 2],
+                                [lambda x: 12.5 * x**2, lambda x: .5 * x**2 + 24 * x - 12, lambda x: 12.5 * x**2 - 24 * x + 36])
+            ax1.plot(x_vals, f_vals, 'b-')
+            ax1.plot(trajectory[:i], [12.5 * x**2 if x < 1 else .5 * x**2 + 24 * x - 12 if x < 2 else 12.5 * x**2 - 24 * x + 36 for x in trajectory[:i]], 'ro-')
+            # Add vertical dashed lines at x=1 and x=2 on the left subplot
+            ax1.axvline(x=1, color='navy', linestyle='--')
+            ax1.axvline(x=2, color='navy', linestyle='--')
+
+            # Plot function value from iteration
+            f_trajectory = [None for x in trajectory]
+            f_trajectory[:i] = [12.5 * x**2 if x < 1 else .5 * x**2 + 24 * x - 12 if x < 2 else 12.5 * x**2 - 24 * x + 36 for x in trajectory[:i]]
+            ax2.plot(range(len(trajectory)), f_trajectory, 'ro-')
+            ax2.set_xlim(0, len(trajectory))
+            ax2.set_ylim(min(f_vals), max(f_vals))
+            # Add horizontal dashed lines at f(1) and f(2) on the right subplot
+            f_1 = 12.5 * 1.0**2
+            f_2 = .5 * 2.**2 + 24 * 2. - 12
+            ax2.axhline(y=f_1, color='navy', linestyle='--')
+            ax2.axhline(y=f_2, color='navy', linestyle='--')
+
+            # ax1.set_title("Function f(x) and Trajectory")
+            ax1.set_xlabel("x")
+            ax1.set_ylabel("f(x)")
+            ax1.grid(linestyle=":")
+
+            # ax2.set_title("Function Value from Iteration")
+            ax2.set_xlabel("Iteration")
+            ax2.set_ylabel("f(x)")
+            ax2.grid(linestyle=":")
+
+            plt.tight_layout()
+
+        # Create the animation
+        ani = animation.FuncAnimation(fig, update, frames=num_iterations, repeat=False, interval=100)
+        HTML(ani.to_jshtml())
+        ```
+    
+    1. Change the starting point to $x_0 = 3.4$. What do you see? How could you name such a behavior of the method? 
+    1. Change the hyperparameter $\alpha^{\text{Global}} = \frac2L, \beta^{\text{Global}} = \frac{\mu}{L}$ and run the method again from $x_0 = 3.4$. Check whether you have accelerated convergence here.
+
+    Context: this counterexample was provided in the [paper](https://arxiv.org/pdf/1408.3595.pdf), while the global convergence of the heavy ball method for general smooth strongly convex function was introduced in another [paper](https://arxiv.org/pdf/1412.7457.pdf). Recently, it was [suggested](https://arxiv.org/pdf/2307.11291.pdf), that the heavy-ball (HB) method provably does not reach an accelerated convergence rate on smooth strongly convex problems. 
+
+1. In this problem we will work with accelerated methods applied to the logistic regression problem. A good visual introduction to the topic is available [here](https://mlu-explain.github.io/logistic-regression/). 
+    
+    Logistic regression is a standard model in classification tasks. For simplicity, consider only the case of binary classification. Informally, the problem is formulated as follows: There is a training sample $\{(a_i, b_i)\}_{i=1}^m$, consisting of $m$ vectors $a_i \in \mathbb{R}^n$ (referred to as features) and corresponding numbers $b_i \in \{-1, 1\}$ (referred to as classes or labels). The goal is to construct an algorithm $b(\cdot)$, which for any new feature vector $a$ automatically determines its class $b(a) \in \{-1, 1\}$. 
+
+    In the logistic regression model, the class determination is performed based on the sign of the linear combination of the components of the vector $a$ with some fixed coefficients $x \in \mathbb{R}^n$:
+    
+    $$
+    b(a) := \text{sign}(\langle a, x \rangle).
+    $$
+
+    The coefficients $x$ are the parameters of the model and are adjusted by solving the following optimization problem:
+    
+    $$
+    \tag{LogReg}
+    \min_{x \in \mathbb{R}^n} \left( \frac{1}{m} \sum_{i=1}^m \ln(1 + \exp(-b_i \langle a_i, x \rangle)) + \frac{\lambda}{2} \|x\|^2 \right),
+    $$
+
+    where $\lambda \geq 0$ is the regularization coefficient (a model parameter). 
+
+    1. Will the LogReg problem be convex for $\lambda = 0$? What is the gradient of the objective function? Will it be strongly convex? What if you will add regularization with $\lambda > 0$?
+    1. We will work with the real-world data for $A$ and $b$: take the mushroom dataset. Be careful, you will need to predict if the mushroom is poisonous or edible. A poor model can cause death in this exercise. 
+
+        ```python
+        import requests
+        from sklearn.datasets import load_svmlight_file
+
+        # URL of the file to download
+        url = 'https://mipt23.fmin.xyz/files/mushrooms.txt'
+
+        # Download the file and save it locally
+        response = requests.get(url)
+        dataset = 'mushrooms.txt'
+
+        # Ensure the request was successful
+        if response.status_code == 200:
+            with open(dataset, 'wb') as f:
+                f.write(response.content)
+
+            # Load the dataset from the downloaded file
+            data = load_svmlight_file(dataset)
+            A, b = data[0].toarray(), data[1]
+            n, d = A.shape
+
+            print("Data loaded successfully.")
+            print(f"Number of samples: {n}, Number of features: {d}")
+        else:
+            print(f"Failed to download the file. Status code: {response.status_code}")
+
+        ```
+    1. Divide the data into two parts: training and test. We will train the model on the $A_{train}$, $b_{train}$ and measure the accuracy of the model on the $A_{test}$, $b_{test}$.
+
+        ```python
+        from sklearn.model_selection import train_test_split
+        # Split the data into training and test sets
+        A_train, A_test, b_train, b_test = train_test_split(A, b, test_size=0.2, random_state=214)
+        ```
+    1. For the training part $A_{train}$, $b_{train}$, estimate the constants $\mu, L$ of the training/optimization problem. Use the same small value $\lambda$ for all experiments
+    1. Using gradient descent with the step $\frac{1}{L}$, train a model. Plot: accuracy versus iteration number. 
+
+        $$
+        \tag{HB}
+        x_{k+1} = x_k - \alpha \nabla f(x_k) + \beta (x_k - x_{k-1})
+        $$
+
+        Fix a step $\alpha = \frac{1}{L}$ and search for different values of the momentum $\beta$ from $-1$ to $1$. Choose your own convergence criterion and plot convergence for several values of momentum on the same graph. Is the convergence always monotonic?
+    
+    1. For the best value of momentum $\beta$, plot the dependence of the model accuracy on the test sample on the running time of the method. Add to the same graph the convergence of gradient descent with step $\frac{1}{L}$. Draw a conclusion. Ensure, that you use the same value of $\lambda$ for both methods.
+    1. Solve the logistic regression problem using the Nesterov method. 
+
+        $$
+        \tag{NAG}
+        x_{k+1} = x_k - \alpha \nabla f(x_k + \beta (x_k - x_{k-1})) + \beta (x_k - x_{k-1})  
+        $$
+
+        Fix a step $\frac{1}{L}$ and search for different values of momentum $\beta$ from $-1$ to $1$. Check also the momentum values equal to $\frac{k}{k+3}$, $\frac{k}{k+2}$, $\frac{k}{k+1}$ ($k$ is the number of iterations), and if you are solving a strongly convex problem, also $\frac{\sqrt{L} - \sqrt{\mu}}{\sqrt{L} + \sqrt{\mu}}$. Plot the convergence of the method as a function of the number of iterations (choose the convergence criterion yourself) for different values of the momentum. Is the convergence always monotonic?
+    1. For the best value of momentum $\beta$, plot the dependence of the model accuracy on the test sample on the running time of the method. Add this graph to the graphs for the heavy ball and gradient descent from the previous steps. Make a conclusion.
+    1. Now we drop the estimated value of $L$ and will try to do it adaptively. Let us make the selection of the constant $L$ adaptive. 
+    
+        $$
+        f(y) \leq f(x^k) + \langle \nabla f(x^k), y - x^k \rangle + \frac{L}{2}\|x^k - y\|_2^2
+        $$
+        
+        In particular, the procedure might work:
+
+        ```python
+        def backtracking_L(f, grad, x, h, L0, rho, maxiter=100):
+            L = L0
+            fx = f(x)
+            gradx = grad(x)
+            iter = 0
+            while iter < maxiter :
+                y = x - 1 / L * h
+                if f(y) <= fx - 1 / L gradx.dot(h) + 1 / (2 * L) h.dot(h):
+                    break
+                else:
+                    L = L * rho
+                
+                iter += 1
+            return L
+        ```
+
+        What should $h$ be taken as? Should $\rho$ be greater or less than $1$? Should $L_0$ be taken as large or small? Draw a similar figure as it was in the previous step for L computed adaptively (6 lines - GD, HB, NAG, GD adaptive L, HB adaptive L, NAG adaptive L)
