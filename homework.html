@@ -74,6 +74,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -864,12 +866,12 @@ f(x_1, x_2) =  10(x_2 − x_1^2)^2 + (x_1 − 1)^2
 <ol type="1">
 <li><p><strong>Convergence of Gradient Descent in non-convex smooth case</strong></p>
 <p>We will assume nothing about the convexity of <span class="math inline">f</span>. We will show that gradient descent reaches an <span class="math inline">\varepsilon</span>-substationary point <span class="math inline">x</span>, such that <span class="math inline">\|\nabla f(x)\|_2 \leq \varepsilon</span>, in <span class="math inline">O(1/\varepsilon^2)</span> iterations. Important note: you may use here Lipschitz parabolic upper bound:</p>
-<p><span class="math display">
+<p><span id="eq-quad_ub"><span class="math display">
 f(y) \leq f(x) + \nabla f(x)^T (y-x) + \frac{L}{2} \|y-x\|_2^2, \;\;\;
 \text{for all $x,y$}.  
-</span> {#eq_quad_ub}</p>
+  \tag{1}</span></span></p>
 <ul>
-<li><p>Plug in <span class="math inline">y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k</span> to (<span class="citation" data-cites="eq_quad_ub">@eq_quad_ub</span>) to show that</p>
+<li><p>Plug in <span class="math inline">y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k</span> to (<a href="#eq-quad_ub" class="quarto-xref">Equation&nbsp;1</a>) to show that</p>
 <p><span class="math display">
   f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) t \|\nabla f(x^k)\|_2^2.
   </span></p></li>
@@ -1001,7 +1003,7 @@ x + 24, &amp; \text{if } 1 \leq x &lt; 2 \\
 <li><p>Find the constants <span class="math inline">\mu</span> and <span class="math inline">L</span> for a given function.</p></li>
 <li><p>Plot the function value for <span class="math inline">x \in [-4, 4]</span>.</p></li>
 <li><p>Run the Heavy Ball method for the function with optimal hyperparameters <span class="math inline">\alpha^* = \dfrac{4}{(\sqrt{L} + \sqrt{\mu})^2}, \beta^* = \dfrac{(\sqrt{L} - \sqrt{\mu})^2}{(\sqrt{L} + \sqrt{\mu})^2}</span> for quadratic function, starting from <span class="math inline">x_0 = 3.5</span>. If you have done everything above correctly, you should receive something like</p>
-<p>:::{.video} heavy_ball_conv.mp4 :::</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="heavy_ball_conv.mp4"></video></div>
 <p>You can use the following code for plotting:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1577,8 +1579,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/MerkulovDaniil/mipt23/edit/main/homework.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer><script>videojs(video_shortcode_videojs_video1);</script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/MerkulovDaniil/mipt23/edit/main/homework.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div></div></footer></body></html>
+</body></html>
