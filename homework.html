@@ -873,7 +873,7 @@ f(y) \leq f(x) + \nabla f(x)^T (y-x) + \frac{L}{2} \|y-x\|_2^2, \;\;\;
 <ul>
 <li><p>Plug in <span class="math inline">y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k</span> to (<a href="#eq-quad_ub" class="quarto-xref">Equation&nbsp;1</a>) to show that</p>
 <p><span class="math display">
-  f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) t \|\nabla f(x^k)\|_2^2.
+  f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) \alpha \|\nabla f(x^k)\|_2^2.
   </span></p></li>
 <li><p>Use <span class="math inline">\alpha \leq 1/L</span>, and rearrange the previous result, to get</p>
 <p><span class="math display">
