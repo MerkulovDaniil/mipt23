@@ -659,9 +659,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     $$
     f(y) \leq f(x) + \nabla f(x)^T (y-x) + \frac{L}{2} \|y-x\|_2^2, \;\;\;
     \text{for all $x,y$}.  
-    $$ {#eq_quad_ub}
+    $$ {#eq-quad_ub}
 
-    * Plug in $y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k$ to (@eq_quad_ub) to show that 
+    * Plug in $y = x^{k+1} = x^{k} - \alpha \nabla f(x^k), x = x^k$ to (@eq-quad_ub) to show that 
 
         $$
         f(x^{k+1}) \leq f(x^k) - \Big (1-\frac{L\alpha}{2} \Big) t \|\nabla f(x^k)\|_2^2.
@@ -824,11 +824,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     1. How to prove, that the given function is convex? Strongly convex? Smooth?
     1. Find the constants $\mu$ and $L$ for a given function.
     1. Plot the function value for $x \in [-4, 4]$. 
-    1. Run the Heavy Ball method for the function with optimal hyperparameters $\alpha^* = \dfrac{4}{(\sqrt{L} + \sqrt{\mu})^2}, \beta^* = \dfrac{(\sqrt{L} - \sqrt{\mu})^2}{(\sqrt{L} + \sqrt{\mu})^2}$ for quadratic function, starting from $x_0 = 3.5$. If you have done everything above correctly, you should receive something like
-
-        :::{.video}
-        heavy_ball_conv.mp4
-        :::
+    1. Run the Heavy Ball method for the function with optimal hyperparameters $\alpha^* = \dfrac{4}{(\sqrt{L} + \sqrt{\mu})^2}, \beta^* = \dfrac{(\sqrt{L} - \sqrt{\mu})^2}{(\sqrt{L} + \sqrt{\mu})^2}$ for quadratic function, starting from $x_0 = 3.5$. If you have done everything above correctly, you should receive something like 
+    
+        {{< video heavy_ball_conv.mp4 >}}
 
         You can use the following code for plotting:
 
