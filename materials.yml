@@ -117,7 +117,7 @@
   # youtube: 
   download: https://disk.yandex.com/i/3njRLd9ls0ZZgQ
 
-- title: Ускоряем метод градиентного спуска - NAG, Momentum, полиномы.
+- title: Ускоряем метод градиентного спуска - NAG, Momentum.
   number: 16
   materials: /presentations/16.pdf
   notes: /notes/16.pdf
