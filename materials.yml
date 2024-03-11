@@ -142,8 +142,8 @@
 
 - title: Метод сопряженных направлений. Ортогонализация Грамма - Шмидта. Понятие $A$-ортогональных векторов. Метод сопряженных градиентов.
   number: 18
-  #materials: /presentations/18.pdf
-  # notes: /notes/18.pdf
+  materials: /presentations/18/18.pdf
+  notes: /notes/18.pdf
   youtube: 
   download: 
 
