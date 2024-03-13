@@ -136,14 +136,14 @@
   materials: /presentations/17/17.pdf
   notes: /notes/17.pdf
   youtube: 
-  download: 
+  download: https://disk.yandex.com/i/nFRMPOKVJ2uNgg
 
 - title: Метод сопряженных направлений. Ортогонализация Грамма - Шмидта. Понятие $A$-ортогональных векторов. Метод сопряженных градиентов.
   number: 18
   materials: /presentations/18/18.pdf
   notes: /notes/18.pdf
   youtube: 
-  download: 
+  download: https://disk.yandex.com/i/ijzp1FVe8G8Vtg
 
 - title: Концепция методов адаптивной метрики. Метод Ньютона. Квазиньютоновские методы. Метод естественного градиента. KFAC.
   number: 19
