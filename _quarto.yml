@@ -4,6 +4,7 @@ project:
   resources: 
     - "*.mp4"
     - "*.txt"
+    - "*.csv"
 
 format: fminxyz-html
 

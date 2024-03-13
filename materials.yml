@@ -79,22 +79,29 @@
   number: 10
   materials: /presentations/10.pdf
   notes: /notes/10.pdf
-  # youtube: 
-  # download: 
+  youtube: https://youtu.be/MSBPQwfAA5k
+  download: https://disk.yandex.com/i/FXz-5JXv-tq37Q
 
-- title: Классификация и обозначения в задачах оптимизации. Скорость сходимости. Линейный поиск. Неточная одномерная оптимизация. Правила Армихо  - Гольдштейна. Условие Вульфа.
-  number: 11
-  materials: /presentations/11.pdf
-  notes: /notes/11.pdf
-  youtube: 
-  download: 
+- title: Классификация и обозначения в задачах оптимизации. Скорость сходимости.
+  number: 11.1
+  materials: /presentations/11_1.pdf
+  notes: /notes/11_1.pdf
+  youtube: https://youtu.be/_qSMTuM8tVs
+  download: https://disk.yandex.com/i/twQlMfjORVtE3g
+
+- title: Линейный поиск. Неточная одномерная оптимизация. Правила Армихо  - Гольдштейна. Условие Вульфа.
+  number: 11.2
+  materials: /presentations/11_2.pdf
+  notes: /notes/11_2.pdf
+  youtube: https://youtu.be/Ja03ss4QNPQ
+  download: https://disk.yandex.com/i/ErTR6YDSAWtN9g
 
 - title: Методы нулевого порядка. Безградиентные методы. Оптимизация гиперпараметров модели машинного обучения. Генетический алгоритм. Эволюционные алгоритмы.
   number: 12
   materials: /presentations/12.pdf
-  # notes: /notes/12.pdf
-  youtube: 
-  download: 
+  notes: /notes/12.pdf
+  youtube: https://youtu.be/y9AsKXUsZs4
+  download: https://disk.yandex.com/i/MmyB2jk3OVZXjg
 
 - title: Градиентный спуск. Введение и интуиция. Наискорейший спуск
   number: 13
@@ -124,21 +131,12 @@
   # youtube: 
   download: https://disk.yandex.com/i/sxx_xBTj_7Pe9g
 
-# - title: Метод проекции субградиента. Метод условного градиента (метод Франка - Вульфа). Идея метода зеркального спуска.
-#   number: 16
-#   #materials: /presentations/16.pdf
-#   # notes: /notes/16.pdf
-#   youtube: 
-#   download: 
-
 - title: Метод проекции субградиента. Метод условного градиента (метод Франка - Вульфа). Идея метода зеркального спуска.
   number: 17
-  #materials: /presentations/17.pdf
-  # notes: /notes/17.pdf
+  materials: /presentations/17/17.pdf
+  notes: /notes/17.pdf
   youtube: 
   download: 
-
-  # Проксимальные методы. Барьерные методы.
 
 - title: Метод сопряженных направлений. Ортогонализация Грамма - Шмидта. Понятие $A$-ортогональных векторов. Метод сопряженных градиентов.
   number: 18
@@ -153,6 +151,13 @@
   # notes: /notes/19.pdf
   youtube: 
   download: 
+
+- title: Проксимальные методы. Барьерные методы.
+  number: 19
+  #materials: /presentations/19.pdf
+  # notes: /notes/19.pdf
+  youtube: 
+  download:
 
 - title: Введение в стохастические градиентные методы. Батч, эпоха. Сходимость SGD.
   number: 20
