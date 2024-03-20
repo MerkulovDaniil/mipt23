@@ -145,43 +145,43 @@
   youtube: https://youtu.be/zByFYwzBgHo
   download: https://disk.yandex.com/i/ijzp1FVe8G8Vtg
 
-- title: Концепция методов адаптивной метрики. Метод Ньютона. Квазиньютоновские методы. Метод естественного градиента. KFAC.
+- title: Концепция методов адаптивной метрики. Метод Ньютона. Квазиньютоновские методы.
   number: 19
-  #materials: /presentations/19.pdf
-  # notes: /notes/19.pdf
-  youtube: 
+  materials: /presentations/19/19.pdf
+  notes: /notes/19.pdf
+  youtube: https://youtu.be/Sm2--i-y23o
   download: 
 
 - title: Проксимальные методы. Барьерные методы.
-  number: 19
+  number: 20
   #materials: /presentations/19.pdf
   # notes: /notes/19.pdf
   youtube: 
   download:
 
 - title: Введение в стохастические градиентные методы. Батч, эпоха. Сходимость SGD.
-  number: 20
+  number: 21
   #materials: /presentations/20.pdf
   # notes: /notes/20.pdf
   youtube: 
   download: 
 
 - title: Продвинутые стохастические градиентные методы. Методы редукции дисперсии.
-  number: 21
+  number: 22
   #materials: /presentations/21.pdf
   # notes: /notes/21.pdf
   youtube: 
   download: 
 
 - title: Обучение больших моделей. Последние практические достижения.
-  number: 22
+  number: 23
   #materials: /presentations/22.pdf
   # notes: /notes/22.pdf
   youtube: 
   download: 
 
 - title: Федеративное обучение. Распределенная оптимизация.
-  number: 23
+  number: 24
   #materials: /presentations/23.pdf
   # notes: /notes/23.pdf
   youtube: 
