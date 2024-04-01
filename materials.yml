@@ -161,8 +161,8 @@
 
 - title: Введение в стохастические градиентные методы. Батч, эпоха. Сходимость SGD.
   number: 21
-  #materials: /presentations/20.pdf
-  # notes: /notes/20.pdf
+  materials: /presentations/21.pdf
+  notes: /notes/21.pdf
   youtube: 
   download: 
 
