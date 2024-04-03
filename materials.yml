@@ -150,26 +150,26 @@
   materials: /presentations/19/19.pdf
   notes: /notes/19.pdf
   youtube: https://youtu.be/Sm2--i-y23o
-  download: 
+  download: https://disk.yandex.com/i/VDuVq3VQCBb_Dw
 
 - title: Проксимальный градиентный метод.
   number: 20
   materials: /presentations/20/20.pdf
   notes: /notes/20.pdf
-  youtube: 
-  download:
+  youtube: https://youtu.be/K014nmjb-d8
+  download: https://disk.yandex.com/i/QpLfm5OBWaqGcQ
 
 - title: Введение в стохастические градиентные методы. Батч, эпоха. Сходимость SGD.
   number: 21
   materials: /presentations/21/21.pdf
   notes: /notes/21.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/1MH8pg_2mds
+  download: https://disk.yandex.com/i/iUzb66epDVenpA
 
 - title: Продвинутые стохастические градиентные методы. Методы редукции дисперсии.
   number: 22
-  #materials: /presentations/21.pdf
-  # notes: /notes/21.pdf
+  # materials: /presentations/22/22.pdf
+  # notes: /notes/22.pdf
   youtube: 
   download: 
 
@@ -180,7 +180,7 @@
   youtube: 
   download: 
 
-- title: Федеративное обучение. Распределенная оптимизация.
+- title: Штрафные и барьерные методы.
   number: 24
   #materials: /presentations/23.pdf
   # notes: /notes/23.pdf
