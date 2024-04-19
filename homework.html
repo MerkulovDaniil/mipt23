@@ -1178,7 +1178,7 @@ f(y) \leq f(x^k) + \langle \nabla f(x^k), y - x^k \rangle + \frac{L}{2}\|x^k - y
 <section id="gradient-methods-for-conditional-problems" class="level3">
 <h3 class="anchored" data-anchor-id="gradient-methods-for-conditional-problems">Gradient methods for conditional problems</h3>
 <ol type="1">
-<li><p><strong>Hobbit village</strong> # 💍 <a href="https://courses.cs.ut.ee/MTAT.03.227/2015_spring/uploads/Main/home-exercises-5.pdf">Hobbit village</a> (Gradient descent + Newton method + Gradient descent in conditional optimization)</p>
+<li><p><strong><a href="https://courses.cs.ut.ee/MTAT.03.227/2015_spring/uploads/Main/home-exercises-5.pdf">💍 Hobbit village</a></strong> (Gradient descent + Newton method + Gradient descent in conditional optimization)</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
@@ -1365,9 +1365,18 @@ f(w) = \frac12 \langle Ax, x \rangle - \langle b, x \rangle \to \min\limits_{x \
 <span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE HERE</span></span>
 <span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ======</span></span>
 <span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_optimal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>In this problem you will consider 2 algorithms for solving this problem (Frank - Wolfe and Projected Gradient Descent). Let’s start with PGD. Write down the function, that calculates Euclidian projection on the simplex: <code>python      def projection(y):          ### ======          ### YOUR CODE HERE          ### ======          return x</code></p></li>
-<li><p>Then, write the PGD method, that returns a <code>trajectory</code> list of <code>iterations+1</code> points <span class="math inline">x_0, x_1, \ldots x_k</span> and <code>time_trajectory</code> list for a cumulative time spent after each iteration : <code>python      def PGD(A, b, x_0, iterations):          return trajectory, time_trajectory</code></p></li>
-<li><p>Write down the FW method, that returns a <code>trajectory</code> list of <code>iterations+1</code> points <span class="math inline">x_0, x_1, \ldots x_k</span> and <code>time_trajectory</code> list for a cumulative time spent after each iteration : <code>python      def FW(A, b, x_0, iterations):          return trajectory, time_trajectory</code></p></li>
+<li><p>In this problem you will consider 2 algorithms for solving this problem (Frank - Wolfe and Projected Gradient Descent). Let’s start with PGD. Write down the function, that calculates Euclidian projection on the simplex:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> projection(y):</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ======</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE HERE</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ======</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Then, write the PGD method, that returns a <code>trajectory</code> list of <code>iterations+1</code> points <span class="math inline">x_0, x_1, \ldots x_k</span> and <code>time_trajectory</code> list for a cumulative time spent after each iteration :</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> PGD(A, b, x_0, iterations):</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> trajectory, time_trajectory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Write down the FW method, that returns a <code>trajectory</code> list of <code>iterations+1</code> points <span class="math inline">x_0, x_1, \ldots x_k</span> and <code>time_trajectory</code> list for a cumulative time spent after each iteration :</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> FW(A, b, x_0, iterations):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> trajectory, time_trajectory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Generate a convex problem (<span class="math inline">\mu=0, L=10</span>) and compare the methods starting from the same <span class="math inline">x_0</span>. For this reason plot 2 graphs - <span class="math inline">f(x_k) - f^*</span> from iteration counter and time spent for it.</p></li>
 <li><p>Generate a strongly convex problem (<span class="math inline">\mu=1, L=10</span>) and compare the methods starting from the same <span class="math inline">x_0</span>. For this reason plot 2 graphs - <span class="math inline">f(x_k) - f^*</span> from iteration counter and time spent for it.</p></li>
 </ol></li>
@@ -1375,6 +1384,101 @@ f(w) = \frac12 \langle Ax, x \rangle - \langle b, x \rangle \to \min\limits_{x \
 </section>
 <section id="conjugate-gradients" class="level3">
 <h3 class="anchored" data-anchor-id="conjugate-gradients">Conjugate gradients</h3>
+<ol type="1">
+<li><p><strong><a href="https://web.stanford.edu/class/ee364b/364b_exercises.pdf">Randomized Preconditioners for Conjugate Gradient Methods.</a></strong></p>
+<p><em>Linear least squares</em></p>
+<p>In this task, we explore the use of some randomization methods for solving overdetermined least-squares problems, focusing on conjugate gradient methods. Let <span class="math inline">A \in \mathbb{R}^{m \times n}</span> be a matrix (we assume that <span class="math inline">m \gg n</span>) and <span class="math inline">b \in \mathbb{R}^m</span>, we aim to minimize</p>
+<p><span class="math display">
+f(x) = \frac{1}{2} \|Ax - b\|^2_2 = \frac{1}{2} \sum_{i=1}^m (a_i^T x - b_i)^2,
+</span></p>
+<p>where the <span class="math inline">a_i \in \mathbb{R}^n</span> denote the rows of <span class="math inline">A</span>.</p>
+<p><em>Preconditioners</em></p>
+<p>We know, that the convergence bound of the CG applied for the problem depends on the condition number of the matrix. Note, that for the problem above we have the matrix <span class="math inline">A^T A</span> and the condition number is squared after this operation (<span class="math inline">\kappa (X^T X) =  \kappa^2 \left(X \right)</span>). That is the reason, why we typically need to use <em>preconditioners</em> (<a href="https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf">read 12. for more details</a>) with CG.</p>
+<p>The general idea of using preconditioners implies switchwing from solving <span class="math inline">Ax = b</span> to <span class="math inline">MAx = Mb</span> with hope, that <span class="math inline">\kappa \left( MA\right) \ll \kappa \left( A\right)</span> or eigenvalues of <span class="math inline">MA</span> are better clustered than those of <span class="math inline">A</span> (note, that matrix <span class="math inline">A</span> here is for the general case, here we have <span class="math inline">A^TA</span> instead).</p>
+<p>This idea can also be viewed as coordinate change <span class="math inline">x = T \hat{x}, \; \hat{x} = T^{-1}x</span>, which leads to the problem <span class="math inline">T^T A T \hat{x} = T^Tb</span>. Note, that the spectrum of <span class="math inline">T^TAT</span> is the same as the spectrum of <span class="math inline">MA</span>.</p>
+<p>The best choice of <span class="math inline">M</span> is <span class="math inline">A^{-1}</span>, because <span class="math inline">\kappa (A^{-1} A) = \kappa (I) = 1</span>. However, if we know <span class="math inline">A^{-1}</span>, the original problem is already solved, that is why we need to find some trade-off between enhanced convergence, and extra cost of working with <span class="math inline">M</span>. The goal is to find <span class="math inline">M</span> that is cheap to multiply, and approximate inverse of <span class="math inline">A</span> (or at least has a more clustered spectrum than <span class="math inline">A</span>)</p>
+<p><span class="math display">
+\begin{aligned}
+&amp; \mathbf{r}_0 := \mathbf{b} - \mathbf{A x}_0 \\
+&amp; \hbox{if } \mathbf{r}_{0} \text{ is sufficiently small, then return } \mathbf{x}_{0} \text{ as the result}\\
+&amp; \mathbf{d}_0 := \mathbf{r}_0 \\
+&amp; k := 0 \\
+&amp; \text{repeat} \\
+&amp; \qquad \alpha_k := \frac{\mathbf{r}_k^\mathsf{T} \mathbf{r}_k}{\mathbf{d}_k^\mathsf{T} \mathbf{A d}_k}  \\
+&amp; \qquad \mathbf{x}_{k+1} := \mathbf{x}_k + \alpha_k \mathbf{d}_k \\
+&amp; \qquad \mathbf{r}_{k+1} := \mathbf{r}_k - \alpha_k \mathbf{A d}_k \\
+&amp; \qquad \hbox{if } \mathbf{r}_{k+1} \text{ is sufficiently small, then exit loop} \\
+&amp; \qquad \beta_k := \frac{\mathbf{r}_{k+1}^\mathsf{T} \mathbf{r}_{k+1}}{\mathbf{r}_k^\mathsf{T} \mathbf{r}_k} \\
+&amp; \qquad \mathbf{d}_{k+1} := \mathbf{r}_{k+1} + \beta_k \mathbf{d}_k \\
+&amp; \qquad k := k + 1 \\
+&amp; \text{end repeat} \\
+&amp; \text{return } \mathbf{x}_{k+1} \text{ as the result}
+\end{aligned} \qquad
+\begin{aligned}
+&amp; \mathbf{r}_0 := \mathbf{b} - \mathbf{A x}_0 \\
+&amp; \text{if } \mathbf{r}_0 \text{ is sufficiently small, then return } \mathbf{x}_0 \text{ as the result} \\
+&amp; \mathbf{z}_0 := \mathbf{M}^{-1} \mathbf{r}_0 \\
+&amp; \mathbf{d}_0 := \mathbf{z}_0 \\
+&amp; k := 0 \\
+&amp; \text{repeat} \\
+&amp; \qquad \alpha_k := \frac{\mathbf{r}_k^\mathsf{T} \mathbf{z}_k}{\mathbf{d}_k^\mathsf{T} \mathbf{A d}_k} \\
+&amp; \qquad \mathbf{x}_{k+1} := \mathbf{x}_k + \alpha_k \mathbf{d}_k \\
+&amp; \qquad \mathbf{r}_{k+1} := \mathbf{r}_k - \alpha_k \mathbf{A d}_k \\
+&amp; \qquad \text{if } \mathbf{r}_{k+1} \text{ is sufficiently small, then exit loop} \\
+&amp; \qquad \mathbf{z}_{k+1} := \mathbf{M}^{-1} \mathbf{r}_{k+1} \\
+&amp; \qquad \beta_k := \frac{\mathbf{r}_{k+1}^\mathsf{T} \mathbf{z}_{k+1}}{\mathbf{r}_k^\mathsf{T} \mathbf{z}_k} \\
+&amp; \qquad \mathbf{d}_{k+1} := \mathbf{z}_{k+1} + \beta_k \mathbf{d}_k \\
+&amp; \qquad k := k + 1 \\
+&amp; \text{end repeat} \\
+&amp; \text{return } \mathbf{x}_{k+1} \text{ as the result}
+\end{aligned}
+</span></p>
+<p><em>Hadamard matrix</em></p>
+<p>Given <span class="math inline">m \in \{2^i, i = 1, 2, \ldots\}</span>, the (unnormalized) Hadamard matrix of order <span class="math inline">m</span> is defined recursively as</p>
+<p><span class="math display">
+H_2 = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}, \quad \text{and} \quad H_m = \begin{bmatrix} H_{m/2} &amp; H_{m/2} \\ H_{m/2} &amp; -H_{m/2} \end{bmatrix}.
+</span></p>
+<p>The associated normalized Hadamard matrix is given by <span class="math inline">H^{(\text{norm})}_m = \frac{1}{\sqrt{m}} H_m</span>, which evidently satisfies <span class="math inline">H^{(\text{norm})T}_m H^{(\text{norm})}_m = I_{m \times m}</span>. Moreover, via a recursive algorithm, it is possible to compute matvec <span class="math inline">H_m x</span> in time <span class="math inline">O(m \log m)</span>, which is much faster than <span class="math inline">m^2</span> for a general matrix.</p>
+<p>To solve the least squares minimization problem using conjugate gradients, we must solve <span class="math inline">A^T A x = A^T b</span>. Using a preconditioner <span class="math inline">M</span> such that <span class="math inline">M \approx A^{-1}</span> can give substantial speedup in computing solutions to large problems.</p>
+<p>Consider the following scheme to generate a randomized preconditioner, assuming that <span class="math inline">m = 2^i</span> for some <span class="math inline">i</span>:</p>
+<ol type="1">
+<li><p>Let <span class="math inline">S = \text{diag}(S_{11}, \ldots, S_{mm})</span>, where <span class="math inline">S_{jj}</span> are random <span class="math inline">\{-1,+1\}</span> signs</p></li>
+<li><p>Let <span class="math inline">p \in \mathbb{Z}^+</span> be a small positive integer, say <span class="math inline">20</span> for this problem.</p></li>
+<li><p>Let <span class="math inline">R \in \{0, 1\}^{n+p \times m}</span> be a <em>row selection matrix</em>, meaning that each row of <span class="math inline">R</span> has only 1 non-zero entry, chosen uniformly at random. (The location of these non-zero columns is distinct.)</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax.numpy <span class="im">as</span> jnp</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> random</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_row_selection_matrix_jax(m, n, p, key):</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># m is the number of columns in the original matrix A</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># n+p is the number of rows in the row selection matrix R</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># key is a PRNGKey needed for randomness in JAX</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    inds <span class="op">=</span> random.permutation(key, m)[:n<span class="op">+</span>p]  <span class="co"># Generate a random permutation and select the first n+p indices</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> jnp.zeros((n<span class="op">+</span>p, m), dtype<span class="op">=</span>jnp.int32)  <span class="co"># Create a zero matrix of shape (n+p, m)</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> R.at[np.arange(n<span class="op">+</span>p), inds].<span class="bu">set</span>(<span class="dv">1</span>)     <span class="co"># Use JAX's indexed update to set the entries corresponding to inds to 1</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Define <span class="math inline">\Phi = R H^{(\text{norm})}_m S \in \mathbb{R}^{n+p \times m}</span></p></li>
+</ol>
+<p>We then define the matrix ( M ) via its inverse ( M^{-1} = A^T ^T A ^{n n} ).</p>
+<p><em>Questions</em></p>
+<ol type="1">
+<li><p><strong>(1 point)</strong> How many FLOPs (floating point operations, i.e.&nbsp;multiplication and additions) are required to compute the matrices <span class="math inline">M^{-1}</span> and <span class="math inline">M</span>, respectively, assuming that you can compute the matrix-vector product <span class="math inline">H_mv</span> in time <span class="math inline">m \log m</span> for any vector <span class="math inline">v \in \mathbb{R}^m</span>?</p></li>
+<li><p><strong>(1 point)</strong> How many FLOPs are required to naively compute <span class="math inline">A^T A</span>, assuming <span class="math inline">A</span> is dense (using standard matrix algorithms)?</p></li>
+<li><p><strong>(1 point)</strong> How many FLOPs are required to compute <span class="math inline">A^T A v</span> for a vector <span class="math inline">v \in \mathbb{R}^n</span> by first computing <span class="math inline">u = Av</span> and then computing <span class="math inline">A^T u</span>?</p></li>
+<li><p><strong>(2 poins)</strong> Suppose that conjugate gradients runs for <span class="math inline">k</span> iterations. Using the preconditioned conjugate gradient algorithm with <span class="math inline">M = (A^T \Phi^T \Phi A)^{-1}</span>, how many total floating point operations have been performed? How many would be required to directly solve <span class="math inline">A^T A x = A^T b</span>? How large must <span class="math inline">k</span> be to make the conjugate gradient method slower?</p></li>
+<li><p><strong>(3 points)</strong> Implement the conjugate gradient algorithm for solving the positive definite linear system <span class="math inline">A^T A x = A^T b</span> both with and without the preconditioner <span class="math inline">M</span>. To generate data for your problem, set <span class="math inline">m = 2^{12}</span> and <span class="math inline">n = 400</span>, then generate the matrix <span class="math inline">A</span> and the vector <span class="math inline">b</span>. For simplicity in implementation, you may directly pass <span class="math inline">A^T A</span> and <span class="math inline">A^T b</span> into your conjugate gradient solver, as we only wish to explore how the methods work.</p></li>
+</ol>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> diags</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">2</span><span class="op">**</span><span class="dv">12</span>  <span class="co"># 4096</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">400</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a linear space of values from 0.001 to 100</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.linspace(<span class="fl">0.001</span>, <span class="dv">100</span>, n)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the matrix A</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.randn(m, n) <span class="op">*</span> diags(values).toarray()</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.random.randn(m, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Plot the norm of the residual <span class="math inline">r_k = A^T b - A^T A x_k</span> (relative to <span class="math inline">\|A^T b\|_2</span>) as a function of iteration <span class="math inline">k</span> for each of your conjugate gradient procedures. Additionally, compute and print the condition numbers <span class="math inline">\kappa(A^T A)</span> and <span class="math inline">\kappa(M^{1/2} A^T A M^{1/2})</span>.</p></li>
+</ol>
 </section>
 <section id="newton-and-quasinewton-methods" class="level3">
 <h3 class="anchored" data-anchor-id="newton-and-quasinewton-methods">Newton and quasinewton methods</h3>
