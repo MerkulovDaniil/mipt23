@@ -1019,3 +1019,321 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
         ```
 
         What should $h$ be taken as? Should $\rho$ be greater or less than $1$? Should $L_0$ be taken as large or small? Draw a similar figure as it was in the previous step for L computed adaptively (6 lines - GD, HB, NAG, GD adaptive L, HB adaptive L, NAG adaptive L)
+
+### Gradient methods for conditional problems
+
+1. **Hobbit village** # 💍 [Hobbit village](https://courses.cs.ut.ee/MTAT.03.227/2015_spring/uploads/Main/home-exercises-5.pdf) (Gradient descent + Newton method + Gradient descent in conditional optimization)
+
+    ```python
+    %matplotlib inline
+    import numpy as np
+    from matplotlib import pyplot as plt
+    import matplotlib as mpl
+    import seaborn as sns
+    import copy
+    sns.set()
+    ```
+
+    Below one can find function plotting the village
+
+    ```python
+    def plot_village(coordinates, l=1):
+        # Checking, that all the coordinates are less than l
+        assert (coordinates <= l).all(), 'All the houses should be in a village'
+        
+        # Draw horizontal line
+        plt.hlines(0, 0, l)
+        plt.xlim(0, l)
+        plt.ylim(-0.5, 0.5)
+        
+        # Draw house points
+        y = np.zeros(np.shape(coordinates))
+        plt.title('The Hobbit Village')
+        plt.plot(coordinates,y,'o',ms = 10)
+        plt.axis('off')
+        plt.xlabel('Coordinates')
+        fig = plt.gcf()
+        fig.set_size_inches(15, 1)
+        plt.show()
+
+    N = 25
+    l = 1
+    x = np.random.rand(N)*l
+        
+    plot_village(x, l)
+    ```
+
+    The inhabitants of a one-dimensional village want to connect to the Internet, so they need a central service station from which a cable will stretch to all the houses in the village. Let the price of the cable to be pulled from the station to each house independently be determined by some function p(d). Then it is clear that the village will have to pay the following amount for access to the World Wide Web:
+    $$
+    P(w, x) = \sum\limits_{i=1}^N p(d_i) = \sum\limits_{i=1}^N p(|w - x_i|)
+    $$
+    $w$ - station location, $x_i$ - location of $i$ house.
+
+    1. Write analytical solution $w^*$ for minimization $P(w,x)$, if $p(d) = d^2$
+
+    1. Write loss function $P(w,x)$
+
+        ```python
+        def P(w, x):
+            return ((x-w)**2).sum()
+            # pass
+        ```
+
+    1. Plot loss function on the range $(0, l)$:
+        
+        ```python
+        ### YOUR CODE
+        ws = np.linspace(0, 1)
+        plt.plot(ws, [P(w, x) for w in ws])
+        ```
+
+    1. Write gradient of loss function
+
+        ```python
+        def dP(w, x):
+            return (2*(w-x)).sum()
+        ```
+
+    1. Plot gradient of loss function on the range $(0,l)$. Which point on the graph is of particular interest? Why?
+
+        ```python
+        ### YOUR CODE
+        ws = np.linspace(0, 1)
+        plt.plot(ws, [dP(w, x) for w in ws])
+        ```
+
+    1. Write function `gradient_descent`, which returns $w_k$ after a fixed number of steps.   
+
+        $$
+        w_{k+1} = w_k - \mu \nabla P(w_k)
+        $$
+
+        ```python
+        w0 = np.random.rand()*10
+
+        def gradient_descent(x, dP, w0, mu, Nsteps):
+            pass
+        ```
+
+    1. Modify `gradient_descent` to return the whole optimization trajectory.
+    Plot loss function trajectory for the following learning rates $\mu = 0.0001, 0.001, 0.01, 0.1$.   
+    Draw conclusions.
+
+        ```python
+        def gradient_descent(x, dP, w0, mu, Nsteps):
+        return trajectory
+        ```
+
+    1. The village decided to lay cable using new technology. That's why the price of the cable changed to:
+
+        $$
+        p(d) = |d|
+        $$
+
+        Write new function `P`, `dP`. Plot graphs for various $x$ and $w$.
+
+        ```python
+        def P(w, x):
+            pass
+            
+        def dP(w, x):
+            pass
+        ```
+
+    1. Write new analytical solytion $w^*$
+    1. Plot loss trajectory for converging gradient descent for the new $p(d)$.
+
+    1. After several years, the government propose to destroy the first station but choose locations for two new stations. In this conditions cost of connecting all house calculated by new formula:
+
+        $$
+        P(w_1, w_2, x) = \sum\limits_{i=1}^N p(d_i) = \sum\limits_{i=1}^N p\left(\min\left(\left|w_1 - x_i\right|, \left|w_2 - x_i\right|\right)\right)
+        $$
+        
+        Write new `P`, `dP`. 
+
+        ```python
+        def P(w1, w2, x):
+            pass
+
+        def dP(w1, w2, x):
+            pass
+        ```
+
+    1. Plot $P(w_1, w_2), \nabla P(w_1, w_2)$ for different number of houses $N$. Comment on what happens as you increase $N$.
+
+    1. Write new `gradient_descent`, which returns the entire optimization trajectory $(w_k)$ after a fixed number of steps and draws the process on the graphs $P$ and $\nabla P$ that were above. To ease visualization try to use `ax.quiver`
+
+        ```python
+        def gradient_descent(x, dP, w0, mu, Nsteps):
+            pass
+        ```
+
+    1. Construction is almost underway, but new safety regulations do not allow stations to be on the distance more than 1/2:
+        
+        $$
+        \left|w_1 - w_2\right| \leq \dfrac{l}{2}
+        $$
+        
+        Plot our feasible set. Is it convex?
+
+    1. Write `projected_SGD`, which returns the entire optimization trajectory $(w_k)$ after a fixed number of steps and draws the process on the graphs $P$ and $\nabla P$ that were above.
+
+        The projected gradient descent method consists in making a gradient step and then checking if the obtained point belongs to the feasible set. If it belongs to the target set, the algorithm continues, otherwise a projection to the feasible set is made.
+
+        ```python
+        def projected_SGD(x, dP_sigma, w0, mu, Nsteps, p=0.4):
+            pass
+
+        def projection(w):
+            pass
+        ```
+
+    1. We have same loss function
+
+        $$
+        P(w, x) = \sum\limits_{i=1}^N p(d_i) = \sum\limits_{i=1}^N p(|w - x_i|),
+        $$
+
+        where $p(d) = d^2$
+
+        Write functions `P, dP, ddP`. `ddP` has to return hessian of loss function
+
+        ```python
+        def P(w, x):
+            ### YOUR CODE
+            return
+
+        def dP(w, x):
+            ### YOUR CODE
+            return 
+
+        def ddP(w, x):
+            ### YOUR CODE
+            return 
+        ```
+
+    1. Plot `ddP` on the range  (0,l)
+    1. Write function `newton_descent`, which return all optimization trajectory. Update rule:
+
+        $$
+        w_{i+1} = w_{i} - \nabla^{2} P\left(w_{i}\right)^{-1} \nabla P\left(w_{i}\right)
+        $$
+        
+        ```python
+        def newton_descent(x, dP, ddP, w0, Nsteps):
+            return trajectory
+        ```
+
+    1. Write function `multi_newton`, which solve 2D task:
+
+        $$
+        P(w_1, w_2, x) = \sum\limits_{i=1}^N p(d_i) = \sum\limits_{i=1}^N p\left(\min\left(\left|w_1 - x_i\right|, \left|w_2 - x_i\right|\right)\right)
+        $$
+
+        with $p(d) = d^3$ using Newton method and return optimization trajectory. Compare results with gradient descent.
+
+        ```python
+        def P(w1, w2, x):
+            ### YOUR CODE
+            return 
+
+        def dP(w1, w2, x):
+            ### YOUR CODE
+            return 
+
+        def ddP(w1, w2, x):
+            ### YOUR CODE
+            return 
+
+        def multi_newton(x, dP, ddP, w0, Nsteps):
+            ### YOUR CODE
+            return trajectory
+        ```
+
+
+1. **🐺 Frank - Wolfe vs Projected gradient descent**
+    Consider the following simple quadratic optimization problem
+
+    $$
+    f(w) = \frac12 \langle Ax, x \rangle - \langle b, x \rangle \to \min\limits_{x \in \mathbb{R}^n; \; 1^\top x = 1, \; x \succeq 0}
+    $$
+
+    1. Generate and solve this problem numerically with *CVXPY*. Calculate optimal solution `x_optimal`
+
+        ```python
+        import jax
+        from jax import numpy as jnp
+        from jax import random
+        from jax import grad
+
+        def generate_problem(n, mu=0, L = 10):
+            RNG = random.PRNGKey(0)
+
+            U = random.normal(RNG, (n, n))
+            Q, _ = jnp.linalg.qr(U)
+            Lambda = jnp.diag(jnp.linspace(mu, L, n, endpoint=True))
+            A = Q @ Lambda @ Q.T
+
+            RNG, _ = random.split(RNG)
+            b = random.normal(RNG, (n, 1))
+
+            def f(x, A=A, b=b):
+                return 1/2 * x.T @ A @ x - b.T @ x
+
+            grad_f = grad(f)
+
+            RNG, _ = random.split(RNG)
+            x_0 = jnp.zeros(n)
+            idx = random.randint(RNG, (1,), 0, n)
+            x_0 = x_0.at[idx].set(1.0)
+            
+            return f, grad_f, A, b, x_0
+
+        def compute optimal(A, b):
+            ### ======
+            ### YOUR CODE HERE
+            ### ======
+            return x_optimal
+        ```
+         
+    1. In this problem you will consider 2 algorithms for solving this problem (Frank - Wolfe and Projected Gradient Descent). Let's start with PGD. Write down the function, that calculates Euclidian projection on the simplex:
+        ```python
+        def projection(y):
+            ### ======
+            ### YOUR CODE HERE
+            ### ======
+            return x
+        ```
+
+    1. Then, write the PGD method, that returns a `trajectory` list of `iterations+1` points $x_0, x_1, \ldots x_k$ and `time_trajectory` list for a cumulative time spent after each iteration :
+        ```python
+        def PGD(A, b, x_0, iterations):
+            return trajectory, time_trajectory
+        ```
+    1. Write down the FW method, that returns a `trajectory` list of `iterations+1` points $x_0, x_1, \ldots x_k$ and `time_trajectory` list for a cumulative time spent after each iteration :
+        ```python
+        def FW(A, b, x_0, iterations):
+            return trajectory, time_trajectory
+        ```
+    1. Generate a convex problem ($\mu=0, L=10$) and compare the methods starting from the same $x_0$. For this reason plot 2 graphs - $f(x_k) - f^*$ from iteration counter and time spent for it.
+
+    1. Generate a strongly convex problem ($\mu=1, L=10$) and compare the methods starting from the same $x_0$. For this reason plot 2 graphs - $f(x_k) - f^*$ from iteration counter and time spent for it.
+
+### Conjugate gradients
+
+### Newton and quasinewton methods
+
+1. **😱 Newton convergence issue** Consider the following function:
+
+    $$
+    f(x,y) = \dfrac{x^4}{4} - x^2 + 2x + (y-1)^2
+    $$
+    
+    And the starting point is $x_0 = (0,2)^\top$. How does Newton's method behave when started from this point? How can this be explained? 
+    How does the gradient descent with fixed step $\alpha = 0.01$ and the steepest descent method behave under the same conditions? (It is not necessary to show numerical simulations in this problem).
+
+### Proximal gradient method
+
+### Stochastic gradient methods 
+
+### Optimization in neural networks
