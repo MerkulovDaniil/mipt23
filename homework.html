@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.552">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -219,6 +219,12 @@ window.Quarto = {
   <li><a href="#gradient-descent" id="toc-gradient-descent" class="nav-link" data-scroll-target="#gradient-descent">Gradient Descent</a></li>
   <li><a href="#subgradient-descent" id="toc-subgradient-descent" class="nav-link" data-scroll-target="#subgradient-descent">Subgradient Descent</a></li>
   <li><a href="#accelerated-methods" id="toc-accelerated-methods" class="nav-link" data-scroll-target="#accelerated-methods">Accelerated methods</a></li>
+  <li><a href="#gradient-methods-for-conditional-problems" id="toc-gradient-methods-for-conditional-problems" class="nav-link" data-scroll-target="#gradient-methods-for-conditional-problems">Gradient methods for conditional problems</a></li>
+  <li><a href="#conjugate-gradients" id="toc-conjugate-gradients" class="nav-link" data-scroll-target="#conjugate-gradients">Conjugate gradients</a></li>
+  <li><a href="#newton-and-quasinewton-methods" id="toc-newton-and-quasinewton-methods" class="nav-link" data-scroll-target="#newton-and-quasinewton-methods">Newton and quasinewton methods</a></li>
+  <li><a href="#proximal-gradient-method" id="toc-proximal-gradient-method" class="nav-link" data-scroll-target="#proximal-gradient-method">Proximal gradient method</a></li>
+  <li><a href="#stochastic-gradient-methods" id="toc-stochastic-gradient-methods" class="nav-link" data-scroll-target="#stochastic-gradient-methods">Stochastic gradient methods</a></li>
+  <li><a href="#optimization-in-neural-networks" id="toc-optimization-in-neural-networks" class="nav-link" data-scroll-target="#optimization-in-neural-networks">Optimization in neural networks</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/MerkulovDaniil/mipt23/edit/main/homework.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -1168,6 +1174,226 @@ f(y) \leq f(x^k) + \langle \nabla f(x^k), y - x^k \rangle + \frac{L}{2}\|x^k - y
 <p>What should <span class="math inline">h</span> be taken as? Should <span class="math inline">\rho</span> be greater or less than <span class="math inline">1</span>? Should <span class="math inline">L_0</span> be taken as large or small? Draw a similar figure as it was in the previous step for L computed adaptively (6 lines - GD, HB, NAG, GD adaptive L, HB adaptive L, NAG adaptive L)</p></li>
 </ol></li>
 </ol>
+</section>
+<section id="gradient-methods-for-conditional-problems" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-methods-for-conditional-problems">Gradient methods for conditional problems</h3>
+<ol type="1">
+<li><p><strong>Hobbit village</strong> # 💍 <a href="https://courses.cs.ut.ee/MTAT.03.227/2015_spring/uploads/Main/home-exercises-5.pdf">Hobbit village</a> (Gradient descent + Newton method + Gradient descent in conditional optimization)</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib <span class="im">as</span> mpl</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> copy</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Below one can find function plotting the village</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_village(coordinates, l<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Checking, that all the coordinates are less than l</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> (coordinates <span class="op">&lt;=</span> l).<span class="bu">all</span>(), <span class="st">'All the houses should be in a village'</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw horizontal line</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    plt.hlines(<span class="dv">0</span>, <span class="dv">0</span>, l)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    plt.xlim(<span class="dv">0</span>, l)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    plt.ylim(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.5</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw house points</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> np.zeros(np.shape(coordinates))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">'The Hobbit Village'</span>)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    plt.plot(coordinates,y,<span class="st">'o'</span>,ms <span class="op">=</span> <span class="dv">10</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Coordinates'</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.gcf()</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    fig.set_size_inches(<span class="dv">15</span>, <span class="dv">1</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">25</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand(N)<span class="op">*</span>l</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>plot_village(x, l)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The inhabitants of a one-dimensional village want to connect to the Internet, so they need a central service station from which a cable will stretch to all the houses in the village. Let the price of the cable to be pulled from the station to each house independently be determined by some function p(d). Then it is clear that the village will have to pay the following amount for access to the World Wide Web: <span class="math display">
+P(w, x) = \sum\limits_{i=1}^N p(d_i) = \sum\limits_{i=1}^N p(|w - x_i|)
+</span> <span class="math inline">w</span> - station location, <span class="math inline">x_i</span> - location of <span class="math inline">i</span> house.</p>
+<ol type="1">
+<li><p>Write analytical solution <span class="math inline">w^*</span> for minimization <span class="math inline">P(w,x)</span>, if <span class="math inline">p(d) = d^2</span></p></li>
+<li><p>Write loss function <span class="math inline">P(w,x)</span></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> P(w, x):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((x<span class="op">-</span>w)<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Plot loss function on the range <span class="math inline">(0, l)</span>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">### YOUR CODE</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ws <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>plt.plot(ws, [P(w, x) <span class="cf">for</span> w <span class="kw">in</span> ws])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Write gradient of loss function</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dP(w, x):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">2</span><span class="op">*</span>(w<span class="op">-</span>x)).<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Plot gradient of loss function on the range <span class="math inline">(0,l)</span>. Which point on the graph is of particular interest? Why?</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">### YOUR CODE</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ws <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.plot(ws, [dP(w, x) <span class="cf">for</span> w <span class="kw">in</span> ws])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Write function <code>gradient_descent</code>, which returns <span class="math inline">w_k</span> after a fixed number of steps.</p>
+<p><span class="math display">
+w_{k+1} = w_k - \mu \nabla P(w_k)
+</span></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>w0 <span class="op">=</span> np.random.rand()<span class="op">*</span><span class="dv">10</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(x, dP, w0, mu, Nsteps):</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Modify <code>gradient_descent</code> to return the whole optimization trajectory. Plot loss function trajectory for the following learning rates <span class="math inline">\mu = 0.0001, 0.001, 0.01, 0.1</span>.<br>
+Draw conclusions.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(x, dP, w0, mu, Nsteps):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> trajectory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The village decided to lay cable using new technology. That’s why the price of the cable changed to:</p>
+<p><span class="math display">
+p(d) = |d|
+</span></p>
+<p>Write new function <code>P</code>, <code>dP</code>. Plot graphs for various <span class="math inline">x</span> and <span class="math inline">w</span>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> P(w, x):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dP(w, x):</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Write new analytical solytion <span class="math inline">w^*</span></p></li>
+<li><p>Plot loss trajectory for converging gradient descent for the new <span class="math inline">p(d)</span>.</p></li>
+<li><p>After several years, the government propose to destroy the first station but choose locations for two new stations. In this conditions cost of connecting all house calculated by new formula:</p>
+<p><span class="math display">
+P(w_1, w_2, x) = \sum\limits_{i=1}^N p(d_i) = \sum\limits_{i=1}^N p\left(\min\left(\left|w_1 - x_i\right|, \left|w_2 - x_i\right|\right)\right)
+</span></p>
+<p>Write new <code>P</code>, <code>dP</code>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> P(w1, w2, x):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dP(w1, w2, x):</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Plot <span class="math inline">P(w_1, w_2), \nabla P(w_1, w_2)</span> for different number of houses <span class="math inline">N</span>. Comment on what happens as you increase <span class="math inline">N</span>.</p></li>
+<li><p>Write new <code>gradient_descent</code>, which returns the entire optimization trajectory <span class="math inline">(w_k)</span> after a fixed number of steps and draws the process on the graphs <span class="math inline">P</span> and <span class="math inline">\nabla P</span> that were above. To ease visualization try to use <code>ax.quiver</code></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(x, dP, w0, mu, Nsteps):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Construction is almost underway, but new safety regulations do not allow stations to be on the distance more than 1/2:</p>
+<p><span class="math display">
+\left|w_1 - w_2\right| \leq \dfrac{l}{2}
+</span></p>
+<p>Plot our feasible set. Is it convex?</p></li>
+<li><p>Write <code>projected_SGD</code>, which returns the entire optimization trajectory <span class="math inline">(w_k)</span> after a fixed number of steps and draws the process on the graphs <span class="math inline">P</span> and <span class="math inline">\nabla P</span> that were above.</p>
+<p>The projected gradient descent method consists in making a gradient step and then checking if the obtained point belongs to the feasible set. If it belongs to the target set, the algorithm continues, otherwise a projection to the feasible set is made.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> projected_SGD(x, dP_sigma, w0, mu, Nsteps, p<span class="op">=</span><span class="fl">0.4</span>):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> projection(w):</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>We have same loss function</p>
+<p><span class="math display">
+P(w, x) = \sum\limits_{i=1}^N p(d_i) = \sum\limits_{i=1}^N p(|w - x_i|),
+</span></p>
+<p>where <span class="math inline">p(d) = d^2</span></p>
+<p>Write functions <code>P, dP, ddP</code>. <code>ddP</code> has to return hessian of loss function</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> P(w, x):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dP(w, x):</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ddP(w, x):</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Plot <code>ddP</code> on the range (0,l)</p></li>
+<li><p>Write function <code>newton_descent</code>, which return all optimization trajectory. Update rule:</p>
+<p><span class="math display">
+w_{i+1} = w_{i} - \nabla^{2} P\left(w_{i}\right)^{-1} \nabla P\left(w_{i}\right)
+</span></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> newton_descent(x, dP, ddP, w0, Nsteps):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> trajectory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Write function <code>multi_newton</code>, which solve 2D task:</p>
+<p><span class="math display">
+P(w_1, w_2, x) = \sum\limits_{i=1}^N p(d_i) = \sum\limits_{i=1}^N p\left(\min\left(\left|w_1 - x_i\right|, \left|w_2 - x_i\right|\right)\right)
+</span></p>
+<p>with <span class="math inline">p(d) = d^3</span> using Newton method and return optimization trajectory. Compare results with gradient descent.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> P(w1, w2, x):</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dP(w1, w2, x):</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ddP(w1, w2, x):</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> multi_newton(x, dP, ddP, w0, Nsteps):</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> trajectory</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol></li>
+<li><p><strong>🐺 Frank - Wolfe vs Projected gradient descent</strong> Consider the following simple quadratic optimization problem</p>
+<p><span class="math display">
+f(w) = \frac12 \langle Ax, x \rangle - \langle b, x \rangle \to \min\limits_{x \in \mathbb{R}^n; \; 1^\top x = 1, \; x \succeq 0}
+</span></p>
+<ol type="1">
+<li><p>Generate and solve this problem numerically with <em>CVXPY</em>. Calculate optimal solution <code>x_optimal</code></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> jax</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> numpy <span class="im">as</span> jnp</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> random</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> jax <span class="im">import</span> grad</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_problem(n, mu<span class="op">=</span><span class="dv">0</span>, L <span class="op">=</span> <span class="dv">10</span>):</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    RNG <span class="op">=</span> random.PRNGKey(<span class="dv">0</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    U <span class="op">=</span> random.normal(RNG, (n, n))</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    Q, _ <span class="op">=</span> jnp.linalg.qr(U)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    Lambda <span class="op">=</span> jnp.diag(jnp.linspace(mu, L, n, endpoint<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> Q <span class="op">@</span> Lambda <span class="op">@</span> Q.T</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>    RNG, _ <span class="op">=</span> random.split(RNG)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> random.normal(RNG, (n, <span class="dv">1</span>))</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> f(x, A<span class="op">=</span>A, b<span class="op">=</span>b):</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">*</span> x.T <span class="op">@</span> A <span class="op">@</span> x <span class="op">-</span> b.T <span class="op">@</span> x</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>    grad_f <span class="op">=</span> grad(f)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    RNG, _ <span class="op">=</span> random.split(RNG)</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>    x_0 <span class="op">=</span> jnp.zeros(n)</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> random.randint(RNG, (<span class="dv">1</span>,), <span class="dv">0</span>, n)</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>    x_0 <span class="op">=</span> x_0.at[idx].<span class="bu">set</span>(<span class="fl">1.0</span>)</span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> f, grad_f, A, b, x_0</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute optimal(A, b):</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ======</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">### YOUR CODE HERE</span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>    <span class="co">### ======</span></span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_optimal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>In this problem you will consider 2 algorithms for solving this problem (Frank - Wolfe and Projected Gradient Descent). Let’s start with PGD. Write down the function, that calculates Euclidian projection on the simplex: <code>python      def projection(y):          ### ======          ### YOUR CODE HERE          ### ======          return x</code></p></li>
+<li><p>Then, write the PGD method, that returns a <code>trajectory</code> list of <code>iterations+1</code> points <span class="math inline">x_0, x_1, \ldots x_k</span> and <code>time_trajectory</code> list for a cumulative time spent after each iteration : <code>python      def PGD(A, b, x_0, iterations):          return trajectory, time_trajectory</code></p></li>
+<li><p>Write down the FW method, that returns a <code>trajectory</code> list of <code>iterations+1</code> points <span class="math inline">x_0, x_1, \ldots x_k</span> and <code>time_trajectory</code> list for a cumulative time spent after each iteration : <code>python      def FW(A, b, x_0, iterations):          return trajectory, time_trajectory</code></p></li>
+<li><p>Generate a convex problem (<span class="math inline">\mu=0, L=10</span>) and compare the methods starting from the same <span class="math inline">x_0</span>. For this reason plot 2 graphs - <span class="math inline">f(x_k) - f^*</span> from iteration counter and time spent for it.</p></li>
+<li><p>Generate a strongly convex problem (<span class="math inline">\mu=1, L=10</span>) and compare the methods starting from the same <span class="math inline">x_0</span>. For this reason plot 2 graphs - <span class="math inline">f(x_k) - f^*</span> from iteration counter and time spent for it.</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="conjugate-gradients" class="level3">
+<h3 class="anchored" data-anchor-id="conjugate-gradients">Conjugate gradients</h3>
+</section>
+<section id="newton-and-quasinewton-methods" class="level3">
+<h3 class="anchored" data-anchor-id="newton-and-quasinewton-methods">Newton and quasinewton methods</h3>
+<ol type="1">
+<li><p><strong>😱 Newton convergence issue</strong> Consider the following function:</p>
+<p><span class="math display">
+f(x,y) = \dfrac{x^4}{4} - x^2 + 2x + (y-1)^2
+</span></p>
+<p>And the starting point is <span class="math inline">x_0 = (0,2)^\top</span>. How does Newton’s method behave when started from this point? How can this be explained? How does the gradient descent with fixed step <span class="math inline">\alpha = 0.01</span> and the steepest descent method behave under the same conditions? (It is not necessary to show numerical simulations in this problem).</p></li>
+</ol>
+</section>
+<section id="proximal-gradient-method" class="level3">
+<h3 class="anchored" data-anchor-id="proximal-gradient-method">Proximal gradient method</h3>
+</section>
+<section id="stochastic-gradient-methods" class="level3">
+<h3 class="anchored" data-anchor-id="stochastic-gradient-methods">Stochastic gradient methods</h3>
+</section>
+<section id="optimization-in-neural-networks" class="level3">
+<h3 class="anchored" data-anchor-id="optimization-in-neural-networks">Optimization in neural networks</h3>
 
 
 </section>
