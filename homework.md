@@ -1022,7 +1022,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Gradient methods for conditional problems
 
-1. **Hobbit village** # 💍 [Hobbit village](https://courses.cs.ut.ee/MTAT.03.227/2015_spring/uploads/Main/home-exercises-5.pdf) (Gradient descent + Newton method + Gradient descent in conditional optimization)
+1. **[💍 Hobbit village](https://courses.cs.ut.ee/MTAT.03.227/2015_spring/uploads/Main/home-exercises-5.pdf)** (Gradient descent + Newton method + Gradient descent in conditional optimization)
 
     ```python
     %matplotlib inline
@@ -1297,6 +1297,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
         ```
          
     1. In this problem you will consider 2 algorithms for solving this problem (Frank - Wolfe and Projected Gradient Descent). Let's start with PGD. Write down the function, that calculates Euclidian projection on the simplex:
+
         ```python
         def projection(y):
             ### ======
@@ -1306,11 +1307,13 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
         ```
 
     1. Then, write the PGD method, that returns a `trajectory` list of `iterations+1` points $x_0, x_1, \ldots x_k$ and `time_trajectory` list for a cumulative time spent after each iteration :
+
         ```python
         def PGD(A, b, x_0, iterations):
             return trajectory, time_trajectory
         ```
     1. Write down the FW method, that returns a `trajectory` list of `iterations+1` points $x_0, x_1, \ldots x_k$ and `time_trajectory` list for a cumulative time spent after each iteration :
+
         ```python
         def FW(A, b, x_0, iterations):
             return trajectory, time_trajectory
@@ -1320,6 +1323,128 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     1. Generate a strongly convex problem ($\mu=1, L=10$) and compare the methods starting from the same $x_0$. For this reason plot 2 graphs - $f(x_k) - f^*$ from iteration counter and time spent for it.
 
 ### Conjugate gradients
+
+1. **[Randomized Preconditioners for Conjugate Gradient Methods.](https://web.stanford.edu/class/ee364b/364b_exercises.pdf)** 
+
+    *Linear least squares*
+
+    In this task, we explore the use of some randomization methods for solving overdetermined least-squares problems, focusing on conjugate gradient methods. Let $A \in \mathbb{R}^{m \times n}$ be a matrix (we assume that $m \gg n$) and $b \in \mathbb{R}^m$, we aim to minimize
+
+    $$
+    f(x) = \frac{1}{2} \|Ax - b\|^2_2 = \frac{1}{2} \sum_{i=1}^m (a_i^T x - b_i)^2,
+    $$
+
+    where the $a_i \in \mathbb{R}^n$ denote the rows of $A$.
+
+    *Preconditioners*
+
+    We know, that the convergence bound of the CG applied for the problem depends on the condition number of the matrix. Note, that for the problem above we have the matrix $A^T A$ and the condition number is squared after this operation ($\kappa (X^T X) =  \kappa^2 \left(X \right)$). That is the reason, why we typically need to use *preconditioners* ([read 12. for more details](https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf)) with CG.
+
+    The general idea of using preconditioners implies switchwing from solving $Ax = b$ to $MAx = Mb$ with hope, that $\kappa \left( MA\right) \ll \kappa \left( A\right)$ or eigenvalues of $MA$ are better clustered than those of $A$ (note, that matrix $A$ here is for the general case, here we have $A^TA$ instead). 
+
+    This idea can also be viewed as coordinate change $x = T \hat{x}, \; \hat{x} = T^{-1}x$, which leads to the problem $T^T A T \hat{x} = T^Tb$. Note, that the spectrum of $T^TAT$ is the same as the spectrum of $MA$. 
+    
+    The best choice of $M$ is $A^{-1}$, because $\kappa (A^{-1} A) = \kappa (I) = 1$. However, if we know $A^{-1}$, the original problem is already solved, that is why we need to find some trade-off between enhanced convergence, and extra cost of working with $M$. The goal is to find $M$ that is cheap to multiply, and approximate inverse of $A$ (or at least has a more clustered spectrum than $A$)
+
+    $$
+    \begin{aligned}
+    & \mathbf{r}_0 := \mathbf{b} - \mathbf{A x}_0 \\
+    & \hbox{if } \mathbf{r}_{0} \text{ is sufficiently small, then return } \mathbf{x}_{0} \text{ as the result}\\
+    & \mathbf{d}_0 := \mathbf{r}_0 \\
+    & k := 0 \\
+    & \text{repeat} \\
+    & \qquad \alpha_k := \frac{\mathbf{r}_k^\mathsf{T} \mathbf{r}_k}{\mathbf{d}_k^\mathsf{T} \mathbf{A d}_k}  \\
+    & \qquad \mathbf{x}_{k+1} := \mathbf{x}_k + \alpha_k \mathbf{d}_k \\
+    & \qquad \mathbf{r}_{k+1} := \mathbf{r}_k - \alpha_k \mathbf{A d}_k \\
+    & \qquad \hbox{if } \mathbf{r}_{k+1} \text{ is sufficiently small, then exit loop} \\
+    & \qquad \beta_k := \frac{\mathbf{r}_{k+1}^\mathsf{T} \mathbf{r}_{k+1}}{\mathbf{r}_k^\mathsf{T} \mathbf{r}_k} \\
+    & \qquad \mathbf{d}_{k+1} := \mathbf{r}_{k+1} + \beta_k \mathbf{d}_k \\
+    & \qquad k := k + 1 \\
+    & \text{end repeat} \\
+    & \text{return } \mathbf{x}_{k+1} \text{ as the result}
+    \end{aligned} \qquad 
+    \begin{aligned}
+    & \mathbf{r}_0 := \mathbf{b} - \mathbf{A x}_0 \\
+    & \text{if } \mathbf{r}_0 \text{ is sufficiently small, then return } \mathbf{x}_0 \text{ as the result} \\
+    & \mathbf{z}_0 := \mathbf{M}^{-1} \mathbf{r}_0 \\
+    & \mathbf{d}_0 := \mathbf{z}_0 \\
+    & k := 0 \\
+    & \text{repeat} \\
+    & \qquad \alpha_k := \frac{\mathbf{r}_k^\mathsf{T} \mathbf{z}_k}{\mathbf{d}_k^\mathsf{T} \mathbf{A d}_k} \\
+    & \qquad \mathbf{x}_{k+1} := \mathbf{x}_k + \alpha_k \mathbf{d}_k \\
+    & \qquad \mathbf{r}_{k+1} := \mathbf{r}_k - \alpha_k \mathbf{A d}_k \\
+    & \qquad \text{if } \mathbf{r}_{k+1} \text{ is sufficiently small, then exit loop} \\
+    & \qquad \mathbf{z}_{k+1} := \mathbf{M}^{-1} \mathbf{r}_{k+1} \\
+    & \qquad \beta_k := \frac{\mathbf{r}_{k+1}^\mathsf{T} \mathbf{z}_{k+1}}{\mathbf{r}_k^\mathsf{T} \mathbf{z}_k} \\
+    & \qquad \mathbf{d}_{k+1} := \mathbf{z}_{k+1} + \beta_k \mathbf{d}_k \\
+    & \qquad k := k + 1 \\
+    & \text{end repeat} \\
+    & \text{return } \mathbf{x}_{k+1} \text{ as the result}
+    \end{aligned}
+    $$
+
+    *Hadamard matrix*
+
+    Given $m \in \{2^i, i = 1, 2, \ldots\}$, the (unnormalized) Hadamard matrix of order $m$ is defined recursively as
+
+    $$
+    H_2 = \begin{bmatrix} 1 & 1 \\ 1 & -1 \end{bmatrix}, \quad \text{and} \quad H_m = \begin{bmatrix} H_{m/2} & H_{m/2} \\ H_{m/2} & -H_{m/2} \end{bmatrix}.
+    $$
+
+    The associated normalized Hadamard matrix is given by $H^{(\text{norm})}_m = \frac{1}{\sqrt{m}} H_m$, which evidently satisfies $H^{(\text{norm})T}_m H^{(\text{norm})}_m = I_{m \times m}$. Moreover, via a recursive algorithm, it is possible to compute matvec $H_m x$ in time $O(m \log m)$, which is much faster than $m^2$ for a general matrix.
+
+    To solve the least squares minimization problem using conjugate gradients, we must solve $A^T A x = A^T b$. Using a preconditioner $M$ such that $M \approx A^{-1}$ can give substantial speedup in computing solutions to large problems.
+
+    Consider the following scheme to generate a randomized preconditioner, assuming that $m = 2^i$ for some $i$:
+
+    1. Let $S = \text{diag}(S_{11}, \ldots, S_{mm})$, where $S_{jj}$ are random $\{-1,+1\}$ signs
+    2. Let $p \in \mathbb{Z}^+$ be a small positive integer, say $20$ for this problem.
+    3. Let $R \in \{0, 1\}^{n+p \times m}$ be a *row selection matrix*, meaning that each row of $R$ has only 1 non-zero entry, chosen uniformly at random. (The location of these non-zero columns is distinct.)
+
+        ```python
+        import jax.numpy as jnp
+        from jax import random
+
+        def create_row_selection_matrix_jax(m, n, p, key):
+            # m is the number of columns in the original matrix A
+            # n+p is the number of rows in the row selection matrix R
+            # key is a PRNGKey needed for randomness in JAX
+            inds = random.permutation(key, m)[:n+p]  # Generate a random permutation and select the first n+p indices
+            R = jnp.zeros((n+p, m), dtype=jnp.int32)  # Create a zero matrix of shape (n+p, m)
+            R = R.at[np.arange(n+p), inds].set(1)     # Use JAX's indexed update to set the entries corresponding to inds to 1
+            return R
+        ```
+
+    4. Define $\Phi = R H^{(\text{norm})}_m S \in \mathbb{R}^{n+p \times m}$
+
+    We then define the matrix \( M \) via its inverse \( M^{-1} = A^T \Phi^T \Phi A \in \mathbb{R}^{n \times n} \).
+
+    *Questions*
+
+    1. **(1 point)** How many FLOPs (floating point operations, i.e. multiplication and additions) are required to compute the matrices $M^{-1}$ and $M$, respectively, assuming that you can compute the matrix-vector product $H_mv$ in time $m \log m$ for any vector $v \in \mathbb{R}^m$?
+
+    1. **(1 point)** How many FLOPs are required to naively compute $A^T A$, assuming $A$ is dense (using standard matrix algorithms)?
+    
+    1. **(1 point)** How many FLOPs are required to compute $A^T A v$ for a vector $v \in \mathbb{R}^n$ by first computing $u = Av$ and then computing $A^T u$?
+    
+    1. **(2 poins)** Suppose that conjugate gradients runs for $k$ iterations. Using the preconditioned conjugate gradient algorithm with $M = (A^T \Phi^T \Phi A)^{-1}$, how many total floating point operations have been performed? How many would be required to directly solve $A^T A x = A^T b$? How large must $k$ be to make the conjugate gradient method slower?
+    
+    1. **(3 points)** Implement the conjugate gradient algorithm for solving the positive definite linear system $A^T A x = A^T b$ both with and without the preconditioner $M$. To generate data for your problem, set $m = 2^{12}$ and $n = 400$, then generate the matrix $A$ and the vector $b$. For simplicity in implementation, you may directly pass $A^T A$ and $A^T b$ into your conjugate gradient solver, as we only wish to explore how the methods work.
+
+    ```python
+    import numpy as np
+    from scipy.sparse import diags
+
+    m = 2**12  # 4096
+    n = 400
+    # Create a linear space of values from 0.001 to 100
+    values = np.linspace(0.001, 100, n)
+    # Generate the matrix A
+    A = np.random.randn(m, n) * diags(values).toarray()
+    b = np.random.randn(m, 1)
+    ```
+
+    Plot the norm of the residual $r_k = A^T b - A^T A x_k$ (relative to $\|A^T b\|_2$) as a function of iteration $k$ for each of your conjugate gradient procedures. Additionally, compute and print the condition numbers $\kappa(A^T A)$ and $\kappa(M^{1/2} A^T A M^{1/2})$.
 
 ### Newton and quasinewton methods
 
