@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mipt23.fmin.xyz/projects.html</loc>
-    <lastmod>2024-04-19T15:17:52.181Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mipt23.fmin.xyz/program.html</loc>
-    <lastmod>2024-04-19T15:17:52.181Z</lastmod>
+    <loc>https://mipt23.fmin.xyz/homework.html</loc>
+    <lastmod>2024-04-22T15:35:37.190Z</lastmod>
   </url>
   <url>
     <loc>https://mipt23.fmin.xyz/index.html</loc>
-    <lastmod>2024-04-19T15:17:51.177Z</lastmod>
+    <lastmod>2024-04-22T15:35:37.190Z</lastmod>
   </url>
   <url>
     <loc>https://mipt23.fmin.xyz/files/mds.html</loc>
-    <lastmod>2024-04-19T15:17:51.109Z</lastmod>
+    <lastmod>2024-04-22T15:35:37.118Z</lastmod>
   </url>
   <url>
-    <loc>https://mipt23.fmin.xyz/homework.html</loc>
-    <lastmod>2024-04-19T15:17:51.173Z</lastmod>
+    <loc>https://mipt23.fmin.xyz/notebooks/convex_intersection.html</loc>
+    <lastmod>2024-04-22T15:35:37.194Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mipt23.fmin.xyz/program.html</loc>
+    <lastmod>2024-04-22T15:35:38.242Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mipt23.fmin.xyz/projects.html</loc>
+    <lastmod>2024-04-22T15:35:38.242Z</lastmod>
   </url>
 </urlset>

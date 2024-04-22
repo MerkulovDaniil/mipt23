@@ -1396,7 +1396,8 @@ f(x) = \frac{1}{2} \|Ax - b\|^2_2 = \frac{1}{2} \sum_{i=1}^m (a_i^T x - b_i)^2,
 <p>We know, that the convergence bound of the CG applied for the problem depends on the condition number of the matrix. Note, that for the problem above we have the matrix <span class="math inline">A^T A</span> and the condition number is squared after this operation (<span class="math inline">\kappa (X^T X) =  \kappa^2 \left(X \right)</span>). That is the reason, why we typically need to use <em>preconditioners</em> (<a href="https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf">read 12. for more details</a>) with CG.</p>
 <p>The general idea of using preconditioners implies switchwing from solving <span class="math inline">Ax = b</span> to <span class="math inline">MAx = Mb</span> with hope, that <span class="math inline">\kappa \left( MA\right) \ll \kappa \left( A\right)</span> or eigenvalues of <span class="math inline">MA</span> are better clustered than those of <span class="math inline">A</span> (note, that matrix <span class="math inline">A</span> here is for the general case, here we have <span class="math inline">A^TA</span> instead).</p>
 <p>This idea can also be viewed as coordinate change <span class="math inline">x = T \hat{x}, \; \hat{x} = T^{-1}x</span>, which leads to the problem <span class="math inline">T^T A T \hat{x} = T^Tb</span>. Note, that the spectrum of <span class="math inline">T^TAT</span> is the same as the spectrum of <span class="math inline">MA</span>.</p>
-<p>The best choice of <span class="math inline">M</span> is <span class="math inline">A^{-1}</span>, because <span class="math inline">\kappa (A^{-1} A) = \kappa (I) = 1</span>. However, if we know <span class="math inline">A^{-1}</span>, the original problem is already solved, that is why we need to find some trade-off between enhanced convergence, and extra cost of working with <span class="math inline">M</span>. The goal is to find <span class="math inline">M</span> that is cheap to multiply, and approximate inverse of <span class="math inline">A</span> (or at least has a more clustered spectrum than <span class="math inline">A</span>)</p>
+<p>The best choice of <span class="math inline">M</span> is <span class="math inline">A^{-1}</span>, because <span class="math inline">\kappa (A^{-1} A) = \kappa (I) = 1</span>. However, if we know <span class="math inline">A^{-1}</span>, the original problem is already solved, that is why we need to find some trade-off between enhanced convergence, and extra cost of working with <span class="math inline">M</span>. The goal is to find <span class="math inline">M</span> that is cheap to multiply, and approximate inverse of <span class="math inline">A</span> (or at least has a more clustered spectrum than <span class="math inline">A</span>).</p>
+<p>Below you can find Vanilla CG algorithm (on the left) and preconditioned CG algorithm (on the right):</p>
 <p><span class="math display">
 \begin{aligned}
 &amp; \mathbf{r}_0 := \mathbf{b} - \mathbf{A x}_0 \\
@@ -1465,7 +1466,7 @@ H_2 = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}, \quad \text{and} \q
 <li><p><strong>(1 point)</strong> How many FLOPs are required to naively compute <span class="math inline">A^T A</span>, assuming <span class="math inline">A</span> is dense (using standard matrix algorithms)?</p></li>
 <li><p><strong>(1 point)</strong> How many FLOPs are required to compute <span class="math inline">A^T A v</span> for a vector <span class="math inline">v \in \mathbb{R}^n</span> by first computing <span class="math inline">u = Av</span> and then computing <span class="math inline">A^T u</span>?</p></li>
 <li><p><strong>(2 poins)</strong> Suppose that conjugate gradients runs for <span class="math inline">k</span> iterations. Using the preconditioned conjugate gradient algorithm with <span class="math inline">M = (A^T \Phi^T \Phi A)^{-1}</span>, how many total floating point operations have been performed? How many would be required to directly solve <span class="math inline">A^T A x = A^T b</span>? How large must <span class="math inline">k</span> be to make the conjugate gradient method slower?</p></li>
-<li><p><strong>(3 points)</strong> Implement the conjugate gradient algorithm for solving the positive definite linear system <span class="math inline">A^T A x = A^T b</span> both with and without the preconditioner <span class="math inline">M</span>. To generate data for your problem, set <span class="math inline">m = 2^{12}</span> and <span class="math inline">n = 400</span>, then generate the matrix <span class="math inline">A</span> and the vector <span class="math inline">b</span>. For simplicity in implementation, you may directly pass <span class="math inline">A^T A</span> and <span class="math inline">A^T b</span> into your conjugate gradient solver, as we only wish to explore how the methods work.</p></li>
+<li><p><strong>(5 points)</strong> Implement the conjugate gradient algorithm for solving the positive definite linear system <span class="math inline">A^T A x = A^T b</span> both with and without the preconditioner <span class="math inline">M</span>. To generate data for your problem, set <span class="math inline">m = 2^{12}</span> and <span class="math inline">n = 400</span>, then generate the matrix <span class="math inline">A</span> and the vector <span class="math inline">b</span>. For simplicity in implementation, you may directly pass <span class="math inline">A^T A</span> and <span class="math inline">A^T b</span> into your conjugate gradient solver, as we only wish to explore how the methods work.</p></li>
 </ol>
 <div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.sparse <span class="im">import</span> diags</span>
@@ -1488,16 +1489,26 @@ H_2 = \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}, \quad \text{and} \q
 f(x,y) = \dfrac{x^4}{4} - x^2 + 2x + (y-1)^2
 </span></p>
 <p>And the starting point is <span class="math inline">x_0 = (0,2)^\top</span>. How does Newton’s method behave when started from this point? How can this be explained? How does the gradient descent with fixed step <span class="math inline">\alpha = 0.01</span> and the steepest descent method behave under the same conditions? (It is not necessary to show numerical simulations in this problem).</p></li>
+<li><p><strong>Hessian-Free Newton method</strong></p></li>
 </ol>
 </section>
 <section id="proximal-gradient-method" class="level3">
 <h3 class="anchored" data-anchor-id="proximal-gradient-method">Proximal gradient method</h3>
+<ol type="1">
+<li><strong>Proximal method for sparse softmax regression</strong></li>
+</ol>
 </section>
 <section id="stochastic-gradient-methods" class="level3">
 <h3 class="anchored" data-anchor-id="stochastic-gradient-methods">Stochastic gradient methods</h3>
+<ol type="1">
+<li><strong>Variance reduction for stochastic gradient methods</strong></li>
+</ol>
 </section>
 <section id="optimization-in-neural-networks" class="level3">
 <h3 class="anchored" data-anchor-id="optimization-in-neural-networks">Optimization in neural networks</h3>
+<ol type="1">
+<li></li>
+</ol>
 
 
 </section>
