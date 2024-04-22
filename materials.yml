@@ -168,15 +168,15 @@
 
 - title: Продвинутые стохастические градиентные методы. Методы редукции дисперсии.
   number: 22
-  # materials: /presentations/22/22.pdf
-  # notes: /notes/22.pdf
+  materials: /presentations/22/22.pdf
+  notes: /notes/22.pdf
   youtube: 
   download: 
 
 - title: Обучение больших моделей. Последние практические достижения.
   number: 23
-  #materials: /presentations/22.pdf
-  # notes: /notes/22.pdf
+  materials: /presentations/23/23.pdf
+  notes: /notes/23.pdf
   youtube: 
   download: 
 

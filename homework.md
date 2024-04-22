@@ -1344,7 +1344,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
     This idea can also be viewed as coordinate change $x = T \hat{x}, \; \hat{x} = T^{-1}x$, which leads to the problem $T^T A T \hat{x} = T^Tb$. Note, that the spectrum of $T^TAT$ is the same as the spectrum of $MA$. 
     
-    The best choice of $M$ is $A^{-1}$, because $\kappa (A^{-1} A) = \kappa (I) = 1$. However, if we know $A^{-1}$, the original problem is already solved, that is why we need to find some trade-off between enhanced convergence, and extra cost of working with $M$. The goal is to find $M$ that is cheap to multiply, and approximate inverse of $A$ (or at least has a more clustered spectrum than $A$)
+    The best choice of $M$ is $A^{-1}$, because $\kappa (A^{-1} A) = \kappa (I) = 1$. However, if we know $A^{-1}$, the original problem is already solved, that is why we need to find some trade-off between enhanced convergence, and extra cost of working with $M$. The goal is to find $M$ that is cheap to multiply, and approximate inverse of $A$ (or at least has a more clustered spectrum than $A$). 
+
+    Below you can find Vanilla CG algorithm (on the left) and preconditioned CG algorithm (on the right):
 
     $$
     \begin{aligned}
@@ -1429,7 +1431,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     
     1. **(2 poins)** Suppose that conjugate gradients runs for $k$ iterations. Using the preconditioned conjugate gradient algorithm with $M = (A^T \Phi^T \Phi A)^{-1}$, how many total floating point operations have been performed? How many would be required to directly solve $A^T A x = A^T b$? How large must $k$ be to make the conjugate gradient method slower?
     
-    1. **(3 points)** Implement the conjugate gradient algorithm for solving the positive definite linear system $A^T A x = A^T b$ both with and without the preconditioner $M$. To generate data for your problem, set $m = 2^{12}$ and $n = 400$, then generate the matrix $A$ and the vector $b$. For simplicity in implementation, you may directly pass $A^T A$ and $A^T b$ into your conjugate gradient solver, as we only wish to explore how the methods work.
+    1. **(5 points)** Implement the conjugate gradient algorithm for solving the positive definite linear system $A^T A x = A^T b$ both with and without the preconditioner $M$. To generate data for your problem, set $m = 2^{12}$ and $n = 400$, then generate the matrix $A$ and the vector $b$. For simplicity in implementation, you may directly pass $A^T A$ and $A^T b$ into your conjugate gradient solver, as we only wish to explore how the methods work.
 
     ```python
     import numpy as np
@@ -1457,8 +1459,16 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     And the starting point is $x_0 = (0,2)^\top$. How does Newton's method behave when started from this point? How can this be explained? 
     How does the gradient descent with fixed step $\alpha = 0.01$ and the steepest descent method behave under the same conditions? (It is not necessary to show numerical simulations in this problem).
 
+1. **Hessian-Free Newton method**
+
 ### Proximal gradient method
+
+1. **Proximal method for sparse softmax regression**
 
 ### Stochastic gradient methods 
 
+1. **Variance reduction for stochastic gradient methods**
+
 ### Optimization in neural networks
+
+1. 
