@@ -182,14 +182,14 @@
 
 - title: Методы оптимизации в непрерывном времени. Gradient Flow. Accelerated Gradient Flow. Немного о диффузии.
   number: 24
-  materials: /presentations/25/25.pdf
-  notes: /notes/25.pdf
+  materials: /presentations/24/24.pdf
+  notes: /notes/24.pdf
   youtube: 
   download: 
 
 - title: ADMM и идея штрафных/барьерных методов.
   number: 25
-  materials: /presentations/26/26.pdf
-  notes: /notes/26.pdf
+  materials: /presentations/25/25.pdf
+  notes: /notes/25.pdf
   youtube: 
   download: 
