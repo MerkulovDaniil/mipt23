@@ -1471,4 +1471,8 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Optimization in neural networks
 
-1. 
+1. **
+
+## Big models
+
+## 

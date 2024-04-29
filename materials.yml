@@ -173,29 +173,22 @@
   youtube: https://youtu.be/dZuYwwyGc4Y
   download: https://disk.yandex.com/i/nz2cfQmbirw74w
 
-- title: Удивительные сюжеты из мира обучения больших нейросетей с точки зрения методов оптимизации 1. Проекция функции потерь нейронной сети на прямую, плоскость. Инициализация. Grokking, Double Descent, Large batch training, Activations checkpointintg.
+- title: Удивительные сюжеты из мира обучения больших нейросетей с точки зрения методов оптимизации. Проекция функции потерь нейронной сети на прямую, плоскость. Инициализация. Grokking, Double Descent, Large batch training, Activations checkpointintg.
   number: 23
   materials: /presentations/23/23.pdf
   notes: /notes/23.pdf
   youtube: https://youtu.be/hxUZoyPotj8
   download: https://disk.yandex.com/i/6b-uYBRUHuS6EQ
 
-- title: Удивительные сюжеты из мира обучения больших нейросетей с точки зрения методов оптимизации 2. Mode connectivity. Neural Tangent Kernel. Sharpness Aware Minimization. 
-  number: 24
-  materials: /presentations/24/24.pdf
-  notes: /notes/24.pdf
-  youtube: 
-  download: 
-
 - title: Методы оптимизации в непрерывном времени. Gradient Flow. Accelerated Gradient Flow. Немного о диффузии.
-  number: 25
+  number: 24
   materials: /presentations/25/25.pdf
   notes: /notes/25.pdf
   youtube: 
   download: 
 
 - title: ADMM и идея штрафных/барьерных методов.
-  number: 26
+  number: 25
   materials: /presentations/26/26.pdf
   notes: /notes/26.pdf
   youtube: 
