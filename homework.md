@@ -652,7 +652,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Gradient Descent
 
-1. **Convergence of Gradient Descent in non-convex smooth case**
+1. **Convergence of Gradient Descent in non-convex smooth case** (10 points)
 
     We will assume nothing about the convexity of $f$.  We will show that gradient descent reaches an $\varepsilon$-substationary point $x$, such that $\|\nabla f(x)\|_2 \leq \varepsilon$, in $O(1/\varepsilon^2)$ iterations. Important note: you may use here Lipschitz parabolic upper bound: 
     
@@ -688,7 +688,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
         $$
         which establishes the desired $O(1/\varepsilon^2)$ rate for achieving $\varepsilon$-substationarity.  
 
-1. **How gradient descent convergence depends on the condition number and dimensionality.** Investigate how the number of iterations required for gradient descent to converge depends on the following two parameters: the condition number $\kappa \geq 1$ of the function being optimized, and the dimensionality $n$ of the space of variables being optimized.
+1. **How gradient descent convergence depends on the condition number and dimensionality.** (20 points)
+
+    Investigate how the number of iterations required for gradient descent to converge depends on the following two parameters: the condition number $\kappa \geq 1$ of the function being optimized, and the dimensionality $n$ of the space of variables being optimized.
     
     To do this, for given parameters $n$ and $\kappa$, randomly generate a quadratic problem of size $n$ with condition number $\kappa$ and run gradient descent on it with some fixed required precision. Measure the number of iterations $T(n, \kappa)$ that the method required for convergence (successful termination based on the stopping criterion).
 
@@ -708,7 +710,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Subgradient Descent
 
-1. **Subgradient descent convergence with several stepsize strategies.** In this problem you will have to prove the convergence of subgradient descent ($x^{k+1} = x^k - \alpha_k g_k$) for several stepsize strategies. First prove, that 
+1. **Subgradient descent convergence with several stepsize strategies.** (10 points)
+
+    In this problem you will have to prove the convergence of subgradient descent ($x^{k+1} = x^k - \alpha_k g_k$) for several stepsize strategies. First prove, that 
 
     $$
     \|x^{k+1} - x^*\|_2^2 \leq \|x^{k} - x^*\|_2^2 - 2\alpha_k \left(f(x^k) - f^* \right) + \alpha^2_k \|g_k\|_2^2
@@ -738,7 +742,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
         \alpha_k = \frac{f(x^k) - f^*}{\|g_k\|_2^2}
         $$
 
-1. **Subgradient methods for Lasso.** Consider the optimization problem
+1. **Subgradient methods for Lasso.**  (10 points)
+
+    Consider the optimization problem 
 
     $$
     \min_{x \in \mathbb{R}^n} f(x) := \frac12 \|Ax - b\|^2 + \lambda \|x\|_1,
@@ -768,7 +774,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
     * Repeat previous part using a heavy ball term, $\beta_k(x^k - x^{k-1})$, added to the subgradient. Try different step size rules as in the previous part and tune the heavy ball parameter $\beta_k = \beta$ for faster convergence.
 
-1. **Finding a point in the intersection of convex sets.** Let $A \in \mathbb{R}^{n \times n}$ be a positive definite matrix and let $\Sigma$ be an $n \times n$ diagonal matrix with diagonal entries $\sigma_1,...,\sigma_n > 0$, and $y$ a given vector in $\mathbb{R}^n$. Consider the compact convex sets $U = \{x \in \mathbb{R}^n \mid \|A^{1/2}(x-y)\|_2 \leq 1\}$ and $V = \{x \in \mathbb{R}^n \mid \|\Sigma x\|_\infty \leq 1\}$.
+1. **Finding a point in the intersection of convex sets.**  (20 points)
+
+    Let $A \in \mathbb{R}^{n \times n}$ be a positive definite matrix and let $\Sigma$ be an $n \times n$ diagonal matrix with diagonal entries $\sigma_1,...,\sigma_n > 0$, and $y$ a given vector in $\mathbb{R}^n$. Consider the compact convex sets $U = \{x \in \mathbb{R}^n \mid \|A^{1/2}(x-y)\|_2 \leq 1\}$ and $V = \{x \in \mathbb{R}^n \mid \|\Sigma x\|_\infty \leq 1\}$.
 
     * Minimize maximum distance from the current point to the convex sets. 
 
@@ -794,7 +802,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Accelerated methods
 
-1. **Local Convergence of Heavy Ball Method.** We will work with the heavy ball method in this problem
+1. **Local Convergence of Heavy Ball Method.**  (10 points)
+
+    We will work with the heavy ball method in this problem
 
     $$
     \tag{HB}
@@ -917,7 +927,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
     Context: this counterexample was provided in the [paper](https://arxiv.org/pdf/1408.3595.pdf), while the global convergence of the heavy ball method for general smooth strongly convex function was introduced in another [paper](https://arxiv.org/pdf/1412.7457.pdf). Recently, it was [suggested](https://arxiv.org/pdf/2307.11291.pdf), that the heavy-ball (HB) method provably does not reach an accelerated convergence rate on smooth strongly convex problems. 
 
-1. In this problem we will work with accelerated methods applied to the logistic regression problem. A good visual introduction to the topic is available [here](https://mlu-explain.github.io/logistic-regression/). 
+1.  (20 points) In this problem we will work with accelerated methods applied to the logistic regression problem. A good visual introduction to the topic is available [here](https://mlu-explain.github.io/logistic-regression/). 
     
     Logistic regression is a standard model in classification tasks. For simplicity, consider only the case of binary classification. Informally, the problem is formulated as follows: There is a training sample $\{(a_i, b_i)\}_{i=1}^m$, consisting of $m$ vectors $a_i \in \mathbb{R}^n$ (referred to as features) and corresponding numbers $b_i \in \{-1, 1\}$ (referred to as classes or labels). The goal is to construct an algorithm $b(\cdot)$, which for any new feature vector $a$ automatically determines its class $b(a) \in \{-1, 1\}$. 
 
@@ -1022,7 +1032,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Gradient methods for conditional problems
 
-1. **[💍 Hobbit village](https://courses.cs.ut.ee/MTAT.03.227/2015_spring/uploads/Main/home-exercises-5.pdf)** (Gradient descent + Newton method + Gradient descent in conditional optimization)
+1. **[💍 Hobbit village](https://courses.cs.ut.ee/MTAT.03.227/2015_spring/uploads/Main/home-exercises-5.pdf)** (Gradient descent + Newton method + Gradient descent in conditional optimization)  (20 points)
 
     ```python
     %matplotlib inline
@@ -1251,7 +1261,8 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
         ```
 
 
-1. **🐺 Frank - Wolfe vs Projected gradient descent**
+1. **🐺 Frank - Wolfe vs Projected gradient descent**  (10 points)
+
     Consider the following simple quadratic optimization problem
 
     $$
@@ -1324,7 +1335,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Conjugate gradients
 
-1. **[Randomized Preconditioners for Conjugate Gradient Methods.](https://web.stanford.edu/class/ee364b/364b_exercises.pdf)** 
+1. **[Randomized Preconditioners for Conjugate Gradient Methods.](https://web.stanford.edu/class/ee364b/364b_exercises.pdf)**  (10 points)
 
     *Linear least squares*
 
@@ -1450,7 +1461,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Newton and quasinewton methods
 
-1. **😱 Newton convergence issue** Consider the following function:
+1. **😱 Newton convergence issue**  (10 points) 
+
+    Consider the following function: 
 
     $$
     f(x,y) = \dfrac{x^4}{4} - x^2 + 2x + (y-1)^2
