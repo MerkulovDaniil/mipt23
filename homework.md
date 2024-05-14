@@ -1603,7 +1603,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Proximal Gradient Method
 
-1. [10 points] **Proximal Method for Sparse Softmax Regression** Softmax regression, also known as multinomial logistic regression, is a generalization of logistic regression to multiple classes. It is used to model categorical outcome variables where each category is mutually exclusive. The softmax function transforms any input vector to the probability-like vector as follows:
+1. [20 points] **Proximal Method for Sparse Softmax Regression** Softmax regression, also known as multinomial logistic regression, is a generalization of logistic regression to multiple classes. It is used to model categorical outcome variables where each category is mutually exclusive. The softmax function transforms any input vector to the probability-like vector as follows:
 
     $$
     P(y = j | x; W) = \frac{e^{W_j^T x}}{\sum\limits_{i=1}^{c} e^{W_i^T x}}
@@ -1623,9 +1623,9 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
     We will solve the sparse softmax regression problem using the subgradient method and the proximal gradient method, both incorporating L1 regularization. The proximal gradient method is particularly useful for optimization problems involving non-smooth regularizers like the L1 norm. We will use 3 class classification problem of [Predicting Students' Dropout and Academic Success](https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success). In this problem you should start with this [\faPython colab notebook](https://colab.research.google.com/github/MerkulovDaniil/optim/blob/master/assets/Notebooks/Proximal_softmax_regression.ipynb)
 
-    1. [2 points] Write down exact formulation of subgradient method and proximal gradient method here (you can not use any optimization problems in this formulation).
-    1. [3 points] Choose $\lambda = 0$. Solve the softmax regression problem using subgradient descent and proximal gradient descent. Find the highest learning (individually), acceptable for both methods to converge. Report convergence curves and report final sparsity of both methods. Draw you conclusions.
-    1. [5 points] Solve non-smooth problem and fill the following table. For each value of $\lambda$ provide convergence curves.
+    1. [4 points] Write down exact formulation of subgradient method and proximal gradient method here (you can not use any optimization problems in this formulation).
+    1. [6 points] Choose $\lambda = 0$. Solve the softmax regression problem using subgradient descent and proximal gradient descent. Find the highest learning (individually), acceptable for both methods to converge. Report convergence curves and report final sparsity of both methods. Draw you conclusions.
+    1. [10 points] Solve non-smooth problem and fill the following table. For each value of $\lambda$ provide convergence curves.
 
     Report the number of iterations needed to reach specified primal gaps for each method. Present the results in the following markdown table:
 
@@ -1650,7 +1650,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Stochastic gradient methods 
 
-1. **Variance reduction for stochastic gradient methods for neural networks**. [10 points]
+1. **Variance reduction for stochastic gradient methods for neural networks**. [20 points]
 
     Open [\faPython colab notebook](https://colab.research.google.com/github/MerkulovDaniil/optim/blob/master/assets/Notebooks/VR_exercise.ipynb). Implement SAG and SVRG method. Consider Linear least squares problem with the following setup
 
