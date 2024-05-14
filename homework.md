@@ -1657,45 +1657,153 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     ```python
     params = {
         "mu": 0,
-        "m": 200,
-        "n": 10,
+        "m": 50,
+        "n": 100,
         "methods": [
             {
                 "method": "SGD",
-                "learning_rate": 1e-1,
+                "learning_rate": 1e-2,
+                "batch_size": 2,
+                "iterations": 1000,
+            },
+            {
+                "method": "SGD",
+                "learning_rate": 1e-2,
+                "batch_size": 50,
+                "iterations": 1000,
+            },
+            {
+                "method": "SAG",
+                "learning_rate": 1e-2,
+                "batch_size": 2,
+                "iterations": 1000,
+            },
+            {
+                "method": "SVRG",
+                "learning_rate": 1e-2,
+                "epoch_length": 2,
+                "batch_size": 2,
+                "iterations": 1000,
+            },
+        ]
+    }
+
+    results = run_experiments(params)
+    ```
+
+    Then, consider strongly convex case with:
+
+    ```python
+    params = {
+        "mu": 1e-1,
+        "m": 50,
+        "n": 100,
+        "methods": [
+            {
+                "method": "SGD",
+                "learning_rate": 1e-2,
                 "batch_size": 2,
                 "iterations": 2000,
             },
             {
+                "method": "SGD",
+                "learning_rate": 1e-2,
+                "batch_size": 50,
+                "iterations": 2000,
+            },
+            {
                 "method": "SAG",
-                "learning_rate": 1e-1,
+                "learning_rate": 1e-2,
                 "batch_size": 2,
                 "iterations": 2000,
             },
             {
                 "method": "SVRG",
-                "learning_rate": 1e-1,
-                "epoch_length": 3,
+                "learning_rate": 1e-2,
+                "epoch_length": 2,
                 "batch_size": 2,
-                "iterations": 2000,
-            },
-            {
-                "method": "SGD",
-                "learning_rate": 1e-1,
-                "batch_size": 50,
-                "iterations": 2000,
-            },
-            {
-                "method": "SGD",
-                "learning_rate": 1e-1,
-                "batch_size": 200,
                 "iterations": 2000,
             },
         ]
     }
     ```
 
-    Then, consider
+    And for the convex binary logistic regression:
+
+    ```python
+    params = {
+        "mu": 0,
+        "m": 100,
+        "n": 200,
+        "methods": [
+            {
+                "method": "SGD",
+                "learning_rate": 1e-2,
+                "batch_size": 2,
+                "iterations": 2000,
+            },
+            {
+                "method": "SAG",
+                "learning_rate": 1e-2,
+                "batch_size": 2,
+                "iterations": 2000,
+            },
+            {
+                "method": "SVRG",
+                "learning_rate": 1e-2,
+                "epoch_length": 3,
+                "batch_size": 2,
+                "iterations": 2000,
+            },
+            {
+                "method": "SGD",
+                "learning_rate": 1e-2,
+                "batch_size": 100,
+                "iterations": 2000,
+            },
+        ]
+    }
+    ```
+
+    and strongly convex case
+
+    ```python
+    params = {
+        "mu": 1e-1,
+        "m": 100,
+        "n": 200,
+        "methods": [
+            {
+                "method": "SGD",
+                "learning_rate": 2e-2,
+                "batch_size": 2,
+                "iterations": 3000,
+            },
+            {
+                "method": "SAG",
+                "learning_rate": 2e-2,
+                "batch_size": 2,
+                "iterations": 3000,
+            },
+            {
+                "method": "SVRG",
+                "learning_rate": 2e-2,
+                "epoch_length": 3,
+                "batch_size": 2,
+                "iterations": 3000,
+            },
+            {
+                "method": "SGD",
+                "learning_rate": 2e-2,
+                "batch_size": 100,
+                "iterations": 3000,
+            },
+        ]
+    }
+    ```
+
+    Describe the obtained convergence and compare methods.
+
 
     ![](lls_VR.svg)
 
