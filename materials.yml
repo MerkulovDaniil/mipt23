@@ -184,17 +184,17 @@
   number: 24
   materials: /presentations/24/24.pdf
   notes: /notes/24.pdf
-  youtube: 
-  download: 
+  youtube: https://youtu.be/5dF33qWNFxk
+  download: https://disk.yandex.com/i/xUBIMdSwM8Mjjg
 
-- title: Немного о диффузии и генеративных моделях.
+- title: Метод двойственного градиентного подъема. Метод модифицированной фукнции Лагранжа. Dual decomposition.
   number: 25
   materials: /presentations/25/25.pdf
   notes: /notes/25.pdf
-  youtube: 
+  youtube: https://youtu.be/bI_Bcz1kE0k
   download: 
 
-- title: ADMM и идея штрафных/барьерных методов.
+- title: Alternating Direction Method of Multipliers (ADMM). Приложения.
   number: 26
   materials: /presentations/26/26.pdf
   notes: /notes/26.pdf
