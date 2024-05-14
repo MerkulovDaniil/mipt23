@@ -1609,7 +1609,7 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
     P(y = j | x; W) = \frac{e^{W_j^T x}}{\sum\limits_{i=1}^{c} e^{W_i^T x}}
     $$
 
-    ![](Softmax.svg)
+    ![Scheme of softmax regression](Softmax.svg)
 
     where $x$ is the input vector, $W$ is the weight matrix, $c$ is the number of classes, and $P(y = j | x; W)$ is the probability that the input $x$ belongs to class $j$.
 
@@ -1650,44 +1650,52 @@ Armijo's condition for any $c_1: 0 \leq c_1 \leq \dfrac12$:
 
 ### Stochastic gradient methods 
 
-1. **Variance reduction for stochastic gradient methods for neural networks**.  
+1. **Variance reduction for stochastic gradient methods for neural networks**. [10 points]
 
     Open [\faPython colab notebook](https://colab.research.google.com/github/MerkulovDaniil/optim/blob/master/assets/Notebooks/VR_exercise.ipynb). Implement SAG and SVRG method. Consider Linear least squares problem with the following setup
 
     ```python
     params = {
         "mu": 0,
-        "m": 150,
-        "n": 300,
+        "m": 200,
+        "n": 10,
         "methods": [
             {
                 "method": "SGD",
-                "learning_rate": 3e-1,
-                "batch_size": 40,
-                "iterations": 150,
-            },
-            {
-                "method": "SGD",
-                "learning_rate": 3e-1,
-                "batch_size": 150,
-                "iterations": 150,
+                "learning_rate": 1e-1,
+                "batch_size": 2,
+                "iterations": 2000,
             },
             {
                 "method": "SAG",
-                "learning_rate": 3e-1,
-                "batch_size": 40,
-                "iterations": 150,
+                "learning_rate": 1e-1,
+                "batch_size": 2,
+                "iterations": 2000,
             },
             {
                 "method": "SVRG",
-                "learning_rate": 3e-1,
-                "epoch_length": 5,
-                "batch_size": 40,
-                "iterations": 150,
+                "learning_rate": 1e-1,
+                "epoch_length": 3,
+                "batch_size": 2,
+                "iterations": 2000,
+            },
+            {
+                "method": "SGD",
+                "learning_rate": 1e-1,
+                "batch_size": 50,
+                "iterations": 2000,
+            },
+            {
+                "method": "SGD",
+                "learning_rate": 1e-1,
+                "batch_size": 200,
+                "iterations": 2000,
             },
         ]
     }
     ```
+
+    Then, consider
 
     ![](lls_VR.svg)
 
