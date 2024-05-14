@@ -1602,7 +1602,7 @@ f(w) = -\sum_{i=1}^n \left[ y_i \log(p(y_i=1 | x_i; w)) + (1-y_i) \log(1-p(y_i=1
 <section id="proximal-gradient-method" class="level3">
 <h3 class="anchored" data-anchor-id="proximal-gradient-method">Proximal Gradient Method</h3>
 <ol type="1">
-<li><p>[10 points] <strong>Proximal Method for Sparse Softmax Regression</strong> Softmax regression, also known as multinomial logistic regression, is a generalization of logistic regression to multiple classes. It is used to model categorical outcome variables where each category is mutually exclusive. The softmax function transforms any input vector to the probability-like vector as follows:</p>
+<li><p>[20 points] <strong>Proximal Method for Sparse Softmax Regression</strong> Softmax regression, also known as multinomial logistic regression, is a generalization of logistic regression to multiple classes. It is used to model categorical outcome variables where each category is mutually exclusive. The softmax function transforms any input vector to the probability-like vector as follows:</p>
 <p><span class="math display">
 P(y = j | x; W) = \frac{e^{W_j^T x}}{\sum\limits_{i=1}^{c} e^{W_i^T x}}
 </span></p>
@@ -1620,9 +1620,9 @@ P(y = j | x; W) = \frac{e^{W_j^T x}}{\sum\limits_{i=1}^{c} e^{W_i^T x}}
 <p>where <span class="math inline">N</span> is the number of training examples, <span class="math inline">\lambda</span> is the regularization parameter, and <span class="math inline">\| W \|_1</span> is the L1 norm of the weight matrix, which promotes sparsity in the solution. I suggest you to vectorize matrix and add <span class="math inline">1</span>-vector norm.</p>
 <p>We will solve the sparse softmax regression problem using the subgradient method and the proximal gradient method, both incorporating L1 regularization. The proximal gradient method is particularly useful for optimization problems involving non-smooth regularizers like the L1 norm. We will use 3 class classification problem of <a href="https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success">Predicting Students’ Dropout and Academic Success</a>. In this problem you should start with this <a href="https://colab.research.google.com/github/MerkulovDaniil/optim/blob/master/assets/Notebooks/Proximal_softmax_regression.ipynb">colab notebook</a></p>
 <ol type="1">
-<li>[2 points] Write down exact formulation of subgradient method and proximal gradient method here (you can not use any optimization problems in this formulation).</li>
-<li>[3 points] Choose <span class="math inline">\lambda = 0</span>. Solve the softmax regression problem using subgradient descent and proximal gradient descent. Find the highest learning (individually), acceptable for both methods to converge. Report convergence curves and report final sparsity of both methods. Draw you conclusions.</li>
-<li>[5 points] Solve non-smooth problem and fill the following table. For each value of <span class="math inline">\lambda</span> provide convergence curves.</li>
+<li>[4 points] Write down exact formulation of subgradient method and proximal gradient method here (you can not use any optimization problems in this formulation).</li>
+<li>[6 points] Choose <span class="math inline">\lambda = 0</span>. Solve the softmax regression problem using subgradient descent and proximal gradient descent. Find the highest learning (individually), acceptable for both methods to converge. Report convergence curves and report final sparsity of both methods. Draw you conclusions.</li>
+<li>[10 points] Solve non-smooth problem and fill the following table. For each value of <span class="math inline">\lambda</span> provide convergence curves.</li>
 </ol>
 <p>Report the number of iterations needed to reach specified primal gaps for each method. Present the results in the following markdown table:</p>
 <table class="table">
@@ -1816,7 +1816,7 @@ P(y = j | x; W) = \frac{e^{W_j^T x}}{\sum\limits_{i=1}^{c} e^{W_i^T x}}
 <section id="stochastic-gradient-methods" class="level3">
 <h3 class="anchored" data-anchor-id="stochastic-gradient-methods">Stochastic gradient methods</h3>
 <ol type="1">
-<li><p><strong>Variance reduction for stochastic gradient methods for neural networks</strong>. [10 points]</p>
+<li><p><strong>Variance reduction for stochastic gradient methods for neural networks</strong>. [20 points]</p>
 <p>Open <a href="https://colab.research.google.com/github/MerkulovDaniil/optim/blob/master/assets/Notebooks/VR_exercise.ipynb">colab notebook</a>. Implement SAG and SVRG method. Consider Linear least squares problem with the following setup</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"mu"</span>: <span class="dv">0</span>,</span>
