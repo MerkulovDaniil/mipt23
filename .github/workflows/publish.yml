@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -18,6 +19,12 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with: 
           tinytex: true
+
+      - name: Download and install Palatino fonts
+        run: |
+          mkdir -p ~/.fonts
+          cp exam/final_exam/palatino/*.ttf ~/.fonts/
+          fc-cache -f -v
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
