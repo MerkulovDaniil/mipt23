@@ -2,7 +2,7 @@
 format: 
     pdf:
         pdf-engine: xelatex
-        include-in-header: header.tex  # Custom LaTeX commands and preamble
+        include-in-header: ./header.tex  # Custom LaTeX commands and preamble
 ---
 
 # Определения и формулировки
